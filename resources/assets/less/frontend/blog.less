@@ -1,0 +1,272 @@
+
+//@color-primary-0: #732F2F;
+//@color-primary-1: #7986AC; 
+//@color-primary-2: #1B1B1B;
+//@color-primary-3: #162656; 
+//@color-primary-4: #940000; 
+
+//@color-title: #fff;
+//@color-active: #fff;
+//@color-subtitle: #CDDDEB;
+//@color-page: #fff;
+//@color-font: #555;
+
+@color-primary-0: #A86F4C;
+@color-primary-1: #EAA072; 
+@color-primary-2: #A22041; 
+@color-primary-3: #0F5051; 
+@color-primary-4: #3D9C9E;
+
+@color-primary-0-light: mix(@color-primary-0, #fff, 50%);
+
+@color-header: @color-primary-1;
+@color-navbar: @color-primary-0;
+@color-body: @color-primary-4;
+
+@color-title: @color-primary-2;
+@color-active: #fff;
+@color-subtitle: @color-primary-2;
+@color-text-navbar: #ECECEC;
+@color-page: #fff;
+@color-font: @color-primary-2;
+@color-link: @color-primary-4;
+@color-link-hover: darken(@color-link, 6.5%);
+
+/*
+ * Globals
+ */
+
+ @font-face {
+  font-family: 'Keytin Light';
+  src: url('font/keytin-light-webfont.eot'); /* IE9 Compat Modes */
+  src: url('font/keytin-light-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('font/keytin-light-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('font/keytin-light-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('font/keytin-light-webfont.svg#KeytinRegular') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: 'Liberation Sans';
+    src: url('font/liberationsans-regular-webfont.eot');
+    src: url('font/liberationsans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/liberationsans-regular-webfont.woff') format('woff'),
+         url('font/liberationsans-regular-webfont.ttf') format('truetype'),
+         url('font/liberationsans-regular-webfont.svg#liberation_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Liberation Serif';
+    src: url('font/liberationserif-regular-webfont.eot');
+    src: url('font/liberationserif-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/liberationserif-regular-webfont.woff') format('woff'),
+         url('font/liberationserif-regular-webfont.ttf') format('truetype'),
+         url('font/liberationserif-regular-webfont.svg#liberation_serifregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-blog: "Keytin Light", Arial, sans-serif;
+@font-title: "Liberation Sans", Arial, sans-serif;
+@font-text: "Liberation Sans", Times, serif;
+
+body {
+  font-family: @font-text;
+  color: @color-font;
+  background-color: @color-body;
+  padding-top: 40px;
+}
+
+h2, .h2 {
+  font-family: @font-title;
+  color: @color-title;  
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+}
+
+a {
+  color: @color-link; 
+}
+
+a:hover {
+  color: @color-link-hover;
+}
+
+/*
+ * Masthead for nav
+ */
+
+.blog-masthead {
+  background-color: @color-navbar;
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,.1);
+          box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  text-align: center;
+  border: 0;
+  min-height: 40px;
+}
+
+/* Nav links */
+.blog-nav-item {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-family: @font-title;
+  font-weight: 500;
+  color: @color-text-navbar;
+}
+.blog-nav-item:hover,
+.blog-nav-item:focus {
+  color: @color-active;
+  text-decoration: none;
+}
+
+/* Active state gets a caret at the bottom */
+.blog-nav .active {
+  color: @color-active;
+}
+.blog-nav .active:after {
+  color: @color-page;  
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  vertical-align: middle;
+  content: " ";
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid;
+  border-left: 5px solid transparent;
+}
+
+
+/*
+ * Blog name and description
+ */
+
+.blog-header {
+  padding: 20px 15px;
+}
+.blog-title {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 80px;
+  font-weight: normal;
+  letter-spacing: 10px;
+  font-family: @font-blog;
+  color: @color-title;   
+  /*text-shadow: rgb(224, 224, 224) 1px 1px 0px;  */
+}
+.blog-description {
+  font-size: 20px;
+  color: @color-subtitle;
+}
+
+
+/*
+ * Main column and sidebar layout
+ */
+
+.page-main {
+  background-color: @color-header;
+  border-right: 5px solid @color-navbar;
+  border-left: 5px solid @color-navbar;
+  padding-left: inherit;
+  padding-right: inherit;  
+}
+
+.row {
+  background-color: @color-page;
+  border-top: 3px solid @color-primary-0-light;
+  margin-left: inherit;
+  margin-right: inherit;
+}
+
+.blog-main {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .blog-sidebar {
+    border-left: 1px solid @color-primary-0-light;
+  }
+}
+
+
+
+/* Sidebar modules for boxing content */
+.sidebar-module {
+  padding: 15px;
+  margin: 0 -15px 15px;
+}
+.sidebar-module-inset {
+  padding: 15px;
+
+  border-radius: 4px;
+}
+.sidebar-module-inset p:last-child,
+.sidebar-module-inset ul:last-child,
+.sidebar-module-inset ol:last-child {
+  margin-bottom: 0;
+}
+
+.in-block li {
+  display: inline-block;
+}
+
+
+/* Pagination */
+.pager {
+  margin-bottom: 60px;
+  text-align: left;
+}
+.pager > li > a {
+  width: 140px;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 30px;
+}
+
+
+/*
+ * Blog posts
+ */
+
+.blog-post {
+  margin-bottom: 60px;
+}
+.blog-post-title {
+  margin-bottom: 5px;
+  font-size: 40px;
+}
+.blog-post-meta {
+  margin-bottom: 20px;
+  color: @color-subtitle;
+}
+
+
+/*
+ * Footer
+ */
+
+.blog-footer {
+  padding: 40px 0;
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+}
+.blog-footer p:last-child {
+  margin-bottom: 0;
+}
