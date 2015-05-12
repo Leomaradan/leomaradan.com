@@ -73,7 +73,14 @@ class Post extends Model {
 
 		if($values) {
 			foreach ($values as $value) {
-				$tags[] = Tag::firstOrCreate(['name' => $value])->id;
+				$tag = Tag::where('name', $value)->first();
+				if(!$tag) {
+					$tag = new Tag();
+					$tag->name = $value;
+					$tag->slug = '';
+					$tag->save();
+				}
+				$tags[] = $tag->id;
 			}	
 		}
 
@@ -83,7 +90,13 @@ class Post extends Model {
 	}
 
 	public function setCategoryAttribute($value) {
-			$category = PostsCategory::firstOrCreate(['name' => $value]);	
+			$category = PostsCategory::where('name', $value)->first();
+			if(!$category) {
+				$category = new PostsCategory();
+				$category->name = $value;
+				$category->slug = '';
+				$category->save();
+			}
 			$this->attributes['category_id'] = $category->id;
 	}
 

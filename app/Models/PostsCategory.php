@@ -9,6 +9,8 @@ class PostsCategory extends Model {
 
 	protected $fillable = ['name', 'slug'];
 
+	public $timestamps = false;	
+
 	public function posts() {
 		return $this->hasMany('App\Models\Post');
 	}

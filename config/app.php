@@ -147,6 +147,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 		'App\Providers\IpFilterServiceProvider',
 		'GrahamCampbell\Markdown\MarkdownServiceProvider',
+		'Roumen\Feed\FeedServiceProvider',
 	],
 
 	/*
@@ -199,6 +200,7 @@ return [
 
 		'IpFilter'	=> 'App\IpFilter\IpFilterFacade',
 		'Carbon'    => 'Carbon\Carbon',
+		'Feed' => 'Roumen\Feed\Facades\Feed',
 
 	],
 

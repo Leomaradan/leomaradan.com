@@ -48,6 +48,7 @@ Route::group(['prefix' => $blog], function() use ($blog) {
 	Route::get('/q/{search}', ['uses' => 'PostsController@search', 'as' => "${blog}.search"]);
 	Route::get('/'.config('routes.tag').'/{slug}', ['uses' => 'PostsController@tags', 'as' => "${blog}.tag"]);
 	Route::get('/'.config('routes.category').'/{slug}', ['uses' => 'PostsController@category', 'as' => "${blog}.category"]);
+	Route::get('/feed', ['uses' => 'PostsController@feed', 'as' => "${blog}.feed"]);
 	Route::get('/{slug}', ['uses' => 'PostsController@show', 'as' => "${blog}.show"]);
 });
 
