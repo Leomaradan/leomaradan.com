@@ -55,7 +55,7 @@ class Post extends Model {
 		if(empty($this->attributes['lead'])) {
 			$pos = strpos($this->content, chr(13).chr(10));
 			if($pos === false) {
-				$pos = strpos($this->content, ' ', 200);
+				$pos = strpos($this->content, ' ', min(strlen($this->content), 200));
 				if($pos === false) {
 					$pos = min(strlen($this->content), 200);
 				}

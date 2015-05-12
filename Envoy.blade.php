@@ -3,7 +3,7 @@
 @setup
 	$dir = "/home/leo/laravel";
     $dirlinks = ['tmp/cache/models', 'tmp/cache/persistent', 'tmp/cache/views', 'tmp/sessions', 'tests', 'logs'];
-    $filelinks = ['config/app.php', '.env'];
+    $filelinks = ['.env'];
     $releases = 3;
     //$remote = false;
     $remote = 'https://github.com/Leomaradan/leomaradan.com.git';
