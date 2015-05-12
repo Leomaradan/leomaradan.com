@@ -20,10 +20,14 @@
 		</div>	
 
 		<div class="form-group">
-			<label>
-				{!! Form::checkbox('admin', 1, $user->admin) !!} Admin ?
-			</label>		
-		</div>									
+			{!! Form::label('status', 'Status') !!}
+			{!! Form::select('status', [
+				'inactive' => 'Inactif', 
+				'user' => 'Utilisateur', 
+				'moderator' => 'Modérateur', 
+				'admin' => 'Admin'
+			], null) !!}
+		</div>								
 
 		<button class="btn btn-primary">Sauver</button>		
 

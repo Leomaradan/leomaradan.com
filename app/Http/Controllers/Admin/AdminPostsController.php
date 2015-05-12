@@ -46,9 +46,11 @@ class AdminPostsController extends Controller {
 	 */
 	public function store(EditPostRequest $request)
 	{
-		//$post = Post::create($request->all());
-		//return redirect(route($this->routeNamePrefix . '.edit', $post));
-		return $this->save(new Post([]), $request, 'create');
+		$post = Post::create($request->all());
+		
+		Session::flash('success', "L'article a bien été sauvegardé");
+
+		return redirect(route($this->routeNamePrefix . '.create', $post));		
 	}
 
 
@@ -75,7 +77,13 @@ class AdminPostsController extends Controller {
 	public function update($slug, EditPostRequest $request)
 	{
 		$post = Post::findBySlug($slug);
-		return $this->save($post, $request, 'edit');
+
+		$post->update($request->all());
+
+		Session::flash('success', "L'article a bien été sauvegardé");
+
+		return redirect(route($this->routeNamePrefix . '.edit', $post));
+
 	}
 
 	/**
@@ -92,16 +100,4 @@ class AdminPostsController extends Controller {
 		return response()->json(['id' => $id])->setCallback($request->input('callback'));
 	}
 
-	public function save(Post $post, EditPostRequest $request, $viewSuccess) {
-
-
-		$post->update($request->only(['title', 'slug', 'content', 'published_at', 'category', 'tags_list', 'lead']));
-
-
-		$post->save();
-
-		Session::flash('success', "L'article a bien été sauvegardé");
-
-		return redirect(route($this->routeNamePrefix . '.' . $viewSuccess, $post));
-	}
 }

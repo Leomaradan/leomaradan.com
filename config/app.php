@@ -147,8 +147,6 @@ return [
 		'App\Providers\RouteServiceProvider',
 		'App\Providers\IpFilterServiceProvider',
 		'GrahamCampbell\Markdown\MarkdownServiceProvider',
-		//'Barryvdh\Debugbar\ServiceProvider',
-
 	],
 
 	/*

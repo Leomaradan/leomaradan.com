@@ -4,7 +4,7 @@ use Illuminate\Foundation\Bus\DispatchesCommands;
 use App\Http\Controllers\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
-abstract class Controller extends BaseController {
+class Controller extends BaseController {
 
 	use DispatchesCommands, ValidatesRequests;
 
@@ -12,5 +12,10 @@ abstract class Controller extends BaseController {
 		parent::__construct();
 		$this->middleware('admin');
 	}
+
+	public function index()
+	{
+		return view('admin.index');
+	}	
 
 }

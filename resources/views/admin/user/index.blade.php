@@ -9,7 +9,12 @@
     'definitions' => [
         'name' => 'Nom',
         'email' => 'E-Mail',
-        'admin' => ['title' => 'Admin ?', 'type' => 'boolean']
+        'status' => ['title' => 'Status', 'type' => 'enum', 'data' => [
+                'inactive' => 'Inactif', 
+                'user' => 'Utilisateur', 
+                'moderator' => 'Modérateur', 
+                'admin' => 'Admin'
+            ]]
     ],
     'edit_link' => config('routes.admin._').'.'.config('routes.admin.user').'.edit',
     'destroy_link' => config('routes.admin._').'.'.config('routes.admin.user').'.destroy',

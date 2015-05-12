@@ -30,7 +30,7 @@ Route::get('/', function() {
 });
 
 Route::group(['prefix' => $admin['_'], 'namespace' => 'Admin'], function() use ($admin) {
-	Route::get('/', function() { return view('admin.index'); });
+	Route::get('/', 'Controller@index');
 	Route::resource($admin['blog'], 'AdminPostsController', ['except' => ['show']]);
 	Route::resource($admin['category'], 'AdminCategoryController', ['except' => ['create', 'edit']]);
 	Route::resource($admin['tag'], 'AdminTagController', ['except' => ['create', 'edit']]);

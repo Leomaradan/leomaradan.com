@@ -28,7 +28,7 @@
 				@foreach($definitions as $k => $v)
 					@if($k !== 'null')
 						@if(is_array($v))
-							<td>@include('templates.format_bootstrap', ['type' => $v['type'], 'value' => $element->$k])</td>
+							<td>@include('templates.format_bootstrap', ['type' => $v['type'], 'value' => $element->$k, 'data' => $v['data']])</td>
 						@else
 							<td>{{ $element->$k }}</td>
 						@endif

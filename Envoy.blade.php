@@ -1,11 +1,12 @@
-@servers(['web' => 'leo@din.leomaradan.com:2246'])
+@servers(['web' => 'leo@din.leomaradan.com -p 2246'])
 
 @setup
 	$dir = "/home/leo/laravel";
     $dirlinks = ['tmp/cache/models', 'tmp/cache/persistent', 'tmp/cache/views', 'tmp/sessions', 'tests', 'logs'];
-    $filelinks = ['config/app.php'];
+    $filelinks = ['config/app.php', '.env'];
     $releases = 3;
-    $remote = false;
+    //$remote = false;
+    $remote = 'https://github.com/Leomaradan/leomaradan.com.git';
 
     $shared = $dir . '/shared';
     $current = $dir . '/current';
@@ -76,7 +77,6 @@
 
 @task('laravel')
     cd {{ $release }};
-    chmod +x bin/cake;
     chmod 777 {{ $release }}/tmp;
     php artisan migrate
 @endtask
