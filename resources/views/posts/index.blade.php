@@ -5,7 +5,7 @@
 	@include('posts.post', [
 		'titre' => $post->title,
 		'contenu' => $post->lead,
-		'date' => '8 mai 2015',
+		'date' => $post->published_at->formatLocalized('%A %e %B %Y, à %k:%M'),
 		'url' => route(config('routes.blog').'.show', $post),
 	])
 	@endforeach

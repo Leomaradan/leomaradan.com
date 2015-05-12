@@ -28,7 +28,7 @@
     <div class="blog-masthead navbar navbar-fixed-top">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="#">Blog</a>
+          <a class="blog-nav-item active" href="{{ route(config('routes.blog').'.index') }}">Blog</a>
           <a class="blog-nav-item" href="#">Liens</a>
           <a class="blog-nav-item" href="#">Photos</a>
           <a class="blog-nav-item" href="#">Projets</a>

@@ -15,6 +15,10 @@ $blog = config('routes.blog');
 $link = config('routes.link');
 $url = config('routes.url');
 
+
+Carbon::setLocale(config('app.locale'));
+
+
 $admin = [];
 $admin['_'] = config('routes.admin._');
 

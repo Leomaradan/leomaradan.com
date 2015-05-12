@@ -47,7 +47,7 @@ class AdminPostsController extends Controller {
 	public function store(EditPostRequest $request)
 	{
 		$post = Post::create($request->all());
-		
+
 		Session::flash('success', "L'article a bien été sauvegardé");
 
 		return redirect(route($this->routeNamePrefix . '.create', $post));		

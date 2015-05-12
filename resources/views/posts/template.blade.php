@@ -2,7 +2,7 @@
 
 @section('article')
     <header>
-        <h1>@yield('title', 'Laravel')</h1>
+        <h1>@yield('title', 'Léo Maradan')</h1>
     </header>
     <section>
         @yield('content')

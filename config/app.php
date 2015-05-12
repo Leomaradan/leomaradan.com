@@ -52,7 +52,7 @@ return [
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'fr',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -198,6 +198,7 @@ return [
 		'Markdown' 	=> 'GrahamCampbell\Markdown\Facades\Markdown',
 
 		'IpFilter'	=> 'App\IpFilter\IpFilterFacade',
+		'Carbon'    => 'Carbon\Carbon',
 
 	],
 

@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use \Carbon;
 
 class Post extends Model {
 
@@ -95,8 +96,10 @@ class Post extends Model {
 	}	
 
 	public function setPublishedAtAttribute($value) {
-		if($value == "") {
+		if(empty($value)) {
 			$this->attributes['published_at'] = null;
+		} else {
+			$this->attributes['published_at'] =  Carbon::parse($value);
 		}
 	}	
 
