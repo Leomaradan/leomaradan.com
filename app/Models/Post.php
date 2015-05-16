@@ -8,7 +8,7 @@ use \Carbon;
 
 class Post extends Model {
 
-	protected $fillable = ['title', 'slug', 'content', 'published_at', 'tags_list', 'category_id', 'category', 'lead', 'lead_img', 'image'];
+	protected $fillable = ['title', 'slug', 'content', 'published_at', 'tags_list', 'category_id', 'category', 'lead', 'lead_img'];
 
 
 	public function category() {

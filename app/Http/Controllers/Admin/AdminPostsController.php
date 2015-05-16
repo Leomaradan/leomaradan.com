@@ -108,7 +108,7 @@ class AdminPostsController extends Controller {
 	}
 
 	public function uploadImage() {
-	    if (Input::file('image')->isValid()) {
+	    if (Input::has('image') && Input::file('image')->isValid()) {
 	      $destinationPath = 'images/blog/'; // upload path
 	      $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
 	      $fileName = rand(11111,99999).'.'.$extension; // renameing image
