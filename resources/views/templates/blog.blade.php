@@ -5,7 +5,7 @@
 @endsection
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/front/blog.min.css') }}">'
+<link rel="stylesheet" href="{{ asset('css/front/blog.min.css') }}">
 @endsection
 
 @section('menu')

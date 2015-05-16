@@ -25,7 +25,6 @@
   </head>
 
   <body>
-
     <div class="blog-masthead navbar navbar-fixed-top">
       <div class="container">
       @yield('menu')

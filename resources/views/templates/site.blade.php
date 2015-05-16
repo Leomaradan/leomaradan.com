@@ -1,5 +1,9 @@
 @extends('templates.frontend')
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/front/blog.min.css') }}">
+@endsection
+
 @section('menu')
   <nav class="blog-nav">
     <a class="blog-nav-item active" href="{{ route('index') }}">Accueil</a>
