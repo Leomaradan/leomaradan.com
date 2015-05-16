@@ -10,6 +10,7 @@ use App\Models\PostsCategory;
 
 use Validator;
 use Session;
+use Input;
 
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class AdminPostsController extends Controller {
 	{
 		$post = new Post();
 		$categories = implode(',', PostsCategory::lists('name', 'id'));
-		$form = ['url' => route(config('routes.admin._').'.'.config('routes.admin.blog').'.store')];
+		$form = ['url' => route(config('routes.admin._').'.'.config('routes.admin.blog').'.store'), 'files'=>true];
 		return view('admin.posts.create', compact('post', 'categories', 'form'));
 	}
 
@@ -47,6 +48,10 @@ class AdminPostsController extends Controller {
 	public function store(EditPostRequest $request)
 	{
 		$post = Post::create($request->all());
+
+		$post->lead_img = $this->uploadImage();	
+
+		$post->save();
 
 		Session::flash('success', "L'article a bien été sauvegardé");
 
@@ -64,7 +69,7 @@ class AdminPostsController extends Controller {
 	{
 		$post = Post::findBySlug($slug);
 		$categories = implode(',', PostsCategory::lists('name', 'id'));
-		$form = ['method' => 'put', 'url' => route(config('routes.admin._').'.'.config('routes.admin.blog').'.update', $post)];
+		$form = ['method' => 'put', 'url' => route(config('routes.admin._').'.'.config('routes.admin.blog').'.update', $post), 'files'=>true];
 		return view('admin.posts.edit', compact('post', 'categories', 'form'));
 	}
 
@@ -77,6 +82,8 @@ class AdminPostsController extends Controller {
 	public function update($slug, EditPostRequest $request)
 	{
 		$post = Post::findBySlug($slug);
+
+		$post->lead_img = $this->uploadImage();	
 
 		$post->update($request->all());
 
@@ -98,6 +105,18 @@ class AdminPostsController extends Controller {
 		$id = $post->id;
 		$post->delete();
 		return response()->json(['id' => $id])->setCallback($request->input('callback'));
+	}
+
+	public function uploadImage() {
+	    if (Input::file('image')->isValid()) {
+	      $destinationPath = 'images/blog/'; // upload path
+	      $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
+	      $fileName = rand(11111,99999).'.'.$extension; // renameing image
+	      Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+	      return $fileName;
+	    }	
+
+	    return null;		
 	}
 
 }

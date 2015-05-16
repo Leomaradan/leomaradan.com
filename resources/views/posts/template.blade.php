@@ -1,4 +1,4 @@
-@extends('templates.frontend')
+@extends('templates.blog')
 
 @section('article')
     <header>
@@ -12,7 +12,7 @@
 @section('sidebar')
   <div class="sidebar-module sidebar-module-inset">
     <h4>A propos</h4>
-    <a href="#" class="thumbnail"><img src="{{ asset('images/blog.jpg') }}"></a>
+    <div class="thumbnail"><img src="{{ asset('images/blog.jpg') }}"></div>
     <p>Développeur web, gamer depuis (trop?) longtemps, geek invertebré, ce modeste blog me sert à exprimer mes idées, coups de gueule et banalités du quotidien</p>
   </div>
   <!--<div class="sidebar-module">

@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\Pages;
+
 class HomeController extends Controller {
 
 	/*
@@ -30,18 +32,14 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+		return $this->pages('index');
 	}
 
-
-	/**
-	 * Show the application dashboard to the user.
-	 *
-	 * @return Response
-	 */
-	public function auth()
+	public function pages($slug)
 	{
-		return view('home');
-	}
+		$page = Pages::where('slug', $slug)->firstOrFail();
+
+		return view('pages.index', compact('page'));
+	}	
 
 }

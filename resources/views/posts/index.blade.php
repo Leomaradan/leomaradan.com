@@ -5,6 +5,7 @@
 	@include('posts.post', [
 		'titre' => $post->title,
 		'contenu' => $post->lead,
+		'image' => $post->image,
 		'date' => $post->published_at->formatLocalized('%A %e %B %Y, à %k:%M'),
 		'url' => route(config('routes.blog').'.show', $post),
 	])

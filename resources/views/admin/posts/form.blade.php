@@ -27,6 +27,14 @@
 		</div>	
 
 		<div class="form-group">
+			{!! Form::label('image', 'Image de titre') !!}
+			@if($post->image)
+			<br><img src='{{ asset('images/blog/' . $post->image) }}'>
+			@endif
+			{!! Form::file('image') !!}
+		</div>	
+
+		<div class="form-group">
 			{!! Form::label('content', 'Contenu') !!}
 			{!! Form::textarea('content', null, ['class' => 'form-control', 'data-provide' => 'markdown', 'rows' => '10']) !!}
 		</div>		

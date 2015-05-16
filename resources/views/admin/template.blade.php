@@ -2,6 +2,13 @@
 
 @section('menu')
         <li><a href="{{ url(config('routes.admin._').'/') }}">Admin</a></li>
+        <li class="dropdown">     
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pages <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{{ route(config('routes.admin._').'.'.config('routes.admin.pages').'.create') }}">Ajouter une page</a></li>           
+            <li><a href="{{ route(config('routes.admin._').'.'.config('routes.admin.pages').'.index') }}">Liste des pages</a></li>
+          </ul> 
+        </li>        
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Blog <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -24,7 +31,7 @@
 
 @section('article')
     <header>
-        <h1>@yield('title', 'Laravel')</h1>
+        <h1>@yield('title', 'Leomaradan.com')</h1>
     </header>
     <section>
         @yield('content')

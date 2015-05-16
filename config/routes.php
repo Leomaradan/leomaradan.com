@@ -12,7 +12,8 @@ return [
 		'blog' => 'blog',
 		'tag' => 'tag',
 		'category' => 'categorie',
-		'user' => 'comptes'
+		'user' => 'comptes',
+		'pages' => 'pages'
 	],
 
 ];

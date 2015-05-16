@@ -8,7 +8,7 @@ use \Carbon;
 
 class Post extends Model {
 
-	protected $fillable = ['title', 'slug', 'content', 'published_at', 'tags_list', 'category_id', 'category', 'lead'];
+	protected $fillable = ['title', 'slug', 'content', 'published_at', 'tags_list', 'category_id', 'category', 'lead', 'lead_img', 'image'];
 
 
 	public function category() {
@@ -67,6 +67,10 @@ class Post extends Model {
 
 		return $this->attributes['lead'];
 	}
+
+	public function getImageAttribute() {
+		return $this->attributes['lead_img'];
+	}	
 
 	public function setTagsListAttribute($values) {
 		$tags = [];
