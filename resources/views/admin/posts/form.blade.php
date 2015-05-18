@@ -29,7 +29,7 @@
 		<div class="form-group">
 			{!! Form::label('image', 'Image de titre') !!}
 			@if($post->image)
-			<br><img src='{{ asset('images/blog/' . $post->image) }}'>
+			<br><div class="thumbnail"><img src='{{ asset('images/blog/' . $post->image) }}'></div>
 			@endif
 			{!! Form::file('image') !!}
 		</div>	

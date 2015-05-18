@@ -49,7 +49,7 @@ class AdminPostsController extends Controller {
 	{
 		$post = Post::create($request->all());
 
-		$post->lead_img = $this->uploadImage();	
+		$post->lead_img = $this->uploadImage($post->lead_img);	
 
 		$post->save();
 
@@ -83,7 +83,7 @@ class AdminPostsController extends Controller {
 	{
 		$post = Post::findBySlug($slug);
 
-		$post->lead_img = $this->uploadImage();	
+		$post->lead_img = $this->uploadImage($post->lead_img);	
 
 		$post->update($request->all());
 
@@ -107,7 +107,7 @@ class AdminPostsController extends Controller {
 		return response()->json(['id' => $id])->setCallback($request->input('callback'));
 	}
 
-	public function uploadImage() {
+	public function uploadImage($current = null) {
 	    if (Input::has('image') && Input::file('image')->isValid()) {
 	      $destinationPath = 'images/blog/'; // upload path
 	      $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
@@ -116,7 +116,7 @@ class AdminPostsController extends Controller {
 	      return $fileName;
 	    }	
 
-	    return null;		
+	    return $current;		
 	}
 
 }
