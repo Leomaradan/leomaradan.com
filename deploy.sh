@@ -31,5 +31,6 @@ cd current
 
 # 7 migrate & optimize autoloader & launch application
 php artisan migrate
+php artisan cache:clear
 php artisan optimize
 php artisan up

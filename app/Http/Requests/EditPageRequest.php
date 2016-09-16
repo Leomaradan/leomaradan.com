@@ -39,7 +39,7 @@ class EditPageRequest extends FormRequest
             {
                 return [
                     'title'     => 'required|min:5',
-                    'slug'      => 'required|unique',
+                    'slug'      => 'required|unique:pages',
                     'content'   => 'required|min:10' 
                 ];
             }
@@ -48,7 +48,7 @@ class EditPageRequest extends FormRequest
             {
                 return [
                     'title'     => 'required|min:5',
-                    'slug'      => 'required|unique:pages,slug,' . $page->id
+                    'slug'      => 'required|unique:pages,slug,' . $page->id,
                     'content'   => 'required|min:10' 
                 ];
             }
