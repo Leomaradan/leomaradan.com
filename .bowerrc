@@ -1,0 +1,5 @@
+{
+  "directory": "resources/assets/bower_components",
+  "proxy": "http://vdn%5Cetic_svn:SvnEtic@proxyceg.ne.ch:8080",
+  "https-proxy": "http://vdn%5Cetic_svn:SvnEtic@proxyceg.ne.ch:8080"
+}

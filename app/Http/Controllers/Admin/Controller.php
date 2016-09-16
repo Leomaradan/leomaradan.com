@@ -1,21 +1,22 @@
-<?php namespace App\Http\Controllers\Admin;
+<?php 
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Foundation\Bus\DispatchesCommands;
+//use Illuminate\Foundation\Bus\DispatchesJobs;
 use App\Http\Controllers\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+//use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class Controller extends BaseController {
 
-	use DispatchesCommands, ValidatesRequests;
+	//use DispatchesJobs, ValidatesRequests;
 
 	public function __construct() {
-		parent::__construct();
+		//parent::__construct();
 		$this->middleware('admin');
 	}
 
 	public function index()
 	{
-		return view('admin.index');
+		return view('backend.index');
 	}	
 
 }

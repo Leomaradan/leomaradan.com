@@ -1,8 +1,10 @@
-<?php namespace App\Http\Middleware;
+<?php 
+namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\User;
-use Illuminate\Contracts\Auth\Guard;
+
+use \Illuminate\Auth\Middleware\Authenticate;
 
 class Admin extends Authenticate {
 
@@ -13,7 +15,7 @@ class Admin extends Authenticate {
 	 * @param  \Closure  $next
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next)
+	public function handle($request, Closure $next, ...$guards)
 	{
 		
 		if($this->auth->user()) {
@@ -21,8 +23,8 @@ class Admin extends Authenticate {
 				return response('Unauthorized.', 401);
 			}
 		}
-
-		return parent::handle($request, $next);
+		//return $next($request);
+		return parent::handle($request, $next, $guards);
 
 	}
 

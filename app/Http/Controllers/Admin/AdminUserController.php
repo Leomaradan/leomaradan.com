@@ -1,113 +1,97 @@
-<?php namespace App\Http\Controllers\Admin;
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Requests\EditUserRequest;
 
 use App\Http\Requests;
 use App\Http\Controllers\Admin\Controller;
 
-use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Registrar;
-
-use App\Http\Requests\EditUserRequest;
-
-
-
 use App\Models\User;
 
-class AdminUserController extends Controller {
+use Session;
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$users = User::paginate(10);
-		return view('admin.user.index', compact('users'));
-	}
+class AdminUserController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $users = User::paginate(10);
+        return view('backend.users.index', compact('users'));
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		$user = new User();
-		$form = ['url' => route(config('routes.admin._').'.'.config('routes.admin.user').'.store')];
-		return view('admin.user.create', compact('user', 'form'));
-	}
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $user = new User();
+        $form = ['url' => route('admin.users.store')];
+        return view('backend.users.create', compact('user', 'form'));
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store(EditUserRequest $request, Registrar $registrar)
-	{
-		$registrar->create($request->all());
-		return redirect(route($this->routeNamePrefix . '.index'));
-	}
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  App\Http\Requests\EditUserRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(EditUserRequest $request)
+    {
+        User::create($request->all());
+        return redirect(route('admin.users.index'));
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $user = User::find($id);
+        $form = ['method' => 'put', 'url' => route('admin.users.update', $user)];
+        return view('backend.users.edit', compact('user', 'form'));
+    }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		$user = User::find($id);
-		$form = ['method' => 'put', 'url' => route(config('routes.admin._').'.'.config('routes.admin.user').'.update', $user)];
-		return view('admin.user.edit', compact('user', 'form'));
-	}
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  App\Http\Requests\EditUserRequest  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(EditUserRequest $request, $id)
+    {
+        $user = User::find($id);
+        $user->update($request->except(['password']));
+        if(!empty($request->get('password'))) {
+            $user->password = bcrypt($request->get('password'));
+        }
+        
+        $user->save();
+        Session::flash('success', "Le compte a bien été sauvegardé");
+        return redirect(route('admin.users.edit', $user));
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id, EditUserRequest $request)
-	{
-		$user = User::find($id);
-
-		$user->update($request->except(['password']));
-
-		if(!empty($request->get('password'))) {
-			$user->password = bcrypt($request->get('password'));
-		}
-		
-
-		$user->save();
-
-		Session::flash('success', "Le compte a bien été sauvegardé");
-
-		return redirect(route($this->routeNamePrefix . '.edit', $user));
-
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id, Request $request)
-	{
-		$user = User::find($id);
-		$user->delete();
-		return response()->json(['id' => $id])->setCallback($request->input('callback'));
-	}
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @param  App\Http\Requests\EditUserRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id, EditUserRequest $request)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return response()->json(['id' => $id])->setCallback($request->input('callback'));
+    }
 }

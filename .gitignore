@@ -1,4 +1,8 @@
-/vendor
 /node_modules
+/public/storage
+/resources/assets/bower_components
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
 .env
-composer.lock

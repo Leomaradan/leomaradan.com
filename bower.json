@@ -1,0 +1,13 @@
+{
+  "name": "leomaradan",
+  "private": true,
+  "dependencies": {
+      "markdown": "latest",
+      "to-markdown": "latest",
+      "bootstrap-markdown": "latest",
+      "jquery-ui": "latest",
+      "jqueryui-timepicker-addon": "latest",
+      "jquery-ui-boostrap": "latest",
+      "taggingJS": "latest"
+  }
+}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["backend.scss"],"names":[],"mappings":"AAAA;EACC,YAAY;EACZ,aAAa,EACb;;AAED;EACC,YAAY;EACZ,aAAa;EACb,UAAU;EACV,cAAc,EACd","file":"backend.css","sourcesContent":[".modal-dialog * {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n}\r\n\r\n.modal-dialog {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tmargin: 0;\r\n\tpadding: 30px;\t\r\n}"],"sourceRoot":"/source/"}
