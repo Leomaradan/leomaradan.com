@@ -17,12 +17,18 @@ class PageModelTest extends TestCase
         factory(Page::class, 5)->create(); // initial
     }
     
+    /**
+     * test the setup function
+     *
+     * @return void
+     */    
     public function testSetup() 
     {
         $this->assertEquals(5, count(Page::all()));
     }
+    
     /**
-     * A basic test example.
+     * test creating a page.
      *
      * @return void
      */
@@ -50,7 +56,7 @@ class PageModelTest extends TestCase
     }
     
     /**
-     * A basic test example.
+     * test updating fields.
      *
      * @return void
      */
@@ -99,7 +105,7 @@ class PageModelTest extends TestCase
     } 
     
     /**
-     * A basic test example.
+     * test deleting a page.
      *
      * @return void
      */
@@ -113,7 +119,7 @@ class PageModelTest extends TestCase
     }  
     
     /**
-     * A basic test example.
+     * Atest fillable fields with incomplete values.
      *
      * @return void
      */
@@ -124,7 +130,7 @@ class PageModelTest extends TestCase
     }   
     
     /**
-     * A basic test example.
+     * test fillable fields.
      *
      * @return void
      */
@@ -140,7 +146,7 @@ class PageModelTest extends TestCase
     }       
     
     /**
-     * A basic test example.
+     * test the hidden fields.
      *
      * @return void
      */
