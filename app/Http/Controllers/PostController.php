@@ -51,7 +51,7 @@ class PostController extends Controller {
 	public function feed() {
 
 	    // create new feed
-	    $feed = Feed::make();
+	    $feed = \App::make("feed");
 
 	    // cache the feed for 60 minutes (second parameter is optional)
 	    $feed->setCache(60, 'leomaradanFeedKey');
