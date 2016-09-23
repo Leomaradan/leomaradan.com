@@ -1,5 +1,7 @@
 /node_modules
 /public/storage
+/public/js/lib
+/public/css/lib
 /resources/assets/bower_components
 /vendor
 /.idea

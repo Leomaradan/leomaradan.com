@@ -4,7 +4,8 @@ namespace App\Models\Post;
 
 use App\Models\SlugTemplate;
 
-use \Carbon;
+use Carbon\Carbon;
+use \DB;
 
 class Post extends SlugTemplate
 {

@@ -17,15 +17,16 @@ function bower(mix) {
 
 	/** JavaScript */
 	mix
-		.scripts('../bower_components/bootstrap/dist/js/bootstrap.js', 'public/js/lib/')
-		.scripts('../bower_components/bootstrap-markdown/js/bootstrap-markdown.js', 'public/js/lib/')
-		.scripts('../bower_components/jquery-ui/jquery-ui.js', 'public/js/lib/')
-		.scripts('../bower_components/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.js', 'public/js/lib/')
-		.scripts('../bower_components/jqueryui-timepicker-addon/dist/jquery-ui-sliderAccess.js', 'public/js/lib/')
+            .scripts('../bower_components/jquery/dist/jquery.js', 'public/js/lib/')
+            .scripts('../bower_components/bootstrap/dist/js/bootstrap.js', 'public/js/lib/')
+            .scripts('../bower_components/bootstrap-markdown/js/bootstrap-markdown.js', 'public/js/lib/')
+            .scripts('../bower_components/jquery-ui/jquery-ui.js', 'public/js/lib/')
+            .scripts('../bower_components/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.js', 'public/js/lib/')
+            .scripts('../bower_components/jqueryui-timepicker-addon/dist/jquery-ui-sliderAccess.js', 'public/js/lib/')
 		
-		.scripts('../bower_components/markdown/lib/markdown.js', 'public/js/lib/')
-		.scripts('../bower_components/to-markdown/dist/to-markdown.js', 'public/js/lib/')
-		.scripts('../bower_components/taggingJS/tagging.js', 'public/js/lib/')
+            .scripts('../bower_components/markdown/lib/markdown.js', 'public/js/lib/')
+            .scripts('../bower_components/to-markdown/dist/to-markdown.js', 'public/js/lib/')
+            .scripts('../bower_components/taggingJS/tagging.js', 'public/js/lib/')
 	;
 
 	/** CSS */
@@ -55,8 +56,8 @@ elixir(mix => {
        .sass('style.scss')
        .webpack('lib.js')
        .scripts('backend.js')
-       .scripts('app.js')
+       .scripts(['parallax.js','app.js'], 'public/js/app.js')
     ;
-
+    
     bower(mix);
 });

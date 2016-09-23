@@ -46,7 +46,7 @@ class AdminCategoryController extends Controller
         $posts = Post::whereHas('category', function($q) use ($slug) {
             $q->where('slug', $slug);
         })->paginate(10);
-        $filter = "Articles de la catégorie " . Category::findBySlug($slug)->name;
+        $filter = "Articles de la catégorie " . Category::findBySlug($slug)->first()->name;
         return view('backend.posts.index', compact('posts', 'filter'));
     }
 
@@ -59,7 +59,7 @@ class AdminCategoryController extends Controller
      */
     public function update(EditCategoryRequest $request, $slug)
     {
-        $category = Category::findBySlug($slug);
+        $category = Category::findBySlug($slug)->first();
         $category->update($request->all());
         return response()->json(['id' => $category->id, 'name' => $category->name, 'slug' => $category->slug])->setCallback($request->input('callback'));
     }
@@ -73,7 +73,7 @@ class AdminCategoryController extends Controller
      */
     public function destroy($slug, EditCategoryRequest $request)
     {
-        $category = Category::findBySlug($slug);
+        $category = Category::findBySlug($slug)->first();
         $id = $category->id;
         $category->delete();
         return response()->json(['id' => $id])->setCallback($request->input('callback'));

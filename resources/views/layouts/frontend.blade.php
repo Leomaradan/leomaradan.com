@@ -11,8 +11,8 @@
 
     <title>@yield('title', 'Léo Maradan')</title>
 
-
-    <link rel="stylesheet" href="{{ asset('css/lib/style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Serif+Pro" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('styles')
     <!-- Bootstrap core CSS -->
@@ -25,24 +25,28 @@
   </head>
 
   <body>
-    <div class="blog-masthead navbar navbar-fixed-top">
-      <div class="container">
-      @yield('menu')
-      </div>
-    </div>
+    <header class="HorizontaleMenu">
 
-    <div class="container page-main">
-      @yield('main')
-    </div><!-- /.container -->
+            <nav>
+                    @yield('menu')
+            </nav>
+    </header>
+    <div class="HorizontaleMenu-Background"></div>      
+
+
+    <div class="wrapper">
+      @yield('wrapper')
+    </div><!-- /.wrapper -->
 
     @yield('footer')
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/ie10-viewport-bug-workaround.js') }}"></script>
+    <script src="{{ asset('js/lib/jquery.js') }}"></script>    
+    <script src="{{ asset('js/app.js') }}"></script>
+
+
     @yield('scripts')    
   </body>
 </html>

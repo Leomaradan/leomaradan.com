@@ -63,7 +63,7 @@ class AdminPostController extends Controller
      */
     public function edit($slug)
     {
-        $post = Post::findBySlug($slug);
+        $post = Post::findBySlug($slug)->first();
         $categories = implode(',', Category::pluck('name', 'id')->all());
         $form = ['method' => 'put', 'url' => route('admin.posts.update', $post), 'files'=>true];
         return view('backend.posts.edit', compact('post', 'categories', 'form'));
@@ -78,7 +78,7 @@ class AdminPostController extends Controller
      */
     public function update(EditPostRequest $request, $slug)
     {
-        $post = Post::findBySlug($slug);
+        $post = Post::findBySlug($slug)->first();
         $post->tags_list = $request->get('tags_list');
         $post->lead_img = $this->uploadImage($request, $post->lead_img);  
         $post->update($request->all());
@@ -97,7 +97,7 @@ class AdminPostController extends Controller
      */
     public function destroy($slug, EditPostRequest $request)
     {
-        $post = Post::findBySlug($slug);
+        $post = Post::findBySlug($slug)->first();
         $id = $post->id;
         $post->delete();
         return response()->json(['id' => $id])->setCallback($request->input('callback'));

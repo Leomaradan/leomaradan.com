@@ -25,7 +25,7 @@ class EditPostRequest extends FormRequest
      */
     public function rules()
     {
-        $post = ($this->id == null) ? Post::findBySlug($this->slug) : $this;
+        $post = ($this->id == null) ? Post::findBySlug($this->slug)->first() : $this;
 
         switch($this->method())
         {

@@ -20,16 +20,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 	Route::resource('tags', 'AdminTagController', 				['as' => 'posts', 'except' => ['create', 'edit']]);
 	Route::resource('users', 'AdminUserController');
 });
-/*
-Route::group(['prefix' => 'blog'], function() {
-	Route::get('/', ['uses' => 'PostsController@index', 'as' => "blog.index"]);
-	Route::get('/q/{search}', ['uses' => 'PostsController@search', 'as' => "blog.search"]);
-	Route::get('/tag/{slug}', ['uses' => 'PostsController@tags', 'as' => "blog.tag"]);
-	Route::get('/categorie/{slug}', ['uses' => 'PostsController@category', 'as' => "blog.category"]);
-	Route::get('/feed', ['uses' => 'PostsController@feed', 'as' => "blog.feed"]);
-	Route::get('/{slug}', ['uses' => 'PostsController@show', 'as' => "blog.show"]);
-});
 
+Route::group(['prefix' => 'blog'], function() {
+	Route::get('/', ['uses' => 'PostController@index', 'as' => "blog.index"]);
+	//Route::get('/q/{search}', ['uses' => 'PostController@search', 'as' => "blog.search"]);
+	Route::get('/tag/{slug}', ['uses' => 'PostController@tags', 'as' => "blog.tag"]);
+	Route::get('/categorie/{slug}', ['uses' => 'PostController@category', 'as' => "blog.category"]);
+	Route::get('/feed', ['uses' => 'PostController@feed', 'as' => "blog.feed"]);
+	Route::get('/{slug}', ['uses' => 'PostController@show', 'as' => "blog.show"]);
+});
+/*
 Route::resource('liens', 'LinksController', ['only' => ['index', 'create', 'store']]);
 Route::get("liens/about", ['as' => 'link.about', 'uses' =>'LinksController@about']);
 Route::get('r/{key}', ['as' => 'r.show', 'uses' => 'LinksController@show'])->where('key', '[A-Za-z0-9]+');

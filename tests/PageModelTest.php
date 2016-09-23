@@ -41,7 +41,9 @@ class PageModelTest extends TestCase
         
         $newPage->title = $data->title;
         $newPage->slug = $data->slug;
-        $newPage->content = $data->content;
+        $newPage->content = $data->content;        
+        $newPage->layout = $data->layout;
+
         
         $newPage->save();
         
@@ -52,6 +54,7 @@ class PageModelTest extends TestCase
         $this->assertEquals($data->title, $checkPage->title);
         $this->assertEquals($data->slug, $checkPage->slug);
         $this->assertEquals($data->content, $checkPage->content);
+        $this->assertEquals($data->layout, $checkPage->layout);
         
     }
     
@@ -66,7 +69,9 @@ class PageModelTest extends TestCase
         
         $defaultTitle = $page->title;
         $defaultSlug = $page->slug;
-        $defaultContent = $page->content;
+        $defaultContent = $page->content;        
+        $defaultLayout = $page->layout;
+
         $id = $page->id;
         
         /* check initial */
@@ -74,7 +79,9 @@ class PageModelTest extends TestCase
         
         $this->assertEquals($defaultTitle, $checkPage->title);
         $this->assertEquals($defaultSlug, $checkPage->slug);
-        $this->assertEquals($defaultContent, $checkPage->content);        
+        $this->assertEquals($defaultContent, $checkPage->content);            
+        $this->assertEquals($defaultLayout, $checkPage->layout);        
+    
         
         $page->title = "New Title";
         $page->save();
@@ -84,24 +91,32 @@ class PageModelTest extends TestCase
         $this->assertEquals("New Title", $checkPage->title);
         $this->assertEquals($defaultSlug, $checkPage->slug);
         $this->assertEquals($defaultContent, $checkPage->content);
+        $this->assertEquals($defaultLayout, $checkPage->layout);  
         
         $page->slug = "new-slug";
         $page->save();
         
         $checkPage = Page::findById($id)->first();
         
-        $this->assertEquals("New Title", $checkPage->title);
         $this->assertEquals("new-slug", $checkPage->slug);
-        $this->assertEquals($defaultContent, $checkPage->content);      
+        $this->assertEquals($defaultContent, $checkPage->content);   
+        $this->assertEquals($defaultLayout, $checkPage->layout);  
         
         $page->content = "new content";
         $page->save();
         
         $checkPage = Page::findById($id)->first();
         
-        $this->assertEquals("New Title", $checkPage->title);
-        $this->assertEquals("new-slug", $checkPage->slug);
-        $this->assertEquals("new content", $checkPage->content);            
+        $this->assertEquals("new content", $checkPage->content);  
+        $this->assertEquals($defaultLayout, $checkPage->layout);  
+        
+        $page->layout = "new layout";
+        $page->save();
+        
+        $checkPage = Page::findById($id)->first();
+        
+        $this->assertEquals("new layout", $checkPage->layout);  
+         
     } 
     
     /**
@@ -136,13 +151,21 @@ class PageModelTest extends TestCase
      */
     public function testFillable()
     {
-        $page = Page::create(['id' => 999, 'title' => 'title', 'slug' => 'slug', 'content' => 'content']);
+        $page = Page::create([
+            'id' => 999, 
+            'title' => 'title', 
+            'slug' => 'slug',             
+            'layout' => 'layout', 
+            'content' => 'content'
+           ]);
         $this->assertEquals(6, count(Page::all()));
         
         $this->assertEquals(6, $page->id);
         $this->assertEquals("title", $page->title);
         $this->assertEquals("slug", $page->slug);
         $this->assertEquals("content", $page->content);          
+        $this->assertEquals("layout", $page->layout);          
+        
     }       
     
     /**
@@ -160,6 +183,7 @@ class PageModelTest extends TestCase
             'id' => $page->id,
             'title' => $page->title,
             'slug' => $page->slug,
+            'layout' => $page->layout,
             'content' => $page->content
         ];
         

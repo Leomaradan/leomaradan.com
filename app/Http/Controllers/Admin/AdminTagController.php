@@ -43,12 +43,12 @@ class AdminTagController extends Controller
      */
     public function show($slug)
     {
-        $posts = Tag::findBySlug($slug)->posts()->paginate(10);
+        $posts = Tag::findBySlug($slug)->first()->posts()->paginate(10);
 
         /*$posts = Post::whereHas('tag', function($q) use ($slug) {
             $q->where('slug', $slug);
         })->paginate(10);*/
-        $filter = "Articles avec le tag " . Tag::findBySlug($slug)->name;
+        $filter = "Articles avec le tag " . Tag::findBySlug($slug)->first()->name;
         return view('backend.posts.index', compact('posts', 'filter'));
     }
 
@@ -61,7 +61,7 @@ class AdminTagController extends Controller
      */
     public function update(EditTagRequest $request, $slug)
     {
-        $tag = Tag::findBySlug($slug);
+        $tag = Tag::findBySlug($slug)->first();
 
         $tag->update($request->all());
         return response()->json(['id' => $tag->id, 'name' => $tag->name, 'slug' => $tag->slug])->setCallback($request->input('callback'));
@@ -76,7 +76,7 @@ class AdminTagController extends Controller
      */
     public function destroy(EditTagRequest $request, $slug)
     {
-        $tag = Tag::findBySlug($slug);
+        $tag = Tag::findBySlug($slug)->first();
         $id = $tag->id;
 
         $tag->posts()->detach();

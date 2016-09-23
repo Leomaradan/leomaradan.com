@@ -1,33 +1,29 @@
 @extends('layouts.frontend')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/front.css') }}">
+
 @endsection
 
 @section('menu')
-  <nav class="blog-nav">
-    <a class="blog-nav-item active" href="{{ route('index') }}">Accueil</a>
-    <a class="blog-nav-item" href="#">Liens</a>
-    <a class="blog-nav-item" href="#">Photos</a>
-    <a class="blog-nav-item" href="#">Projets</a>
-  </nav>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Page</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Liens</a></li>
+            <li><a href="#">Gallerie</a></li>
+        </ul>
+    </nav>
 @stop
 
-@section('main')
+@section('wrapper')
 @parent
-      <div class="blog-header">
-        <h1 class="blog-title">Léo Maradan</h1>
-      </div>
+    <div class="SiteHeader">
+            <div class="parallax-window" data-parallax="scroll" data-image-src="{{ asset('img/cover.jpg') }}" data-z-index="10"></div>
+            <h1>Léo Maradan</h1>
+    </div>
 
-      <div class="row blog-main">
 
           @yield('content')
 
-      </div><!-- /.row -->
-@stop
-
-@section('footer')
-    <footer class="blog-footer">
-      <p>Leomaradan.com par Léo Maradan</p>
-    </footer>
 @stop
