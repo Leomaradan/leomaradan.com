@@ -1,4 +1,4 @@
-@extends('frontend.pages.template')
+@extends(is_null($page->layout) ? 'frontend.pages.template' : $page->layout)
 
 @section('content')
 <div class="content">

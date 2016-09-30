@@ -27,6 +27,7 @@ function bower(mix) {
             .scripts('../bower_components/markdown/lib/markdown.js', 'public/js/lib/')
             .scripts('../bower_components/to-markdown/dist/to-markdown.js', 'public/js/lib/')
             .scripts('../bower_components/taggingJS/tagging.js', 'public/js/lib/')
+            .scripts('sortable.js', 'public/js/lib/')
 	;
 
 	/** CSS */

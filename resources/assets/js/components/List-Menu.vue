@@ -1,12 +1,12 @@
 <template>
 	<template v-for="item in items">
 		<h2 v-if="!item.submenu">
-		<a href="{{item.href}}">{{item.name}}</a></h2>
+		<a href="{{item.href}}">{{item.title}}</a></h2>
 		<template v-if="item.submenu">
-			<h2>{{item.name}}</h2>
+			<h2>{{item.title}}</h2>
 			<ul>
 				<li v-for="subitem in item.submenu" v-if="!subitem.divider">
-					<a href="{{subitem.href}}">{{subitem.name}}</a>
+					<a href="{{subitem.href}}">{{subitem.title}}</a>
 				</li>
 			</ul>
 		</template>		

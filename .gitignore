@@ -10,3 +10,4 @@ Homestead.yaml
 .env
 /nbproject/
 storage/testing.sqlite
+/bower_components/

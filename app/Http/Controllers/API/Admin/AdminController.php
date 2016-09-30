@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Admin;
 use Illuminate\Http\Request;
 
 use App\Models\Pages;
+use App\Models\Menu;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -13,8 +14,9 @@ class AdminController extends Controller
 {
     public function index()
     {
+        return Menu::getMenu('admin');
     	//return response()->json(['name' => 'Admin', 'href' => '#']);
-		return response()->json(json_decode('[            
+		/*return response()->json(json_decode('[            
 	{"name": "Pages", "submenu": [
 		{"name":"Ajouter une page","href":"'.route('admin.pages.create').'"},
 		{"name":"Liste des pages","href":"'.route('admin.pages.index').'"}
@@ -31,11 +33,11 @@ class AdminController extends Controller
 		{"name":"Ajouter un compte","href":"'.route('admin.users.create').'"},
 		{"name":"Liste des comptes","href":"'.route('admin.users.index').'"}
 	]}
-]'));
+]'));*/
     }
 
     public function pages() {
-		$pages = Pages::all();
-		return response()->json($pages->toJson());
+        $pages = Pages::all();
+        return response()->json($pages->toJson());
     }
 }

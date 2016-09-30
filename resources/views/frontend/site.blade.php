@@ -7,11 +7,9 @@
 @section('menu')
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Page</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Liens</a></li>
-            <li><a href="#">Gallerie</a></li>
+            @foreach(App\Models\Menu::getMenu('main') as $menu)
+                <li><a href="{{ $menu['href'] }}">{{ $menu['title'] }}</a></li>
+            @endforeach
         </ul>
     </nav>
 @stop

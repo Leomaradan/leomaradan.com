@@ -173,6 +173,12 @@ jsonp.delete_element = function (data) {
     $("[data-id='"+data.id+"']").remove();
 };
 
+jsonp.delete_elements = function (data) {
+    $.each(data.ids, function(i) {
+        $("[data-id='"+data.ids[i]+"']").remove();
+    }); 
+};
+
 jsonp.update_element = function (data) {
     var e = $("[data-id='"+data.id+"']");
     for(var k in data) {

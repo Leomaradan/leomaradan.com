@@ -9,7 +9,8 @@
         "laravel/framework": "5.3.*",
         "roumen/feed": "^2.10",
         "graham-campbell/markdown": "^6.0",
-        "laravelcollective/html": "dev-master"        
+        "laravelcollective/html": "dev-master",
+        "thujohn/twitter": "^2.2"        
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -1,11 +1,11 @@
 <template>
 	<li v-for="item in items" v-bind:class="{ 'dropdown': item.submenu }">
-		<a v-if="!item.submenu" href="{{item.href}}">{{item.name}}</a>
+		<a v-if="!item.submenu" href="{{item.href}}">{{item.title}}</a>
 		<template v-if="item.submenu">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{item.name}} <span class="caret"></span></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{item.title}} <span class="caret"></span></a>
 			<ul class="dropdown-menu" role="menu">
 				<li v-for="subitem in item.submenu" v-bind:class="{ 'divider': subitem.divider }">
-					<a href="{{subitem.href}}">{{subitem.name}}</a>
+					<a href="{{subitem.href}}">{{subitem.title}}</a>
 				</li>
 			</ul>
 		</template>		
