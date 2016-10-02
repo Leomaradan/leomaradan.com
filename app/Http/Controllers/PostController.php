@@ -15,27 +15,27 @@ class PostController extends Controller {
 	public function index()
 	{
 		$posts = Post::published()->paginate(10);
-		$tags = Tag::get();
-		$categories = Category::get();
-		return view('frontend.posts.index', compact('posts', 'tags', 'categories'));
+		$all_tags = Tag::get();
+		$all_categories = Category::get();
+		return view('frontend.posts.index', compact('posts', 'all_tags', 'all_categories'));
 	}
 
 	public function show($slug)
 	{
 		$post = Post::published()->where('slug', $slug)->firstOrFail();
 		//$post = Post::where('slug', $slug)->firstOrFail();
-		$tags = Tag::get();
-		$categories = Category::get();		
-		return view('frontend.posts.show', compact('post', 'tags', 'categories'));
+		$all_tags = Tag::get();
+		$all_categories = Category::get();		
+		return view('frontend.posts.show', compact('post', 'all_tags', 'all_categories'));
 	}
 
 	public function tags($slug)
 	{
 		//$posts = Post::published()->get();
 		$posts = Tag::findBySlug($slug)->first()->posts()->published()->paginate(10);
-		$tags = Tag::get();
-		$categories = Category::get();
-		return view('frontend.posts.index', compact('posts', 'tags', 'categories'));
+		$all_tags = Tag::get();
+		$all_categories = Category::get();
+		return view('frontend.posts.index', compact('posts', 'all_tags', 'all_categories'));
 	}	
 
 	public function category($slug) 
@@ -43,9 +43,9 @@ class PostController extends Controller {
 		$posts = Post::whereHas('category', function($q) use ($slug) {
 			$q->where('slug', $slug);
 		})->published()->paginate(10);		
-		$tags = Tag::get();
-		$categories = Category::get();
-		return view('frontend.posts.index', compact('posts', 'tags', 'categories'));		
+		$all_tags = Tag::get();
+		$all_categories = Category::get();
+		return view('frontend.posts.index', compact('posts', 'all_tags', 'all_categories'));		
 	}
 
 	public function feed() {

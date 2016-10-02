@@ -10,7 +10,7 @@
   <div class="SidebarModule">
     <h1>Catégories</h1>
     <ul class="MenuList">
-      @foreach($categories as $category)
+      @foreach($all_categories as $category)
       	<li><a href="{{ route('blog.category', $category) }}">{{ $category->name }}</a></li>
       @endforeach
     </ul>
@@ -19,7 +19,7 @@
   <div class="SidebarModule">
     <h1>Hashtags</h1>
     <ul class="TagsCloud">
-      @foreach($tags as $tag)
+      @foreach($all_tags as $tag)
       	<li><a href="{{ route('blog.tag', $tag) }}">{{ $tag->name }}</a></li>
       @endforeach
     </ul>

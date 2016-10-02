@@ -19,7 +19,7 @@
                 <h1 itemprop="name">{{ $title }}</h1>
                 <span itemprop="author">Léo</span>
 
-                <span class="TagsCloud">      
+                <span class="TagsCloud">
                     @foreach($tags as $tag)
                     <a href="{{ route('blog.tag', $tag) }}">{{ $tag->name }}</a>
                     @endforeach
@@ -30,7 +30,7 @@
                     {!! Markdown::convertToHtml($content) !!}
                 </div>
                 @if(isset($url))
-                <a href="{{ $url }}" itemprop="url" rel="bookmark"></a>
+                <a href="{{ $url }}" itemprop="url" rel="bookmark">Lire la suite</a>
                 @endif
 
                 @if(isset($disqus))

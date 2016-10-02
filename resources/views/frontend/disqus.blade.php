@@ -3,7 +3,7 @@
                     /* * * CONFIGURATION VARIABLES * * */
                     var disqus_shortname = 'leomardan';
                     var disqus_identifier = '{{ $disqus['id'] }}';
-                    var disqus_title = '{{ $titre }}';
+                    var disqus_title = '{{ $disqus['title'] }}';
                     var disqus_url = '{{ $disqus['url'] }}';
 
                     /* * * DON'T EDIT BELOW THIS LINE * * */
