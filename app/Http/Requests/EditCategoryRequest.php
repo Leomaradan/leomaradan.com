@@ -26,7 +26,7 @@ class EditCategoryRequest extends FormRequest
     public function rules()
     {
 
-        $category = ($this->id == null) ? Category::findBySlug($this->slug) : $this;
+        $category = ($this->id == null) ? Category::findBySlug($this->slug)->first() : $this;
 
         switch($this->method())
         {

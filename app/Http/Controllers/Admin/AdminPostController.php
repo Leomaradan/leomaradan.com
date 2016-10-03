@@ -52,7 +52,7 @@ class AdminPostController extends Controller
         $post->lead_img = $this->uploadImage($request, $post->lead_img);  
         $post->save();
         Session::flash('success', "L'article a bien été sauvegardé");
-        return redirect(route('admin.posts.create', $post));  
+        return redirect(route('admin.posts.edit', $post));  
     }
 
     /**
@@ -99,6 +99,9 @@ class AdminPostController extends Controller
     {
         $post = Post::findBySlug($slug)->first();
         $id = $post->id;
+        
+        $post->tags()->detach();
+        
         $post->delete();
         return response()->json(['id' => $id])->setCallback($request->input('callback'));
     }

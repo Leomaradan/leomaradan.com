@@ -26,7 +26,7 @@ class EditTagRequest extends FormRequest
     public function rules()
     {
 
-        $tag = ($this->id == null) ? Tag::findBySlug($this->slug) : $this;
+        $tag = ($this->id == null) ? Tag::findBySlug($this->slug)->first() : $this;
 
         switch($this->method())
         {

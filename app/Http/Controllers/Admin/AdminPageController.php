@@ -42,7 +42,7 @@ class AdminPageController extends Controller {
 
         Session::flash('success', "La page a bien été sauvegardé");
 
-        return redirect(route('admin.pages.create', $page));
+        return redirect(route('admin.pages.edit', $page));
     }
 
     /**

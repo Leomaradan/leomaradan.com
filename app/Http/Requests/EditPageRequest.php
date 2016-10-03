@@ -26,7 +26,7 @@ class EditPageRequest extends FormRequest
     public function rules()
     {
 
-        $page = ($this->id == null) ? Page::findBySlug($this->slug) : $this;
+        $page = ($this->id == null) ? Page::findBySlug($this->slug)->first() : $this;
 
         switch($this->method())
         {
@@ -38,18 +38,18 @@ class EditPageRequest extends FormRequest
             case 'POST':
             {
                 return [
-                    'title'     => 'required|min:5',
+                    'title'     => 'required|min:3',
                     'slug'      => 'required|unique:pages',
-                    'content'   => 'required|min:10' 
+                    'content'   => 'required' 
                 ];
             }
             case 'PUT':
             case 'PATCH':
             {
                 return [
-                    'title'     => 'required|min:5',
+                    'title'     => 'required|min:3',
                     'slug'      => 'required|unique:pages,slug,' . $page->id,
-                    'content'   => 'required|min:10' 
+                    'content'   => 'required' 
                 ];
             }
             default:break;
