@@ -19,7 +19,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
     Route::resource('categories', 'AdminCategoryController', ['as' => 'posts', 'except' => ['create', 'edit']]);
     Route::resource('tags', 'AdminTagController', ['as' => 'posts', 'except' => ['create', 'edit']]);
     Route::resource('users', 'AdminUserController');
-    Route::resource('menus', 'AdminMenuController', ['except' => ['create']]);
+    Route::resource('menus', 'AdminMenuController', ['except' => ['store','create']]);
 });
 
 Route::group(['prefix' => 'blog'], function() {

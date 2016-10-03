@@ -38,6 +38,7 @@ var app = new Vue({
     data: {
         test: 'test2',
         items: [],
+        currentMenu: [],
         errors: [],
         successes: []
     } 
@@ -51,15 +52,24 @@ var iniForm = function(e) {
     });
 };
 
+var isAdminHome = false;
+
 jQuery(document).ready(function ($) {
 
-    var storageMenu = Store.get("adminmenu");
+    var storageMenu = Store.get("admin");
+    
     if(storageMenu !== null) {
         app.items = storageMenu;
+        if(isAdminHome) {
+            app.currentMenu = storageMenu;
+        }
     }
     $.getJSON('api/admin', function(data) {
         app.items = data;
-        Store.set('adminmenu', data);
+        if(isAdminHome) {
+            app.currentMenu = data;
+        }        
+        Store.set('admin', data);
     });
 
     $(document).on("click", ".modal-link", function() {

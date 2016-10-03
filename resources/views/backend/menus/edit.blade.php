@@ -83,6 +83,8 @@
                             </td>
                         </tr>                         
                     </tbody>
+        </table>
+        <a href="{{ route('admin.menus.update', $zone) }}" data-token="{{ csrf_token() }}" class="btn btn-primary menu-save">Sauver</a>
                 
 @stop
 
@@ -129,7 +131,7 @@
 @endsection
 
 @section('scripts')
-	<script src="{{ asset('js/lib/sortable.js') }}"></script>
+	<script src="{{ asset('js/lib/jquery.plugins.js') }}"></script>
 	<script type="text/javascript">
     var oldContainer;
 $(function  () {
@@ -237,6 +239,57 @@ $(function  () {
       $('.new-item option[value="' + selectValue + '"]').prop({selected: true});
 
       $('.new-item').removeClass('new-item');
+  });
+  
+  $(document).on('click', '.menu-save', function() {
+      
+      var send = [];
+      var url = $(this).attr("href");
+      var order = 1;
+      
+      $("tbody:not(.create-new-parent)").each(function() {
+          var first = $(this).find("tr:first");
+          var elem = {};
+          //elem.id = $(this).data('id') || null;
+          elem.title = first.find("[name='title']").val();
+          elem.type = first.find("[name='type']").length > 0 ? first.find("[name='type']").val() : null;
+          elem.link = first.find("[name='link']").length > 0 ? first.find("[name='link']").val() : null;
+          elem.order = order;
+          order++;
+          
+          var submenu = [];
+          
+          $(this).find("tr:not(:first):not(.create-new)").each(function() {
+              var subelem = {};
+            //subelem.id = $(this).data('id') || null;
+            subelem.title = $(this).find("[name='title']").val();
+            subelem.type = $(this).find("[name='type']").length > 0 ? $(this).find("[name='type']").val() : null;
+            subelem.link = $(this).find("[name='link']").length > 0 ? $(this).find("[name='link']").val() : null;
+            subelem.order = order;
+            order++;
+            submenu.push(subelem);
+          });
+          
+          if(submenu.length > 0) {
+            elem.submenu = submenu;
+          }
+          
+          send.push(elem);
+        //console.log($(this).find("tr input[name='title']").val());
+      });
+      
+      var data = {};
+
+      data._token = $(this).data("token");
+      data.menus = send;
+      
+      $.ajax({
+            type: 'PUT',
+            url: url, //resource
+            data: data
+      });
+      //console.log(send);
+      return false;
   });
 });
 </script>

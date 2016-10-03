@@ -7,6 +7,8 @@ use \DB;
 
 class Menu extends Model {
 
+    protected $fillable = ["zone", "parent", "type", "title", "link", "order"];
+    
     public static function getZones() {
         return DB::table('menus')->select('zone')->distinct()->pluck('zone')->toArray();
     }

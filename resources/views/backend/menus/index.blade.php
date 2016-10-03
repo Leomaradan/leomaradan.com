@@ -17,7 +17,7 @@
                 <tbody>
                     @foreach($zones as $zone)
                         <tr>
-                            <td><a href="{{ route('admin.menus.edit', $zone) }}">{{ ucfirst($zone) }}</a></td>
+                            <td><a href="{{ route('admin.menus.show', $zone) }}">{{ ucfirst($zone) }}</a></td>
                         </tr>
                     @endforeach
                 </tbody>
