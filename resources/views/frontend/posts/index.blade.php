@@ -10,6 +10,7 @@
                 'dateISO' => $post->published_at->toIso8601String(),
 		'url' => route('blog.show', $post),
                 'tags' => $post->tags,
+                'category' => $post->category
 	])
 	@endforeach
 @stop

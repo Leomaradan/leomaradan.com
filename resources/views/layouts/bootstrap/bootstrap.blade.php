@@ -43,6 +43,8 @@
 
     </div><!-- /.container -->
 
+    <script src="{{ asset('js/lib/jquery.js') }}"></script>
+    <script src="{{ asset('js/lib/bootstrap.js') }}"></script>
     <script src="{{ asset('js/lib.js') }}"></script>
     <script src="{{ asset('js/backend.js') }}?v=2"></script>
     @yield('scripts')

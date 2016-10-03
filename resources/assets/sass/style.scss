@@ -1,6 +1,11 @@
 $serif: 'Source Serif Pro', serif;
 $sansSerif: 'Source Sans Pro', sans-serif;
 
+$backgroundColor: #f5f5f5;
+$textColor: #666;
+$titleColor: #333;
+$highlightColor: #57955b;
+
 * {
     box-sizing: border-box;
 }
@@ -11,10 +16,20 @@ html, body {
     margin: 0;
     padding: 0;		
     font-family: $sansSerif;
+    color: $textColor;
 }
 
 h1 {
     font-variant: small-caps;
+    color: $titleColor;
+}
+
+a {
+   color: $titleColor; 
+   text-decoration: none;
+   &:hover {
+       color: $highlightColor;
+   }
 }
 
 .SiteHeader {
@@ -74,7 +89,7 @@ h1 {
 }		
 
 .content main {
-    background-color: #f5f5f5;
+    background-color: $backgroundColor;
 }
 
 main {
@@ -115,9 +130,11 @@ article {
         background: #fff;
         padding: 30px;  
         margin: auto 30px;
+             
+        box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.15);
     }
     
-    .Card {
+    .Post.Card {
         float: left;
         z-index: 5;
         position: absolute;
@@ -125,6 +142,7 @@ article {
         right: 0;
         bottom: 30px;
         left: 55%;
+        box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.65);   
         
     }
 
@@ -168,38 +186,77 @@ article {
     main .cover {
         width: 960px;
         height: 540px;
-    }
-
-    main .cover img {
-        width: 100%;
-        height: auto;
+        
+        img {
+            width: 100%;
+            height: auto;
+            box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.15);
+        }
     }
 
     ul.TagsCloud li {
         height: 2em;
     }
 
-    .TagsCloud {
-        display: flex;
-        flex-wrap: wrap;
-        list-style: none;			
-    }
-
-    .TagsCloud a {
-        padding: 0.2em 0.5em;	
-        margin-left: 0.2em;	
-        border: 1px solid;
-        text-decoration: none;
-        font-variant: small-caps;
-    }
-
-    .TagsCloud a:before {
-        content: '#';
-    }
-
 }
 
+.TagsCloud {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;	
+    
+    a {
+        color: rgba(51,51,51,0.5);
+        padding: 0.2em 0.5em;	
+        margin-left: 0.2em;	
+        border: 1px solid #e0e0e0;;
+        text-decoration: none;
+        font-variant: small-caps;
+        
+        &:before {
+            content: '#';
+        }
+        
+        &:hover {
+            color: $titleColor;
+        }
+    }
+}
 
+.Badge {
+    &:before {
+        content: ' - ';
+    }
+}
+
+.HighlightLink {
+    
+    font-variant: small-caps;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 32px;
+    transition: padding 0.2s ease-in-out;    
+    
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 11px;
+        width: 20px;
+        height: 2px;
+        transition: width 0.2s ease-in-out, left 0.2s ease-in-out;
+        background-color: $highlightColor;
+    }
+    
+   
+    &:hover {
+        padding-left: 52px;
+        &:before {
+            width: 40px;
+        }
+    }
+}
 
 .parallax-window {
     min-height: 400px;

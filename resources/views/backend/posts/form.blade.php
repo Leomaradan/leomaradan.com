@@ -55,20 +55,15 @@
 @stop
 
 @section('styles')
-	<link href="{{ asset('css/lib/bootstrap-markdown.css') }}" rel="stylesheet"></link>
+	<link href="{{ asset('css/lib/markdown.css') }}" rel="stylesheet"></link>
 	<link href="{{ asset('css/lib/jquery-ui.css') }}" rel="stylesheet"></link>
-	<link href="{{ asset('css/lib/jquery-ui-custom.css') }}" rel="stylesheet"></link>
-	<link href="{{ asset('css/lib/jquery-ui-timepicker-addon.css') }}" rel="stylesheet"></link>
-	<link href="{{ asset('css/lib/tag-basic-style.css') }}" rel="stylesheet"></link>
+	<link href="{{ asset('css/lib/jquery.plugins.css') }}" rel="stylesheet"></link>
 @stop
 
 @section('scripts')
 	<script src="{{ asset('js/lib/markdown.js') }}"></script>
-	<script src="{{ asset('js/lib/to-markdown.js') }}"></script>
-	<script src="{{ asset('js/lib/bootstrap-markdown.js') }}"></script>
 	<script src="{{ asset('js/lib/jquery-ui.js') }}"></script>
-	<script src="{{ asset('js/lib/jquery-ui-timepicker-addon.js') }}"></script>
-	<script src="{{ asset('js/lib/tagging.js') }}"></script>
+	<script src="{{ asset('js/lib/jquery.plugins.js') }}"></script>
 	<script type="text/javascript">
 	$(function() {
 

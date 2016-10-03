@@ -11,7 +11,7 @@
     <h1>Catégories</h1>
     <ul class="MenuList">
       @foreach($all_categories as $category)
-      	<li><a href="{{ route('blog.category', $category) }}">{{ $category->name }}</a></li>
+      <li><a href="{{ route('blog.category', $category) }}">{{ $category->name }} <span class="Badge">{{ $category->nbUses }}</span></a></li>
       @endforeach
     </ul>
   </div>
@@ -20,7 +20,7 @@
     <h1>Hashtags</h1>
     <ul class="TagsCloud">
       @foreach($all_tags as $tag)
-      	<li><a href="{{ route('blog.tag', $tag) }}">{{ $tag->name }}</a></li>
+      <li><a href="{{ route('blog.tag', $tag) }}">{{ $tag->name }} <span class="Badge">{{ $tag->nbUses }}</span></a></li>
       @endforeach
     </ul>
   </div> 
