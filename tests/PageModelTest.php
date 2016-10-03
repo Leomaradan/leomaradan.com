@@ -1,9 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-
 use App\Models\Page;
 
 class PageModelTest extends TestCase
@@ -152,7 +149,7 @@ class PageModelTest extends TestCase
     public function testFillable()
     {
         $page = Page::create([
-            'id' => 999, 
+            'id' => 998, 
             'title' => 'title', 
             'slug' => 'slug',             
             'layout' => 'layout', 
@@ -164,7 +161,22 @@ class PageModelTest extends TestCase
         $this->assertEquals("title", $page->title);
         $this->assertEquals("slug", $page->slug);
         $this->assertEquals("content", $page->content);          
-        $this->assertEquals("layout", $page->layout);          
+        $this->assertEquals("layout", $page->layout);   
+        
+        $page2 = Page::create([
+            'id' => 999, 
+            'title' => 'New Title',  
+            'slug' => '',
+            'layout' => 'layout', 
+            'content' => 'content'
+           ]);
+        $this->assertEquals(7, count(Page::all()));
+        
+        $this->assertEquals(7, $page2->id);
+        $this->assertEquals("New Title", $page2->title);
+        $this->assertEquals("new-title", $page2->slug);
+        $this->assertEquals("content", $page2->content);          
+        $this->assertEquals("layout", $page2->layout);           
         
     }       
     
