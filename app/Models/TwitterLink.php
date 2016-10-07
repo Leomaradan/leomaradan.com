@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class TwitterLink extends Model
 {
+    protected $fillable = ["created_at", "id_twitter", "text", "user_name", "user_id"];
+    public $timestamps = false;
     /*
+     * 
      * 
      * created_at
 id_str

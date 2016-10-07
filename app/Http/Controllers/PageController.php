@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\Post\Post;
+use App\Models\Gallery\Gallery;
+use App\Models\TwitterLink;
 
 class PageController extends Controller
 {
@@ -24,7 +27,70 @@ class PageController extends Controller
      */
     public function index()
     {
-        return $this->pages('index');
+        return $this->dashboard();
+    }
+    
+    private function sortElem($elem, $timekey, $cat, &$recent, &$old) {
+            $elemTime = date_create($elem->$timekey);
+            $timestamp = $elemTime->getTimestamp();
+            if(date_diff($elemTime, new \DateTime())->days < 16) {
+                if(isset($recent[$timestamp])) {
+                    $timestamp++;
+                }
+               $recent[$timestamp] = ['type' => $cat, 'elem' => $elem];
+            } else {
+                $old[] = ['type' => $cat, 'elem' => $elem];
+            }
+    }
+    
+    public function dashboard() 
+    {
+        /*
+         * 10 blog
+20 tweet
+10 photo
+         */
+        $posts = Post::published()->take(10)->get();
+        $tweets = TwitterLink::orderBy('created_at')->take(20)->get();
+        $images = Gallery::published()->take(5)->get();
+        
+        $recent = [];
+        $old = [];
+        //dd($images);
+       
+        foreach($posts as $post) {
+            $this->sortElem($post, 'published_at', 'post', $recent, $old);
+        }
+        
+   
+        foreach($tweets as $tweet) {
+            $this->sortElem($tweet, 'created_at', 'tweet', $recent, $old);
+        }        
+        
+
+        foreach($images as $image) {
+            $this->sortElem($image, 'created_at', 'image', $recent, $old);
+        }     
+        
+        $seed = key($recent) + 10;
+        mt_srand($seed);
+        
+        $old_shuffle = [];
+        $length = count($old);
+        for($i=0;$i<$length;$i++){
+            $k = mt_rand() . '.' . $i;
+            $old_shuffle[$k] = $old[$i];
+        }  
+        
+        $recent = array_reverse($recent);
+        ksort($old_shuffle);
+        
+        $old = $old_shuffle;
+        unset($old_shuffle);
+
+        return view('frontend.pages.dashboard', compact('recent','old'));
+        //dd($old);
+        //dd($old_shuffle);
     }
     public function pages($slug)
     {

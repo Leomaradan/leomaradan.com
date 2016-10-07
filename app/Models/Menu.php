@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use \DB;
+use Route;
 
 class Menu extends Model {
 
@@ -45,7 +46,11 @@ class Menu extends Model {
 
         switch ($data->type) {
             case 'internalLink':
-                $responseItem['href'] = route($data->link);
+                if(Route::has($data->link)) {
+                    $responseItem['href'] = route($data->link);
+                } else {
+                    $responseItem['href'] = $data->link;
+                }
                 break;
             case 'externalLink':
                 $responseItem['href'] = $data->link;

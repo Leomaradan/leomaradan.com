@@ -44,6 +44,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{{ asset('js/lib/jquery.js') }}"></script>    
+    <script src="{{ asset('js/lib.js') }}"></script>  
     <script src="{{ asset('js/app.js') }}"></script>
 
 

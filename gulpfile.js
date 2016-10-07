@@ -29,7 +29,7 @@ function bower(mix) {
                       '../bower_components/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.js',
                       '../bower_components/jqueryui-timepicker-addon/dist/jquery-ui-sliderAccess.js'], 'public/js/lib/jquery-ui.js')
 		
-            .scripts(['sortable.js', '../bower_components/taggingJS/tagging.js'], 'public/js/lib/jquery.plugins.js')
+            .scripts(['sortable.js', '../bower_components/masonry/dist/masonry.pkgd.js', '../bower_components/taggingJS/tagging.js'], 'public/js/lib/jquery.plugins.js')
 	;
 
 	/** CSS */
@@ -60,6 +60,7 @@ elixir(mix => {
        .webpack('lib.js')
        .scripts('backend.js')
        .scripts(['parallax.js','app.js'], 'public/js/app.js')
+       .copy('resources/assets/fonts/*.*', 'public/fonts/')
     ;
     
     bower(mix);

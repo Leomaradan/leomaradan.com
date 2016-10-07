@@ -18,7 +18,12 @@
         
                 <div class="form-group">
         		{!! Form::label('layout', 'Layout') !!}
-                        {!! Form::select('layout', [null => '---', 'frontend.pages.template' => 'Page', 'frontend.pages.bloglayout' => 'Blog'], null, ['class' => 'form-control combobox']); !!}
+                        {!! Form::select('layout', [
+                            null => '---', 
+                            'frontend.pages.template' => 'Page', 
+                            'frontend.pages.bloglayout' => 'Blog',
+                            'frontend.pages.masonrylayout' => 'Masonry'
+                        ], null, ['class' => 'form-control combobox']); !!}
                 </div>
 
 		<div class="form-group">

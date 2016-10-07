@@ -170,6 +170,7 @@ return [
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Thujohn\Twitter\TwitterServiceProvider::class,
+        JeroenG\Flickr\FlickrServiceProvider::class,
         //
 
         /*
@@ -209,6 +210,7 @@ return [
         'Event' => Illuminate\Support\Facades\Event::class,
         'Feed' => Roumen\Feed\Feed::class,
         'File' => Illuminate\Support\Facades\File::class,
+        'Flickr' => JeroenG\Flickr\FlickrLaravelFacade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,

@@ -18,8 +18,18 @@
 						<th>{{ $v }}</th>
 					@endif				
 				@endforeach
-				<th></th>
-				<th></th>
+				@if(isset($view_link))
+                                    <th></th>
+				@endif
+				@if(isset($edit_link))
+                                    <th></th>
+				@endif
+				@if(isset($update_link))
+                                    <th></th>
+				@endif	
+                                @if(isset($destroy_link))
+                                    <th></th>
+                                @endif
 			</tr>
 		</thead>
 	
@@ -30,7 +40,7 @@
 					@if($k !== 'null')
 						@if(is_array($v))
 							<td>@include('layouts.backend_formater', 
-							['type' => $v['type'], 'value' => $element->$k, 'data' => $v['data'], 'editable' => isset($update_link)])</td>
+							['type' => $v['type'], 'value' => $element->$k, 'data' => (isset($v['data']) ? $v['data'] : null), 'editable' => isset($update_link)])</td>
 						@else
 							@if(isset($update_link))
 								<td><input type="text" name="{{ $k }}" value="{{ $element->$k }}" class="inline-edit"></td>
@@ -48,12 +58,14 @@
 					@endif
 				@endif
 				@if(isset($edit_link))
-					<td><a href="{{ route($edit_link, $element) }}" class="btn btn-primary">Editer</a></td>
+					<td><a href="{{ route($edit_link, $element) }}" class="btn btn-primary">{{ $edit_label or 'Editer' }}</a></td>
 				@endif
 				@if(isset($update_link))
-					<td><a href="{{ route($update_link, $element) }}" data-precall="get_table_element" data-id="{{ $element->id }}" data-callback="jsonp.update_element" data-method="put" data-token="{{ csrf_token() }}" class="rest-link btn btn-primary">Sauver</a></td>
-				@endif		
+					<td><a href="{{ route($update_link, $element) }}" data-precall="get_table_element" data-id="{{ $element->id }}" data-callback="jsonp.update_element" data-method="put" data-token="{{ csrf_token() }}" class="rest-link btn btn-primary">{{ $update_label or 'Sauver' }}</a></td>
+				@endif	
+                                @if(isset($destroy_link))
 				<td><a href="{{ route($destroy_link, $element) }}" data-callback="jsonp.delete_element" data-method="delete" data-token="{{ csrf_token() }}" class="rest-link rest-link-confirm btn btn-danger" data-confirm="Supprimer {{ $element->$destroy_key }} ?">Supprimer</a></td>
+                                @endif
 			</tr>
 			@endforeach
 			@if(isset($form))
@@ -88,5 +100,7 @@
 <a href="{{ $add_url }}"  class="btn btn-success">{{ $add_title }}</a>
 @endif
 
+@if(!is_array($elements))
 {!! $elements->render() !!}
+@endif
 @stop

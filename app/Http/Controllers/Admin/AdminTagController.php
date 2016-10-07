@@ -3,11 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\EditTagRequest;
-
-use App\Http\Requests;
 use App\Http\Controllers\Admin\Controller;
-
-use App\Models\Post\Post;
 use App\Models\Post\Tag;
 
 class AdminTagController extends Controller

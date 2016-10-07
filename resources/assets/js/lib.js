@@ -49,10 +49,13 @@ Vue.http.interceptors.push((request, next) => {
 //var alert = require('vue-strap').alert;
 //var navbar = require('vue-strap').navbar;
 
-Vue.component('example', require('./components/Example.vue'));
+//Vue.component('example', require('./components/Example.vue'));
 
 Vue.component('list-menu', require('./components/List-Menu.vue'));
 Vue.component('bootstrap-navmenu', require('./components/Bootstrap-Navmenu.vue'));
+Vue.component('blog-posting', require('./components/BlogPosting.vue'));
+
+Vue.component('masonry-box', require('./components/MasonryBox-Post.vue'));
 
 Vue.component('alert', require('vue-strap').alert);
 Vue.component('navbar', require('vue-strap').navbar);

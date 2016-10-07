@@ -20,6 +20,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
     Route::resource('tags', 'AdminTagController', ['as' => 'posts', 'except' => ['create', 'edit']]);
     Route::resource('users', 'AdminUserController');
     Route::resource('menus', 'AdminMenuController', ['except' => ['store','create']]);
+    Route::get('galleries/flickr', ['uses' => 'AdminGalleryController@getFlickAlbums', 'as' => 'flickr.index']);
+    Route::put('galleries/flickr/{album}', ['uses' => 'AdminGalleryController@importFlickrAlbum', 'as' => 'flickr.import']);    
+    Route::resource('galleries', 'AdminGalleryController', []);
+
+    Route::resource('links', 'AdminLinkController', ['except' => ['create','show','edit']]);
+    Route::get('links/tweet', ['uses' => 'AdminLinkController@importTweet', 'as' => 'twitter.import']);
 });
 
 Route::group(['prefix' => 'blog'], function() {

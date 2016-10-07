@@ -2,9 +2,11 @@
 
 @section('sidebar')
   <div class="SidebarModule">
-    <h1>A propos</h1>
-    <div class="thumbnail"><img src="{{ asset('images/blog.jpg') }}"></div>
-    <p>Développeur web, gamer depuis (trop?) longtemps, geek invertebré, ce modeste blog me sert à exprimer mes idées, coups de gueule et banalités du quotidien</p>
+    <div class="thumbnail">
+        <img src="{{ asset('img/portrait.jpg') }}">
+        <h1>A propos</h1>
+        <p>Développeur web, gamer depuis (trop?) longtemps, geek invertebré, ce modeste blog me sert à exprimer mes idées, coups de gueule et banalités du quotidien</p>
+    </div>
   </div>
 
   <div class="SidebarModule">
@@ -34,6 +36,10 @@
       <li><a href="https://github.com/Leomaradan">GitHub</a></li>
     </ul>
   </div>
+      
+  <div class="SidebarModule">
+    <a href="{{ route('blog.feed') }}" class="feed">Flux RSS</a>      
+  </div>      
 @stop
 
 @section('content')

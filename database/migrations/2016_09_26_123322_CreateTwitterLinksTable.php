@@ -12,7 +12,7 @@ class CreateTwitterLinksTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::create('twitter_link', function(Blueprint $table) {
+        Schema::create('twitter_links', function(Blueprint $table) {
             $table->increments('id');
             $table->timestamp('created_at');
             $table->string('id_twitter')->unique();
@@ -22,7 +22,7 @@ class CreateTwitterLinksTable extends Migration {
             $table->string('user_id');
         });
         
-        Schema::create('twitter_link_media', function(Blueprint $table) {
+        Schema::create('twitter_links_media', function(Blueprint $table) {
             $table->increments('id');
             $table->enum('type', ['url', 'image'])->default('url');
             
@@ -33,7 +33,7 @@ class CreateTwitterLinksTable extends Migration {
 
             $table->integer('link_id')->unsigned()->nullable();
             $table->foreign('link_id')->references('id')
-                  ->on('twitter_link')
+                  ->on('twitter_links')
                   ->onUpdate('cascade')
                   ->onDelete('cascade');            
 
@@ -46,8 +46,8 @@ class CreateTwitterLinksTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::drop('twitter_link_media');
-        Schema::drop('twitter_link');
+        Schema::drop('twitter_links_media');
+        Schema::drop('twitter_links');
     }
 
 }

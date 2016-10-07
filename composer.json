@@ -10,7 +10,8 @@
         "roumen/feed": "^2.10",
         "graham-campbell/markdown": "^6.0",
         "laravelcollective/html": "dev-master",
-        "thujohn/twitter": "^2.2"        
+        "thujohn/twitter": "^2.2",
+        "jeroen-g/flickr": "^1.0"        
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

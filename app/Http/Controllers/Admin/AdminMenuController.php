@@ -12,6 +12,7 @@ use App\Models\Menu;
 
 use Session;
 use DB;
+use Route;
 
 class AdminMenuController extends Controller
 {
@@ -96,8 +97,18 @@ class AdminMenuController extends Controller
     }
     
     private function getMenuItem($zone, $data, $parent = null) {
-           if($data['type'] == 'internalLink' && $data['link'] == '') {
-                $data['type'] = ($parent == null) ? null : 'externalLink';
+           if($data['type'] == 'internalLink') {
+               
+               $fallback = ($parent == null) ? null : 'externalLink';
+               
+               if($data['link'] == '') {
+                    $data['type'] = $fallback;
+                }
+            
+            
+                if(!Route::has($data['link'])) {
+                    $data['type'] = $fallback;
+                }
             }
             
             return [

@@ -1,13 +1,34 @@
-$serif: 'Source Serif Pro', serif;
-$sansSerif: 'Source Sans Pro', sans-serif;
+@import "fontface";
 
-$backgroundColor: #f5f5f5;
-$textColor: #666;
-$titleColor: #333;
-$highlightColor: #57955b;
+$font-serif: 'Cormorant Garamond', serif;
+$font-sansSerif: 'Open Sans Condensed', sans-serif;
+$font-cursive: 'Forum', cursive;
+
+$backgroundColor: #f8fcf8; //#f5f5f5;
+$textColor: #68875f; //#666;
+$titleColor: #3d5337; //#333;
+$highlightColor: #62a35d; //#57955b;
+$darkColor: #001a00;
+$lightColor: white;
+
+.palette-container {
+    display: flex;
+}
+.palette {
+    width: 50px;
+    height: 50px;
+}
 
 * {
     box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;    
+}
+
+body {
+    font-size: 1.6rem;
 }
 
 html, body {
@@ -15,13 +36,16 @@ html, body {
     min-height: 100vh;
     margin: 0;
     padding: 0;		
-    font-family: $sansSerif;
+    font-family: $font-serif;
     color: $textColor;
 }
 
 h1 {
+    font-size: 2.5rem;
     font-variant: small-caps;
     color: $titleColor;
+    font-family: $font-sansSerif;
+    margin: 2rem auto;
 }
 
 a {
@@ -30,6 +54,10 @@ a {
    &:hover {
        color: $highlightColor;
    }
+}
+
+ul {
+    padding: 0;
 }
 
 .SiteHeader {
@@ -41,11 +69,26 @@ a {
         top: 40%;
         position: absolute;
         z-index: 15;
-        font-family: $serif;
-        font-size: 4em;
-        color: white; 
+        font-family: $font-cursive;
+        font-size: 6rem;
+        color: $lightColor; 
     }
 }
+
+.SidebarModule .thumbnail {
+
+    height: 150px;
+    
+    img {
+        shape-outside: circle();
+        float: left;
+        border-radius: 50%;
+        height: 150px;
+
+        margin-right: 2rem;
+    }
+}
+
 
 .HorizontaleMenu, .HorizontaleMenu-Background {
     width: 100%;
@@ -55,13 +98,36 @@ a {
 
 .HorizontaleMenu {
     z-index: 100;	
-    border-bottom: 1px solid rgba(255,255,255,0.25);
+    border-bottom: 1px solid transparentize($lightColor, .75);
     
     a {
         text-decoration: none;
         text-transform: uppercase;
-        color: white;
-        padding-left: 1em;  
+        color: $lightColor;
+        padding: 0 0.8rem;
+        position: relative;
+        
+        &:hover {
+            color: $lightColor;
+            &:before {
+                left: 0;
+                right: 0;              
+            }
+        }
+        
+        &:before {
+            background: transparentize($lightColor, .75);
+            height: 2px;
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 50%;
+            right: 50%;
+            bottom: 0;
+            transition-property: left,right;
+            transition-duration: .2s;
+            transition-timing-function: ease-out;
+        }
     }
     
     &.Scroll {
@@ -76,7 +142,7 @@ a {
 }
 
 .HorizontaleMenu-Background {
-    background-color: rgba(0,0,0,0.6);
+    background-color: transparentize($darkColor, .4);
     z-index: 9;
 }
 	
@@ -99,14 +165,14 @@ main {
 
 article {
     padding: 40px;
-    background-color: white;
+    background-color: $lightColor;
     
     margin: 0 auto;
     max-width: 1200px;
     width: 100%;
     position: relative;
     margin-bottom: 70px;
-    font-family: $serif;
+    font-family: $font-serif;
 }
 
 .BlogLayout {
@@ -127,11 +193,15 @@ article {
 
     
     .Post {
-        background: #fff;
-        padding: 30px;  
-        margin: auto 30px;
-             
-        box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.15);
+        background: $lightColor;
+        padding: 2rem;
+        margin: auto 3rem;
+ 
+        box-shadow: 0px 3px 15px 0px transparentize($darkColor, .85);
+        
+        h1 {
+            margin-top: 0;
+        }        
     }
     
     .Post.Card {
@@ -142,7 +212,7 @@ article {
         right: 0;
         bottom: 30px;
         left: 55%;
-        box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.65);   
+        box-shadow: 0px 3px 15px 0px transparentize($darkColor, .85);
         
     }
 
@@ -171,12 +241,11 @@ article {
 
     .MenuList a {
         display: block;
-        margin: 1em 0;			
+        margin: 1rem 0;			
         padding: 0 0 0 15px;
         position: relative;
         margin-left: 0;
         transition: margin 0.2s ease-in-out;
-        -webkit-transition: margin 0.2s ease-in-out;
     }
 
     .MenuList a:hover {
@@ -186,18 +255,164 @@ article {
     main .cover {
         width: 960px;
         height: 540px;
+        position: relative;
+        overflow: hidden;        
         
         img {
+            position: absolute;
+            top: -100%;
+            left: 0;
+            right: 0;
+            bottom: -100%;
+            margin: auto;            
             width: 100%;
             height: auto;
-            box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.15);
+            border: 1px solid $lightColor;
         }
     }
 
     ul.TagsCloud li {
-        height: 2em;
+        height: 4rem;
     }
 
+}
+
+$boxSize: 300px;
+$boxMargin: 30px;
+$boxBottomMargin: 55px;
+
+.BoxContainer {
+    margin: auto;
+}
+
+.Box {
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    width: $boxSize;
+    height: $boxSize;
+    padding: $boxMargin $boxMargin $boxBottomMargin;
+       
+    .Link {
+        position: absolute;
+        bottom: $boxMargin;
+        left: $boxMargin;
+    }    
+    
+    &:hover {
+        background-color: $textColor;
+        color: $lightColor;
+        a, h1 {
+            color: $lightColor;
+        }
+        
+        .Box-Content {
+            background-color: transparentize($textColor, .2);
+        }  
+    }
+    
+    h1 {
+        margin: auto;        
+    }
+    
+    img {
+        position: absolute;
+        top: -100%;
+        left: -100%;
+        right: -100%;
+        bottom: -100%;
+        margin: auto;
+        width: 100%;      
+    }
+    
+    .Box-Content {
+        top: 0;
+        left: 0;
+        width: 100%;
+        position: absolute;
+        height: 100%;
+        padding: $boxMargin;
+        overflow: hidden;
+        //max-height: $boxSize - $boxBottomMargin;
+              
+    }  
+    
+
+    
+    &.Post {
+        &.Long {
+            height: $boxSize * 2;
+            .Box-Content {
+                //max-height: $boxSize * 2 - $boxBottomMargin;
+                //overflow: auto;
+            }
+        }  
+        
+        &.Photo img {
+            -webkit-filter: grayscale(90%) brightness(60%) contrast(105%) blur(4px); 
+        }  
+    }
+    
+    &.Landscape img {
+        width: auto; 
+        height: 100%;
+    }
+    
+    &.Photo {
+        
+        img {
+            -webkit-filter: grayscale(90%) brightness(60%) contrast(105%);     
+        }
+        
+        &:hover img {
+            -webkit-filter: grayscale(0);       
+        }
+        
+        &.Post {
+            padding: 0;
+            &.Long {
+                height: $boxSize; 
+                width: $boxSize * 2;
+                .Box-Content {
+                    //max-height: $boxSize - $boxBottomMargin;
+                }                
+            }  
+
+            color: $lightColor; 
+            a, h1 {
+                color: $lightColor;
+            }               
+        }
+        
+        & a h1 {
+            width: 50%;
+            background-color: rgba(255,255,255,0.6);
+            font-size: 3rem;
+            margin: auto;
+            right: 0;
+            text-align: center;
+            z-index: 2;
+            position: absolute;
+            top: $boxSize/2 - 15px;
+            top: calc(50% - 3rem + 15px);
+            left: 0;          
+
+        }
+        &:hover a h1 {
+            background-color: rgba(0,0,0,0.6);  
+        }
+    }
+    
+    &.Tweet {
+        vertical-align: middle;
+        font-size: 2.5rem;  
+        & > * {
+            margin: auto 0;
+        }
+        & > *:first-child:before, & > *:first-child:after {
+            content: '"';
+        }
+    }
 }
 
 .TagsCloud {
@@ -206,10 +421,10 @@ article {
     list-style: none;	
     
     a {
-        color: rgba(51,51,51,0.5);
-        padding: 0.2em 0.5em;	
-        margin-left: 0.2em;	
-        border: 1px solid #e0e0e0;;
+        color: transparentize($darkColor, .5);
+        padding: 0.4rem .8rem;	
+        margin-left: 0.4rem;	
+        border: 1px solid transparentize($textColor, .5);
         text-decoration: none;
         font-variant: small-caps;
         
@@ -272,7 +487,9 @@ time,
 }
 
 @media (max-width: 1666px) {
+     
     .BlogLayout {
+               
         .Card {
             top: 60px;
             bottom: 0;
@@ -285,21 +502,76 @@ time,
     }
 }
 
-@media (max-width: 1200px) {
+/*@media (max-width: 1200px) {
+    
+    .SiteHeader h1 {
+        font-size: 4rem;
+    }    
 
     .BlogLayout {
-        main .cover {
+        
+
+
+        .Card {
+            position: initial !important;
+        }
+    }
+}*/
+
+@media (max-width: 600px) {
+
+    .parallax-window {
+        min-height: 100px;
+    }    
+    
+    .SiteHeader h1 {
+        font-size: 2rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    } 
+    
+    .HorizontaleMenu ul {
+        flex-wrap: wrap;
+    }
+    
+    .BlogLayout {
+        
+        article {
+            margin-bottom: 10px;
+        }
+        
+        .Post {
+            margin: auto 10px;
+            padding: 15px;
+            box-shadow: none;
+            border: 1px solid transparentize($darkColor, .85);
+        }        
+        
+        .SingleArticle .cover {
             margin: auto;
             width: 100%;
             height: auto;
         }
-
-        .content {
-            flex-direction: column-reverse;
+        
+        main article:not(.SingleArticle) .cover {
+            display: none;
         }
-
+        
+        &.content {
+            flex-direction: column;
+        }
+        
         .Card {
-            position: initial;
+            float: none !important;
+            position: initial !important;
         }
     }
+}
+
+.feed {
+  margin-left: 3px;
+  padding: 0 0 0 19px;
+  background: url("../img/feed-icon-14x14.png") no-repeat 0 50%;
 }

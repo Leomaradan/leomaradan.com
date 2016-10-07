@@ -1,3 +1,16 @@
+var app = new Vue({
+    el: 'body',
+    /*components: {
+        alert: alert,
+        navbar: navbar,
+    },*/
+    data: {
+        errors: [],
+        successes: [],
+        posts: []
+    }
+});
+
 var minmax = function (value, min, max) {
 
     if (min == undefined) {
@@ -30,9 +43,6 @@ var fixedNavbar = function () {
         //var titleOpacity = minmax(1-(relativeScroll - 50)/25, 0, 1);// (5-Math.min(5,Math.max(,0)))/5; 
         var titleOpacity = minmax(1 - (relativeScroll) / 75, 0, 1);// (5-Math.min(5,Math.max(,0)))/5; 
 
-        console.log(relativeScroll);
-        console.log(titleOpacity);
-
         $('.SiteHeader h1').css('top', titlePosition + '%');
         $('.SiteHeader h1').css('opacity', titleOpacity);
 
@@ -44,5 +54,10 @@ var fixedNavbar = function () {
         }
     });
 };
+
+if (window.matchMedia("(max-width: 1200px)").matches) {
+    var height = ($('.HorizontaleMenu ul').height() + 30) + 'px';
+    $('.HorizontaleMenu, .HorizontaleMenu-Background').css('height', height);
+}
 
 fixedNavbar();		

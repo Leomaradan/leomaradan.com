@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Models\Post\Post;
 use App\Models\Post\Tag;
 use App\Models\Post\Category;
+use Markdown;
 
 class PostController extends Controller {
 
@@ -54,7 +55,7 @@ class PostController extends Controller {
 	    $feed = \App::make("feed");
 
 	    // cache the feed for 60 minutes (second parameter is optional)
-	    $feed->setCache(60, 'leomaradanFeedKey');
+	    //$feed->setCache(60, 'leomaradanFeedKey');
 
 	    // check if there is cached feed and build new only if is not
 	    if (!$feed->isCached())
@@ -77,7 +78,7 @@ class PostController extends Controller {
 	       {
 	           // set item's title, author, url, pubdate, description and content
 	           //$feed->add($post->title, $post->author, URL::to($post->slug), $post->created, $post->description, $post->content);
-	           $feed->add($post->title, 'Léo Maradan', route('blog.show', $post), $post->published_at, $post->lead, $post->content);
+	           $feed->add($post->title, 'Léo Maradan', route('blog.show', $post), $post->published_at, Markdown::convertToHtml($post->lead), Markdown::convertToHtml($post->content));
 	       }
 
 	    }

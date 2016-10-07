@@ -1,23 +1,91 @@
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Cormorant Garamond"), local("CormorantGaramond-Regular"), url(../fonts/CormorantGaramond-Regular-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Cormorant Garamond"), local("CormorantGaramond-Regular"), url(../fonts/CormorantGaramond-Regular.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; }
+
+/* latin-ext */
+@font-face {
+  font-family: 'Forum';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Forum"), url(../fonts/Forum-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Forum';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Forum"), url(../fonts/Forum.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; }
+
+/* latin-ext */
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Cond Light"), local("OpenSans-CondensedLight"), url(../fonts/OpenSans-CondensedLight-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Cond Light"), local("OpenSans-CondensedLight"), url(../fonts/OpenSans-CondensedLight.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; }
+
+.palette-container {
+  display: -webkit-box;
+  display: flex; }
+
+.palette {
+  width: 50px;
+  height: 50px; }
+
 * {
   box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  font-size: 1.6rem; }
 
 html, body {
   width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  font-family: "Source Sans Pro", sans-serif;
-  color: #666; }
+  font-family: "Cormorant Garamond", serif;
+  color: #68875f; }
 
 h1 {
+  font-size: 2.5rem;
   font-variant: small-caps;
-  color: #333; }
+  color: #3d5337;
+  font-family: "Open Sans Condensed", sans-serif;
+  margin: 2rem auto; }
 
 a {
-  color: #333;
+  color: #3d5337;
   text-decoration: none; }
   a:hover {
-    color: #57955b; }
+    color: #62a35d; }
+
+ul {
+  padding: 0; }
 
 .SiteHeader {
   position: relative; }
@@ -27,9 +95,19 @@ a {
     top: 40%;
     position: absolute;
     z-index: 15;
-    font-family: "Source Serif Pro", serif;
-    font-size: 4em;
+    font-family: "Forum", cursive;
+    font-size: 6rem;
     color: white; }
+
+.SidebarModule .thumbnail {
+  height: 150px; }
+  .SidebarModule .thumbnail img {
+    -webkit-shape-outside: circle();
+    shape-outside: circle();
+    float: left;
+    border-radius: 50%;
+    height: 150px;
+    margin-right: 2rem; }
 
 .HorizontaleMenu, .HorizontaleMenu-Background {
   width: 100%;
@@ -43,7 +121,28 @@ a {
     text-decoration: none;
     text-transform: uppercase;
     color: white;
-    padding-left: 1em; }
+    padding: 0 0.8rem;
+    position: relative; }
+    .HorizontaleMenu a:hover {
+      color: white; }
+      .HorizontaleMenu a:hover:before {
+        left: 0;
+        right: 0; }
+    .HorizontaleMenu a:before {
+      background: rgba(255, 255, 255, 0.25);
+      height: 2px;
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      right: 50%;
+      bottom: 0;
+      -webkit-transition-property: left,right;
+      transition-property: left,right;
+      -webkit-transition-duration: .2s;
+      transition-duration: .2s;
+      -webkit-transition-timing-function: ease-out;
+      transition-timing-function: ease-out; }
   .HorizontaleMenu.Scroll {
     border-bottom: 0; }
   .HorizontaleMenu ul {
@@ -54,7 +153,7 @@ a {
     display: flex; }
 
 .HorizontaleMenu-Background {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 26, 0, 0.6);
   z-index: 9; }
 
 .wrapper, .content, main {
@@ -67,7 +166,7 @@ a {
   flex-direction: column; }
 
 .content main {
-  background-color: #f5f5f5; }
+  background-color: #f8fcf8; }
 
 main {
   padding-top: 50px;
@@ -81,7 +180,7 @@ article {
   width: 100%;
   position: relative;
   margin-bottom: 70px;
-  font-family: "Source Serif Pro", serif; }
+  font-family: "Cormorant Garamond", serif; }
 
 .BlogLayout main {
   -webkit-box-flex: 3;
@@ -97,10 +196,12 @@ article {
   padding: initial; }
 
 .BlogLayout .Post {
-  background: #fff;
-  padding: 30px;
-  margin: auto 30px;
-  box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.15); }
+  background: white;
+  padding: 2rem;
+  margin: auto 3rem;
+  box-shadow: 0px 3px 15px 0px rgba(0, 26, 0, 0.15); }
+  .BlogLayout .Post h1 {
+    margin-top: 0; }
 
 .BlogLayout .Post.Card {
   float: left;
@@ -110,7 +211,7 @@ article {
   right: 0;
   bottom: 30px;
   left: 55%;
-  box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.65); }
+  box-shadow: 0px 3px 15px 0px rgba(0, 26, 0, 0.15); }
 
 .BlogLayout .AlignRight .Card {
   float: right;
@@ -133,26 +234,114 @@ article {
 
 .BlogLayout .MenuList a {
   display: block;
-  margin: 1em 0;
+  margin: 1rem 0;
   padding: 0 0 0 15px;
   position: relative;
   margin-left: 0;
-  transition: margin 0.2s ease-in-out;
-  -webkit-transition: margin 0.2s ease-in-out; }
+  -webkit-transition: margin 0.2s ease-in-out;
+  transition: margin 0.2s ease-in-out; }
 
 .BlogLayout .MenuList a:hover {
   margin-left: 10px; }
 
 .BlogLayout main .cover {
   width: 960px;
-  height: 540px; }
+  height: 540px;
+  position: relative;
+  overflow: hidden; }
   .BlogLayout main .cover img {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    right: 0;
+    bottom: -100%;
+    margin: auto;
     width: 100%;
     height: auto;
-    box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.15); }
+    border: 1px solid white; }
 
 .BlogLayout ul.TagsCloud li {
-  height: 2em; }
+  height: 4rem; }
+
+.BoxContainer {
+  margin: auto; }
+
+.Box {
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  width: 300px;
+  height: 300px;
+  padding: 30px 30px 55px; }
+  .Box .Link {
+    position: absolute;
+    bottom: 30px;
+    left: 30px; }
+  .Box:hover {
+    background-color: #68875f;
+    color: white; }
+    .Box:hover a, .Box:hover h1 {
+      color: white; }
+    .Box:hover .Box-Content {
+      background-color: rgba(104, 135, 95, 0.8); }
+  .Box h1 {
+    margin: auto; }
+  .Box img {
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    right: -100%;
+    bottom: -100%;
+    margin: auto;
+    width: 100%; }
+  .Box .Box-Content {
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    padding: 30px;
+    overflow: hidden; }
+  .Box.Post.Long {
+    height: 600px; }
+  .Box.Post.Photo img {
+    -webkit-filter: grayscale(90%) brightness(60%) contrast(105%) blur(4px); }
+  .Box.Landscape img {
+    width: auto;
+    height: 100%; }
+  .Box.Photo img {
+    -webkit-filter: grayscale(90%) brightness(60%) contrast(105%); }
+  .Box.Photo:hover img {
+    -webkit-filter: grayscale(0); }
+  .Box.Photo.Post {
+    padding: 0;
+    color: white; }
+    .Box.Photo.Post.Long {
+      height: 300px;
+      width: 600px; }
+    .Box.Photo.Post a, .Box.Photo.Post h1 {
+      color: white; }
+  .Box.Photo a h1 {
+    width: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    font-size: 3rem;
+    margin: auto;
+    right: 0;
+    text-align: center;
+    z-index: 2;
+    position: absolute;
+    top: 135px;
+    top: calc(50% - 3rem + 15px);
+    left: 0; }
+  .Box.Photo:hover a h1 {
+    background-color: rgba(0, 0, 0, 0.6); }
+  .Box.Tweet {
+    vertical-align: middle;
+    font-size: 2.5rem; }
+    .Box.Tweet > * {
+      margin: auto 0; }
+    .Box.Tweet > *:first-child:before, .Box.Tweet > *:first-child:after {
+      content: '"'; }
 
 .TagsCloud {
   display: -webkit-box;
@@ -160,16 +349,16 @@ article {
   flex-wrap: wrap;
   list-style: none; }
   .TagsCloud a {
-    color: rgba(51, 51, 51, 0.5);
-    padding: 0.2em 0.5em;
-    margin-left: 0.2em;
-    border: 1px solid #e0e0e0;
+    color: rgba(0, 26, 0, 0.5);
+    padding: 0.4rem .8rem;
+    margin-left: 0.4rem;
+    border: 1px solid rgba(104, 135, 95, 0.5);
     text-decoration: none;
     font-variant: small-caps; }
     .TagsCloud a:before {
       content: '#'; }
     .TagsCloud a:hover {
-      color: #333; }
+      color: #3d5337; }
 
 .Badge:before {
   content: ' - '; }
@@ -191,7 +380,7 @@ article {
     height: 2px;
     -webkit-transition: width 0.2s ease-in-out, left 0.2s ease-in-out;
     transition: width 0.2s ease-in-out, left 0.2s ease-in-out;
-    background-color: #57955b; }
+    background-color: #62a35d; }
   .HighlightLink:hover {
     padding-left: 52px; }
     .HighlightLink:hover:before {
@@ -213,16 +402,54 @@ time,
   .BlogLayout .AlignRight .Card {
     right: 35%; } }
 
-@media (max-width: 1200px) {
-  .BlogLayout main .cover {
+/*@media (max-width: 1200px) {
+    
+    .SiteHeader h1 {
+        font-size: 4rem;
+    }    
+
+    .BlogLayout {
+        
+
+
+        .Card {
+            position: initial !important;
+        }
+    }
+}*/
+@media (max-width: 600px) {
+  .parallax-window {
+    min-height: 100px; }
+  .SiteHeader h1 {
+    font-size: 2rem; }
+  h1 {
+    font-size: 2rem; }
+  .HorizontaleMenu ul {
+    flex-wrap: wrap; }
+  .BlogLayout article {
+    margin-bottom: 10px; }
+  .BlogLayout .Post {
+    margin: auto 10px;
+    padding: 15px;
+    box-shadow: none;
+    border: 1px solid rgba(0, 26, 0, 0.15); }
+  .BlogLayout .SingleArticle .cover {
     margin: auto;
     width: 100%;
     height: auto; }
-  .BlogLayout .content {
+  .BlogLayout main article:not(.SingleArticle) .cover {
+    display: none; }
+  .BlogLayout.content {
     -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-    flex-direction: column-reverse; }
+    -webkit-box-direction: normal;
+    flex-direction: column; }
   .BlogLayout .Card {
-    position: initial; } }
+    float: none !important;
+    position: initial !important; } }
+
+.feed {
+  margin-left: 3px;
+  padding: 0 0 0 19px;
+  background: url("../img/feed-icon-14x14.png") no-repeat 0 50%; }
 
 /*# sourceMappingURL=style.css.map */
