@@ -8,17 +8,19 @@
             </div>
             
         </template>
-        <template v-if="isTweet">
-            <slot></slot>
-            <a v-if="link" href="{{link}}">{{linkLabel}}</a>
-        </template>
         <template v-else>
-            <a v-if="link" href="{{link}}">
-                <slot></slot>
-                <img v-if="image" v-bind:src="image" v-on:load="setLandscape">
-                <template v-else>{{ linkLabel }}</template>
-                </a>
-            <a href="#" v-else><slot></slot><img v-if="image" v-bind:src="image" v-on:load="setLandscape"></a>
+            <template v-if="isTweet">
+                <div><slot></slot></div>
+                <a v-if="link" href="{{link}}">{{linkLabel}}</a>
+            </template>
+            <template v-else>
+                <a v-if="link" href="{{link}}">
+                    <slot></slot>
+                    <img v-if="image" v-bind:src="image" v-on:load="setLandscape">
+                    <template v-else>{{ linkLabel }}</template>
+                    </a>
+                <a href="#" v-else><slot></slot><img v-if="image" v-bind:src="image" v-on:load="setLandscape"></a>
+            </template>
         </template>
     </div>
 </template>

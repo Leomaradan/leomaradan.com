@@ -404,6 +404,7 @@ $boxBottomMargin: 55px;
     }
     
     &.Tweet {
+        word-break: break-word;
         vertical-align: middle;
         font-size: 2.5rem;  
         & > * {

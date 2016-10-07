@@ -24,7 +24,7 @@
                     {!! Markdown::convertToHtml($item['elem']->lead) !!}
                 </masonry-box>
             @elseif ($item['type'] == 'tweet')
-                <masonry-box is-tweet="true" link="">{{ $item['elem']->text }}</masonry-box>
+                <masonry-box is-tweet="true" link="">{!! $item['elem']->text !!}</masonry-box>
             @elseif ($item['type'] == 'image')
             <masonry-box image="{{ isset($item['elem']->coverSrc) ? $item['elem']->coverSrc : '' }}"><h1>{{ $item['elem']->title }}</h1></masonry-box>
             @endif

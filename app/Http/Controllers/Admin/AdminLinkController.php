@@ -119,9 +119,24 @@ user
                 $tweet = TwitterLink::firstOrNew(['id_twitter' => $twit->id_str]);
                 $created_at = new \DateTime($twit->created_at);
                 $tweet->created_at = $created_at->format('Y-m-d H:i:s');
-                $tweet->text = $twit->text;
+                $text = $twit->text;
                 $tweet->user_name = $twit->user->name;
                 $tweet->user_id = $twit->user->screen_name;
+
+                if(count($twit->entities->urls) > 0) {
+                    foreach ($twit->entities->urls as $url) {
+                        
+                        $text = str_ireplace($url->url, "<a href='{$url->expanded_url}'>{$url->display_url}</a>", $text);
+                        //preg_replace("/https:\/\/t.co\/DoNgT1s8Zl/i", "t", $input_lines);
+                        /*
+                         *           +"url": "https://t.co/DoNgT1s8Zl"
+          +"expanded_url": "http://leomaradan.github.io/toolbox/"
+          +"display_url": "leomaradan.github.io/toolbox/"
+                         */
+                    }
+                }
+                
+                $tweet->text = $text;
 
                 $tweet->save();
             }
