@@ -1,22 +1,23 @@
 <template>
     <article itemscope itemtype="http://schema.org/BlogPosting">
         <section v-if="image" class="image">
-            <time v-if="date" itemprop="dateCreated" datetime="{{ Date.toISOString() }}">{{ date }}</time>
+            <time v-if="date" itemprop="dateCreated" datetime="{{ date.ISO }}" v-html="dateFormater"></time>
             <div class="cover" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-                    <img src="{{ image }}" itemprop="contentUrl" alt="{{ imageCaption }}">
+                    <img v-bind:src="image" itemprop="contentUrl" alt="{{ imageCaption }}">
             </div>
         </section>   
         <section v-bind:class="{ Card: image }" class="Post">
-                    <time v-if="date && !image" itemprop="dateCreated" datetime="{{ Date.toISOString() }}">{{ date }}</time>
+                    <time v-if="date && !image" itemprop="dateCreated" datetime="{{ date.ISO }}" v-html="dateFormater"></time>
 
                 <h1 itemprop="name">{{ title }}</h1>
-                <span v-if="author" itemprop="author">{{ author }}</span>
+                <div class="PostInfo">
+                    <span v-if="author" itemprop="author">{{ author }}</span>
+                    <span v-if="category" class="category">Catégorie : <a href="{{ category.link }}" rel="tag">{{ category.name }}</a></span>
+                    <span v-if="tags" class="TagsCloud">
+                        <a v-for="tag in tags" href="{{ tag.link }}">{{ tag.name }}</a>
+                    </span>
 
-                <span v-if="tags" class="TagsCloud">
-                    <a v-for="tag in tags" href="#">{{ tag.name }}</a>
-                </span>
-                <span v-if="category" class="category"><a href="#" rel="tag">{{ category }}</a></span>
-
+                </div>
                 <div itemprop="text">
                     <slot></slot>
                 </div>
@@ -39,14 +40,14 @@
                         type: String,
                         default: ""
                     },
-                    date: String,
+                    date: Object,
                     title: {
                         type: String,
                         required: true
                     },
                     author: String,
                     tags: Array,
-                    category: String,
+                    category: Object,
                     url: String,
                     urlCaption: {
                         type: String,
@@ -59,8 +60,13 @@
 			return {}
 		},
                 computed: {
-                    Date: function() {
-                        return new Date(this.date);
+                    dateFormater: function() {
+                        let dates = this.date.localized.split('-'),
+                            day = dates[0],
+                            month = dates[1],
+                            year = dates[2];
+                        
+                        return '<span>'+day+'</span><span>'+month+'</span><span>'+year+'</span>';
                     }
                 }
 	}

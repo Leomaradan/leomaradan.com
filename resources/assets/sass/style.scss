@@ -7,7 +7,7 @@ $font-cursive: 'Forum', cursive;
 $backgroundColor: #f8fcf8; //#f5f5f5;
 $textColor: #68875f; //#666;
 $titleColor: #3d5337; //#333;
-$highlightColor: #62a35d; //#57955b;
+$highlightColor: #89bf8f; //#62a35d #57955b;
 $darkColor: #001a00;
 $lightColor: white;
 
@@ -191,6 +191,56 @@ article {
         padding: initial;        
     }
 
+    .image time {
+       right: inherit;
+       left: 40px;
+   }
+    
+    time {
+        z-index: 1;
+        position: absolute;
+        display: inline-block;
+        background-color: $highlightColor;
+        
+        text-align: center;
+        width: 50px;
+
+        color: $darkColor;
+        right: 80px;
+        top: -2px;
+        font-size: 2.4rem; 
+        
+        // mega ombre + bordure
+        /*filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.4))
+            drop-shadow(1px -1px 0px rgba(0, 0, 0, 0.4))
+            drop-shadow(-1px -1px 0px rgba(0, 0, 0, 0.4))
+            drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35));*/
+        filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.65));
+        //clip: rect(-1px,75px,150px,-25px);
+                              
+        span {
+            display: block;
+            
+            &:first-child {
+                font-size: 3.2rem;
+            }
+        }
+        
+        &:after {
+        
+            content: "";
+            position: absolute;
+            display: block;
+            /*z-index: -1;
+            left: 0;
+            bottom: -12px;
+            width: 0;
+            height: 0;*/
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-top: 8px solid $highlightColor; 
+        }
+    }    
     
     .Post {
         background: $lightColor;
@@ -203,6 +253,13 @@ article {
             margin-top: 0;
         }        
     }
+    .PostInfo {
+        justify-content: space-between;
+        max-width: calc(100% - 100px);
+        display: flex;
+        align-items: center;     
+    }
+
     
     .Post.Card {
         float: left;
@@ -214,16 +271,29 @@ article {
         left: 55%;
         box-shadow: 0px 3px 15px 0px transparentize($darkColor, .85);
         
+        .PostInfo {
+            max-width: 100%;  
+        } 
+        
     }
 
-    .AlignRight .Card {
-        float: right;
-        left: 0;
-        right: 55%;
-    }
-
-    .AlignRight .cover {
-        margin-left: auto;
+    .AlignRight {
+        .Card {
+            float: right;
+            left: 0;
+            right: 55%;
+        }  
+        
+        .cover {
+            margin-left: auto;
+        }
+        
+        .image {
+            time {
+                left: inherit;
+                right: 40px;     
+            }          
+        }
     }
 
     ul.MenuList, .MenuList ul {
@@ -300,14 +370,14 @@ $boxBottomMargin: 55px;
     }    
     
     &:hover {
-        background-color: $textColor;
+        background-color: $highlightColor; //$textColor;
         color: $lightColor;
         a, h1 {
             color: $lightColor;
         }
         
         .Box-Content {
-            background-color: transparentize($textColor, .2);
+            background-color: transparentize($highlightColor, .2);
         }  
     }
     
@@ -324,7 +394,7 @@ $boxBottomMargin: 55px;
         margin: auto;
         width: 100%;      
     }
-    
+        
     .Box-Content {
         top: 0;
         left: 0;
@@ -422,7 +492,7 @@ $boxBottomMargin: 55px;
     list-style: none;	
     
     a {
-        color: transparentize($darkColor, .5);
+        color: $darkColor;
         padding: 0.4rem .8rem;	
         margin-left: 0.4rem;	
         border: 1px solid transparentize($textColor, .5);
@@ -435,6 +505,7 @@ $boxBottomMargin: 55px;
         
         &:hover {
             color: $titleColor;
+            border: 1px solid $textColor;
         }
     }
 }
@@ -481,9 +552,10 @@ $boxBottomMargin: 55px;
 
 
 
-time,
+//time,
 /*.tags,*/
-.category {
+
+[itemprop='author'] {
     display: none;
 }
 

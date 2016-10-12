@@ -3,7 +3,7 @@
 namespace App\Models\Post;
 
 use App\Models\SlugTemplate;
-use Carbon\Carbon;
+use Jenssegers\Date\Date;
 use \DB;
 
 class Post extends SlugTemplate {
@@ -31,6 +31,13 @@ class Post extends SlugTemplate {
             return implode(' ', $this->tags()->pluck('name')->all());
         }
         return ' ';
+    }
+    
+    public function getTagsArrayAttribute() {
+        if ($this->tags()) {
+            return $this->tags()->pluck('name')->all();
+        }
+        return []; 
     }
 
     public function getLeadAttribute() {
@@ -97,8 +104,13 @@ class Post extends SlugTemplate {
         if (empty($value)) {
             $this->attributes['published_at'] = null;
         } else {
-            $this->attributes['published_at'] = Carbon::parse($value);
+            $this->attributes['published_at'] = Date::parse($value);
         }
+    }
+    
+    public function getPublishedAtAttribute() {
+        //$newDate = $this->attributes['published_at'];
+        return new Date($this->attributes['published_at']);
     }
 
     public function getDates() {

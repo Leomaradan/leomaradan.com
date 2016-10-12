@@ -11,9 +11,9 @@
                     {!! Markdown::convertToHtml($item['elem']->lead) !!}
                 </masonry-box>
             @elseif ($item['type'] == 'tweet')
-                <masonry-box is-tweet="true" link="">{{ $item['elem']->text }}</masonry-box>
+                <masonry-box is-tweet="true" link="https://twitter.com/{{ $item['elem']->user_id }}/status/{{ $item['elem']->id_twitter }}">{!! $item['elem']->text  !!}</masonry-box>
             @elseif ($item['type'] == 'image')
-            <masonry-box image="{{ isset($item['elem']->coverSrc) ? $item['elem']->coverSrc : '' }}"><h1>{{ $item['elem']->title }}</h1></masonry-box>
+                <masonry-box image="{{ isset($item['elem']->coverSrc) ? $item['elem']->coverSrc : '' }}" link="{{ isset($item['elem']->flickr_id) ? 'https://www.flickr.com/photos/leomaradan/albums/' . $item['elem']->flickr_id : '' }}"><h1>{{ $item['elem']->title }}</h1></masonry-box>
             @endif
         @endforeach
         
@@ -24,9 +24,9 @@
                     {!! Markdown::convertToHtml($item['elem']->lead) !!}
                 </masonry-box>
             @elseif ($item['type'] == 'tweet')
-                <masonry-box is-tweet="true" link="">{!! $item['elem']->text !!}</masonry-box>
+                <masonry-box is-tweet="true" link="https://twitter.com/{{ $item['elem']->user_id }}/status/{{ $item['elem']->id_twitter }}">{!! $item['elem']->text !!}</masonry-box>
             @elseif ($item['type'] == 'image')
-            <masonry-box image="{{ isset($item['elem']->coverSrc) ? $item['elem']->coverSrc : '' }}"><h1>{{ $item['elem']->title }}</h1></masonry-box>
+                <masonry-box image="{{ isset($item['elem']->coverSrc) ? $item['elem']->coverSrc : '' }}"><h1>{{ $item['elem']->title }}</h1></masonry-box>
             @endif
         @endforeach     
         </div>

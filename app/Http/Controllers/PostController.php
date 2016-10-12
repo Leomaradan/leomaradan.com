@@ -16,6 +16,15 @@ class PostController extends Controller {
 	public function index()
 	{
 		$posts = Post::published()->paginate(10);
+                
+                foreach ($posts as $post) {
+                    $tagsArray = array_map(function($v) {
+                        return ['name' => $v, 'link' => route('blog.tag',$v)];
+                    }, $post->tagsArray);
+                    $post->tagsJson = $tagsArray;
+                    // dd($post->tagsJson);
+                }
+               
 		$all_tags = Tag::published()->get();
 		$all_categories = Category::published()->get();
 		return view('frontend.posts.index', compact('posts', 'all_tags', 'all_categories'));
@@ -24,6 +33,12 @@ class PostController extends Controller {
 	public function show($slug)
 	{
 		$post = Post::published()->where('slug', $slug)->firstOrFail();
+
+                $tagsArray = array_map(function($v) {
+                    return ['name' => $v, 'link' => route('blog.tag',$v)];
+                }, $post->tagsArray);
+                $post->tagsJson = $tagsArray;
+                    
 		//$post = Post::where('slug', $slug)->firstOrFail();
 		$all_tags = Tag::published()->get();
 		$all_categories = Category::published()->get();		
@@ -34,6 +49,13 @@ class PostController extends Controller {
 	{
 		//$posts = Post::published()->get();
 		$posts = Tag::findBySlug($slug)->first()->posts()->published()->paginate(10);
+                foreach ($posts as $post) {
+                    $tagsArray = array_map(function($v) {
+                        return ['name' => $v, 'link' => route('blog.tag',$v)];
+                    }, $post->tagsArray);
+                    $post->tagsJson = $tagsArray;
+                    // dd($post->tagsJson);
+                }                
 		$all_tags = Tag::published()->get();
 		$all_categories = Category::published()->get();
 		return view('frontend.posts.index', compact('posts', 'all_tags', 'all_categories'));
@@ -44,6 +66,13 @@ class PostController extends Controller {
 		$posts = Post::whereHas('category', function($q) use ($slug) {
 			$q->where('slug', $slug);
 		})->published()->paginate(10);		
+                foreach ($posts as $post) {
+                    $tagsArray = array_map(function($v) {
+                        return ['name' => $v, 'link' => route('blog.tag',$v)];
+                    }, $post->tagsArray);
+                    $post->tagsJson = $tagsArray;
+                    // dd($post->tagsJson);
+                }                
 		$all_tags = Tag::published()->get();
 		$all_categories = Category::published()->get();
 		return view('frontend.posts.index', compact('posts', 'all_tags', 'all_categories'));		

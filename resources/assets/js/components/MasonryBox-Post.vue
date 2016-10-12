@@ -11,7 +11,7 @@
         <template v-else>
             <template v-if="isTweet">
                 <div><slot></slot></div>
-                <a v-if="link" href="{{link}}">{{linkLabel}}</a>
+                <a v-if="link" href="{{link}}">Tweet</a>
             </template>
             <template v-else>
                 <a v-if="link" href="{{link}}">
