@@ -438,31 +438,37 @@ var fixedNavbar = function () {
         var position = $('.SiteHeader').innerHeight() /* - $('.HorizontaleMenu').outerHeight()*/;
         var positionBottom = position - $('.HorizontaleMenu').outerHeight();
 
-        // fade à 50% -> 75%
-        var relativeScroll = 100 / position * $(window).scrollTop();
-
-        var titlePosition = minmax((40 / 75 * relativeScroll) + 35, 80);
-
-        //var titleOpacity = /*minmax(*/relativeScroll - 50/*, 50, 75)*/;// (5-Math.min(5,Math.max(,0)))/5; 
-        //var titleOpacity = minmax(1-(relativeScroll - 50)/25, 0, 1);// (5-Math.min(5,Math.max(,0)))/5; 
-        var titleOpacity = minmax(1 - (relativeScroll) / 75, 0, 1);// (5-Math.min(5,Math.max(,0)))/5; 
-
-        $('.SiteHeader h1').css('top', titlePosition + '%');
-        $('.SiteHeader h1').css('opacity', titleOpacity);
-
         if ($(window).scrollTop() > positionBottom) {
             $('.HorizontaleMenu').addClass('Scroll');
         }
         if ($(window).scrollTop() < (positionBottom + 1)) {
             $('.HorizontaleMenu').removeClass('Scroll');
         }
+            
+        if (window.matchMedia("(min-width: 600px)").matches) {
+
+            // fade à 50% -> 75%
+            var relativeScroll = 100 / position * $(window).scrollTop();
+
+            var titlePosition = minmax((40 / 75 * relativeScroll) + 35, 80);
+
+            //var titleOpacity = /*minmax(*/relativeScroll - 50/*, 50, 75)*/;// (5-Math.min(5,Math.max(,0)))/5; 
+            //var titleOpacity = minmax(1-(relativeScroll - 50)/25, 0, 1);// (5-Math.min(5,Math.max(,0)))/5; 
+            var titleOpacity = minmax(1 - (relativeScroll) / 75, 0, 1);// (5-Math.min(5,Math.max(,0)))/5; 
+
+            $('.SiteHeader h1').css('top', titlePosition + '%');
+            $('.SiteHeader h1').css('opacity', titleOpacity);
+
+
+        } else {
+            $('.SiteHeader h1').css('top', '0');
+        }
     });
 };
 
-if (window.matchMedia("(max-width: 1200px)").matches) {
+/*if (window.matchMedia("(max-width: 600px)").matches) {
     var height = ($('.HorizontaleMenu ul').height() + 30) + 'px';
     $('.HorizontaleMenu, .HorizontaleMenu-Background').css('height', height);
-}
+}*/
 
 fixedNavbar();		
-//# sourceMappingURL=app.js.map

@@ -27,9 +27,7 @@
   <body>
     <header class="HorizontaleMenu">
 
-            <nav>
-                    @yield('menu')
-            </nav>
+        @yield('menu')
     </header>
     <div class="HorizontaleMenu-Background"></div>      
 

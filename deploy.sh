@@ -4,14 +4,18 @@ foldername=$(date +%Y%m%d%H%M%S)
 # 1 down mode
 php artisan down
 
+mv .env ../share/
+mv public/uploads ../share/
+mv node_modules ../share/
+
 cd ..
 
 # 2 get latest version
 git clone https://github.com/Leomaradan/leomaradan.com.git releases/"$foldername"
 
-# link .env
-ln -s share/.env releases/"$foldername"/.env
-ln -s share/.env.production releases/"$foldername"/.env.production
+mv share/.env releases/"$foldername"/
+mv share/public/uploads releases/"$foldername"/public/
+mv share/node_modules releases/"$foldername"/
 
 cd releases/"$foldername"
 

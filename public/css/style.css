@@ -46,6 +46,108 @@
   src: local("Open Sans Cond Light"), local("OpenSans-CondensedLight"), url(../fonts/OpenSans-CondensedLight.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; }
 
+.BoxContainer {
+  margin: auto; }
+
+.Box {
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  width: 300px;
+  height: 300px;
+  padding: 30px 30px 55px; }
+  .Box .Link {
+    position: absolute;
+    bottom: 30px;
+    left: 30px; }
+  .Box:hover {
+    background-color: #89bf8f;
+    color: white; }
+    .Box:hover a, .Box:hover h1 {
+      color: white; }
+    .Box:hover .Box-Content {
+      background-color: rgba(137, 191, 143, 0.8); }
+  .Box h1 {
+    margin: auto; }
+  .Box img {
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    right: -100%;
+    bottom: -100%;
+    margin: auto;
+    width: 100%; }
+  .Box .Box-Content {
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    padding: 30px;
+    overflow: hidden; }
+  .Box.Post.Long {
+    height: 600px; }
+  .Box.Post.Photo img {
+    -webkit-filter: grayscale(90%) brightness(60%) contrast(105%) blur(4px); }
+  .Box.Landscape img {
+    width: auto;
+    height: 100%; }
+  .Box.Photo img {
+    -webkit-filter: grayscale(90%) brightness(60%) contrast(105%); }
+  .Box.Photo:hover img {
+    -webkit-filter: grayscale(0); }
+  .Box.Photo.Post {
+    padding: 0;
+    color: white; }
+    .Box.Photo.Post.Long img {
+      height: auto;
+      width: 100%; }
+    .Box.Photo.Post.Long.Landscape img {
+      width: auto;
+      height: 100%; }
+    .Box.Photo.Post a, .Box.Photo.Post h1 {
+      color: white; }
+  .Box.Photo a h1 {
+    width: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    font-size: 3rem;
+    margin: auto;
+    right: 0;
+    text-align: center;
+    z-index: 2;
+    position: absolute;
+    top: 135px;
+    top: calc(50% - 3rem + 15px);
+    left: 0; }
+  .Box.Photo:hover a h1 {
+    background-color: rgba(0, 0, 0, 0.6); }
+  .Box.Tweet {
+    word-break: break-word;
+    vertical-align: middle;
+    font-size: 2.5rem; }
+    .Box.Tweet > * {
+      margin: auto 0; }
+    .Box.Tweet > *:first-child:before, .Box.Tweet > *:first-child:after {
+      content: '"'; }
+
+@media (min-width: 601px) {
+  .Box.Photo.Post.Long {
+    height: 300px;
+    width: 600px;
+    /*&:not(.Landscape) img {
+            width: auto;
+            height: 100%;
+        }*/ } }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13 oct. 2016, 16:08:12
+    Author     : lmaradan
+*/
 .palette-container {
   display: -webkit-box;
   display: flex; }
@@ -117,6 +219,28 @@ ul {
 .HorizontaleMenu {
   z-index: 100;
   border-bottom: 1px solid rgba(255, 255, 255, 0.25); }
+  .HorizontaleMenu .HorizontaleMenu-ResponsiveIcon {
+    display: none;
+    position: relative;
+    float: left;
+    height: 32px;
+    width: 32px;
+    left: 4px;
+    top: 9px;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    cursor: pointer; }
+    .HorizontaleMenu .HorizontaleMenu-ResponsiveIcon:after {
+      left: 5px;
+      content: '';
+      position: absolute;
+      display: block;
+      width: 2rem;
+      height: 0;
+      box-shadow: 0 8px 0 1px white, 0 15px 0 1px white, 0 22px 0 1px white; }
+    @media (max-width: 600px) {
+      .HorizontaleMenu .HorizontaleMenu-ResponsiveIcon {
+        display: block; } }
   .HorizontaleMenu a {
     text-decoration: none;
     text-transform: uppercase;
@@ -151,6 +275,16 @@ ul {
     justify-content: center;
     display: -webkit-box;
     display: flex; }
+    @media (max-width: 600px) {
+      .HorizontaleMenu ul {
+        display: none; } }
+
+@media (max-width: 600px) {
+  .parallax-window, .parallax-mirror {
+    min-height: 50px !important; }
+  .SiteHeader h1 {
+    font-size: 1.5rem;
+    top: 0; } }
 
 .HorizontaleMenu-Background {
   background-color: rgba(0, 26, 0, 0.6);
@@ -316,87 +450,6 @@ article {
 .BlogLayout ul.TagsCloud li {
   height: 4rem; }
 
-.BoxContainer {
-  margin: auto; }
-
-.Box {
-  position: relative;
-  overflow: hidden;
-  background-color: white;
-  width: 300px;
-  height: 300px;
-  padding: 30px 30px 55px; }
-  .Box .Link {
-    position: absolute;
-    bottom: 30px;
-    left: 30px; }
-  .Box:hover {
-    background-color: #89bf8f;
-    color: white; }
-    .Box:hover a, .Box:hover h1 {
-      color: white; }
-    .Box:hover .Box-Content {
-      background-color: rgba(137, 191, 143, 0.8); }
-  .Box h1 {
-    margin: auto; }
-  .Box img {
-    position: absolute;
-    top: -100%;
-    left: -100%;
-    right: -100%;
-    bottom: -100%;
-    margin: auto;
-    width: 100%; }
-  .Box .Box-Content {
-    top: 0;
-    left: 0;
-    width: 100%;
-    position: absolute;
-    height: 100%;
-    padding: 30px;
-    overflow: hidden; }
-  .Box.Post.Long {
-    height: 600px; }
-  .Box.Post.Photo img {
-    -webkit-filter: grayscale(90%) brightness(60%) contrast(105%) blur(4px); }
-  .Box.Landscape img {
-    width: auto;
-    height: 100%; }
-  .Box.Photo img {
-    -webkit-filter: grayscale(90%) brightness(60%) contrast(105%); }
-  .Box.Photo:hover img {
-    -webkit-filter: grayscale(0); }
-  .Box.Photo.Post {
-    padding: 0;
-    color: white; }
-    .Box.Photo.Post.Long {
-      height: 300px;
-      width: 600px; }
-    .Box.Photo.Post a, .Box.Photo.Post h1 {
-      color: white; }
-  .Box.Photo a h1 {
-    width: 50%;
-    background-color: rgba(255, 255, 255, 0.6);
-    font-size: 3rem;
-    margin: auto;
-    right: 0;
-    text-align: center;
-    z-index: 2;
-    position: absolute;
-    top: 135px;
-    top: calc(50% - 3rem + 15px);
-    left: 0; }
-  .Box.Photo:hover a h1 {
-    background-color: rgba(0, 0, 0, 0.6); }
-  .Box.Tweet {
-    word-break: break-word;
-    vertical-align: middle;
-    font-size: 2.5rem; }
-    .Box.Tweet > * {
-      margin: auto 0; }
-    .Box.Tweet > *:first-child:before, .Box.Tweet > *:first-child:after {
-      content: '"'; }
-
 .TagsCloud {
   display: -webkit-box;
   display: flex;
@@ -473,14 +526,13 @@ article {
     }
 }*/
 @media (max-width: 600px) {
-  .parallax-window {
-    min-height: 100px; }
-  .SiteHeader h1 {
-    font-size: 2rem; }
-  h1 {
-    font-size: 2rem; }
-  .HorizontaleMenu ul {
-    flex-wrap: wrap; }
+  /*.Box.Photo.Post.Long {
+        
+        &:not(.Landscape) img {
+            width: auto;
+            height: 100%;
+        }
+    }     */
   .BlogLayout article {
     margin-bottom: 10px; }
   .BlogLayout .Post {
@@ -506,5 +558,3 @@ article {
   margin-left: 3px;
   padding: 0 0 0 19px;
   background: url("../img/feed-icon-14x14.png") no-repeat 0 50%; }
-
-/*# sourceMappingURL=style.css.map */

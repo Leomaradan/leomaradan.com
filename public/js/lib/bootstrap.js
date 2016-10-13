@@ -2838,5 +2838,3 @@ if (typeof jQuery === 'undefined') {
   $.fn.combobox.Constructor = Combobox;
 
 }( window.jQuery );
-
-//# sourceMappingURL=bootstrap.js.map

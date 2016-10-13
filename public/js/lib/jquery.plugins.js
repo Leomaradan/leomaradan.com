@@ -3959,5 +3959,3 @@ return Outlayer;
 //         // console.log( t[0] );
 //     });
 // })( window.jQuery, window, document );
-
-//# sourceMappingURL=jquery.plugins.js.map

@@ -1,0 +1,161 @@
+$boxSize: 300px;
+$boxMargin: 30px;
+$boxBottomMargin: 55px;
+
+.BoxContainer {
+    margin: auto;
+}
+
+.Box {
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    width: $boxSize;
+    height: $boxSize;
+    padding: $boxMargin $boxMargin $boxBottomMargin;
+       
+    .Link {
+        position: absolute;
+        bottom: $boxMargin;
+        left: $boxMargin;
+    }    
+    
+    &:hover {
+        background-color: $highlightColor; //$textColor;
+        color: $lightColor;
+        a, h1 {
+            color: $lightColor;
+        }
+        
+        .Box-Content {
+            background-color: transparentize($highlightColor, .2);
+        }  
+    }
+    
+    h1 {
+        margin: auto;        
+    }
+    
+    img {
+        position: absolute;
+        top: -100%;
+        left: -100%;
+        right: -100%;
+        bottom: -100%;
+        margin: auto;
+        width: 100%;      
+    }
+        
+    .Box-Content {
+        top: 0;
+        left: 0;
+        width: 100%;
+        position: absolute;
+        height: 100%;
+        padding: $boxMargin;
+        overflow: hidden;
+        //max-height: $boxSize - $boxBottomMargin;
+              
+    }  
+    
+
+    
+    &.Post {
+        &.Long {
+            height: $boxSize * 2;
+            .Box-Content {
+                //max-height: $boxSize * 2 - $boxBottomMargin;
+                //overflow: auto;
+            }
+        }  
+        
+        &.Photo img {
+            -webkit-filter: grayscale(90%) brightness(60%) contrast(105%) blur(4px); 
+        }  
+    }
+    
+    &.Landscape img {
+        width: auto; 
+        height: 100%;
+    }
+    
+    &.Photo {
+        
+        img {
+            -webkit-filter: grayscale(90%) brightness(60%) contrast(105%);     
+        }
+        
+        &:hover img {
+            -webkit-filter: grayscale(0);       
+        }
+        
+        &.Post {
+            padding: 0;
+            &.Long {
+                //height: $boxSize; 
+                //width: $boxSize * 2;
+                .Box-Content {
+                    //max-height: $boxSize - $boxBottomMargin;
+                }   
+                
+                img {
+                    height: auto;
+                    width: 100%; 
+                }
+                
+                &.Landscape img {
+                    width: auto;
+                    height: 100%;
+                }
+        
+            }  
+
+            color: $lightColor; 
+            a, h1 {
+                color: $lightColor;
+            }               
+        }
+        
+        & a h1 {
+            width: 50%;
+            background-color: rgba(255,255,255,0.6);
+            font-size: 3rem;
+            margin: auto;
+            right: 0;
+            text-align: center;
+            z-index: 2;
+            position: absolute;
+            top: $boxSize/2 - 15px;
+            top: calc(50% - 3rem + 15px);
+            left: 0;          
+
+        }
+        &:hover a h1 {
+            background-color: rgba(0,0,0,0.6);  
+        }
+    }
+    
+    &.Tweet {
+        word-break: break-word;
+        vertical-align: middle;
+        font-size: 2.5rem;  
+        & > * {
+            margin: auto 0;
+        }
+        & > *:first-child:before, & > *:first-child:after {
+            content: '"';
+        }
+    }
+}
+
+@media (min-width: $small-breakpoint + 1px) {
+    .Box.Photo.Post.Long {
+        height: $boxSize; 
+        width: $boxSize * 2;
+        
+        /*&:not(.Landscape) img {
+            width: auto;
+            height: 100%;
+        }*/
+    }    
+}

@@ -5,6 +5,7 @@
 @endsection
 
 @section('menu')
+<div class="HorizontaleMenu-ResponsiveIcon"></div>
     <nav>
         <ul>
             @foreach(App\Models\Menu::getMenu('main') as $menu)

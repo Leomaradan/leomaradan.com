@@ -3899,5 +3899,3 @@ module.exports = {
     });
 
 }));
-
-//# sourceMappingURL=markdown.js.map

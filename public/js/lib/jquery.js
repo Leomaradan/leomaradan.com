@@ -11006,5 +11006,3 @@ if ( !noGlobal ) {
 
 return jQuery;
 }));
-
-//# sourceMappingURL=jquery.js.map

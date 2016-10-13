@@ -21087,4 +21087,3 @@ var widgetsTooltip = $.ui.tooltip;
 	});
 
 })(jQuery);
-//# sourceMappingURL=jquery-ui.js.map

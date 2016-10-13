@@ -1,15 +1,10 @@
-@import "fontface";
+@import "frontend-variables";
 
-$font-serif: 'Cormorant Garamond', serif;
-$font-sansSerif: 'Open Sans Condensed', sans-serif;
-$font-cursive: 'Forum', cursive;
+@import "modules/box";
+@import "modules/header";
+@import "modules/post";
 
-$backgroundColor: #f8fcf8; //#f5f5f5;
-$textColor: #68875f; //#666;
-$titleColor: #3d5337; //#333;
-$highlightColor: #89bf8f; //#62a35d #57955b;
-$darkColor: #001a00;
-$lightColor: white;
+
 
 .palette-container {
     display: flex;
@@ -96,10 +91,46 @@ ul {
     height: 50px
 }
 
+
+
 .HorizontaleMenu {
     z-index: 100;	
     border-bottom: 1px solid transparentize($lightColor, .75);
     
+    .HorizontaleMenu-ResponsiveIcon {
+        
+        display: none;
+        
+        position: relative;
+
+        float: left;
+        height: 32px;
+        width: 32px;
+        left: 4px;
+        top: 9px;
+
+        border-radius: 2px;
+        border: 1px solid transparentize($lightColor, .75);       
+
+        cursor: pointer;
+
+        &:after {
+            left: 5px;
+            content: '';
+            position: absolute;
+            display: block;
+            width: 2rem;
+            height: 0;
+            box-shadow: 0 8px 0 1px $lightColor, 0 15px 0 1px $lightColor, 0 22px 0 1px $lightColor ;
+        }        
+        
+        
+        @media (max-width: $small-breakpoint) {
+            display: block;
+        }
+    }    
+    
+
     a {
         text-decoration: none;
         text-transform: uppercase;
@@ -138,7 +169,25 @@ ul {
         list-style: none;
         justify-content: center;
         display: flex;
+        
+        @media (max-width: $small-breakpoint) {
+            display: none;
+        }    
+               
+    }   
+    
+
+}
+@media (max-width: $small-breakpoint) {
+    .parallax-window, .parallax-mirror {
+        min-height: 50px !important;
     }    
+
+    .SiteHeader h1 {
+        font-size: 1.5rem;
+        top: 0;
+    }
+
 }
 
 .HorizontaleMenu-Background {
@@ -347,145 +396,6 @@ article {
 
 }
 
-$boxSize: 300px;
-$boxMargin: 30px;
-$boxBottomMargin: 55px;
-
-.BoxContainer {
-    margin: auto;
-}
-
-.Box {
-    position: relative;
-    overflow: hidden;
-    background-color: white;
-    width: $boxSize;
-    height: $boxSize;
-    padding: $boxMargin $boxMargin $boxBottomMargin;
-       
-    .Link {
-        position: absolute;
-        bottom: $boxMargin;
-        left: $boxMargin;
-    }    
-    
-    &:hover {
-        background-color: $highlightColor; //$textColor;
-        color: $lightColor;
-        a, h1 {
-            color: $lightColor;
-        }
-        
-        .Box-Content {
-            background-color: transparentize($highlightColor, .2);
-        }  
-    }
-    
-    h1 {
-        margin: auto;        
-    }
-    
-    img {
-        position: absolute;
-        top: -100%;
-        left: -100%;
-        right: -100%;
-        bottom: -100%;
-        margin: auto;
-        width: 100%;      
-    }
-        
-    .Box-Content {
-        top: 0;
-        left: 0;
-        width: 100%;
-        position: absolute;
-        height: 100%;
-        padding: $boxMargin;
-        overflow: hidden;
-        //max-height: $boxSize - $boxBottomMargin;
-              
-    }  
-    
-
-    
-    &.Post {
-        &.Long {
-            height: $boxSize * 2;
-            .Box-Content {
-                //max-height: $boxSize * 2 - $boxBottomMargin;
-                //overflow: auto;
-            }
-        }  
-        
-        &.Photo img {
-            -webkit-filter: grayscale(90%) brightness(60%) contrast(105%) blur(4px); 
-        }  
-    }
-    
-    &.Landscape img {
-        width: auto; 
-        height: 100%;
-    }
-    
-    &.Photo {
-        
-        img {
-            -webkit-filter: grayscale(90%) brightness(60%) contrast(105%);     
-        }
-        
-        &:hover img {
-            -webkit-filter: grayscale(0);       
-        }
-        
-        &.Post {
-            padding: 0;
-            &.Long {
-                height: $boxSize; 
-                width: $boxSize * 2;
-                .Box-Content {
-                    //max-height: $boxSize - $boxBottomMargin;
-                }                
-            }  
-
-            color: $lightColor; 
-            a, h1 {
-                color: $lightColor;
-            }               
-        }
-        
-        & a h1 {
-            width: 50%;
-            background-color: rgba(255,255,255,0.6);
-            font-size: 3rem;
-            margin: auto;
-            right: 0;
-            text-align: center;
-            z-index: 2;
-            position: absolute;
-            top: $boxSize/2 - 15px;
-            top: calc(50% - 3rem + 15px);
-            left: 0;          
-
-        }
-        &:hover a h1 {
-            background-color: rgba(0,0,0,0.6);  
-        }
-    }
-    
-    &.Tweet {
-        word-break: break-word;
-        vertical-align: middle;
-        font-size: 2.5rem;  
-        & > * {
-            margin: auto 0;
-        }
-        & > *:first-child:before, & > *:first-child:after {
-            content: '"';
-        }
-    }
-}
-
 .TagsCloud {
     display: flex;
     flex-wrap: wrap;
@@ -591,24 +501,20 @@ $boxBottomMargin: 55px;
     }
 }*/
 
+
+
 @media (max-width: 600px) {
 
-    .parallax-window {
-        min-height: 100px;
-    }    
+    /*.Box.Photo.Post.Long {
+        
+        &:not(.Landscape) img {
+            width: auto;
+            height: 100%;
+        }
+    }     */
     
-    .SiteHeader h1 {
-        font-size: 2rem;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    } 
-    
-    .HorizontaleMenu ul {
-        flex-wrap: wrap;
-    }
-    
+
+            
     .BlogLayout {
         
         article {
@@ -642,6 +548,8 @@ $boxBottomMargin: 55px;
         }
     }
 }
+
+
 
 .feed {
   margin-left: 3px;

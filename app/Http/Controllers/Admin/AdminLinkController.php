@@ -111,8 +111,7 @@ user
  screen_name
  name
      */
-        //$twitter = Twitter::getUserTimeline(['screen_name' => 'thujohn', 'count' => 20, 'format' => 'json']);
-        $twitter = json_decode(file_get_contents(__DIR__ . '\twitter.json'));
+        $twitter = Twitter::getUserTimeline(['screen_name' => 'thujohn', 'count' => 20]);
         
         foreach ($twitter as $twit) {
             if($twit->in_reply_to_status_id == null) {
