@@ -6,6 +6,7 @@ use App\Models\Page;
 use App\Models\Post\Post;
 use App\Models\Gallery\Gallery;
 use App\Models\TwitterLink;
+use App\Models\Link;
 
 class PageController extends Controller
 {
@@ -51,6 +52,7 @@ class PageController extends Controller
 10 photo
          */
         $posts = Post::published()->take(10)->get();
+        $links = Link::orderBy('created_at')->take(20)->get();
         $tweets = TwitterLink::orderBy('created_at')->take(20)->get();
         $images = Gallery::published()->take(5)->get();
         
@@ -67,6 +69,9 @@ class PageController extends Controller
             $this->sortElem($tweet, 'created_at', 'tweet', $recent, $old);
         }        
         
+        foreach($links as $link) {
+            $this->sortElem($link, 'created_at', 'link', $recent, $old);
+        }              
 
         foreach($images as $image) {
             $this->sortElem($image, 'created_at', 'image', $recent, $old);
@@ -87,8 +92,10 @@ class PageController extends Controller
         
         $old = $old_shuffle;
         unset($old_shuffle);
-
-        return view('frontend.pages.dashboard', compact('recent','old'));
+        
+        $data = array_merge($recent,$old);
+        
+        return view('frontend.pages.dashboard', compact('data'));
         //dd($old);
         //dd($old_shuffle);
     }

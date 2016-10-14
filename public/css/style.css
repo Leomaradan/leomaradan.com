@@ -121,13 +121,13 @@
     left: 0; }
   .Box.Photo:hover a h1 {
     background-color: rgba(0, 0, 0, 0.6); }
-  .Box.Tweet {
+  .Box.Link {
     word-break: break-word;
     vertical-align: middle;
     font-size: 2.5rem; }
-    .Box.Tweet > * {
+    .Box.Link > * {
       margin: auto 0; }
-    .Box.Tweet > *:first-child:before, .Box.Tweet > *:first-child:after {
+    .Box.Link > *:first-child:before, .Box.Link > *:first-child:after {
       content: '"'; }
 
 @media (min-width: 601px) {
@@ -139,15 +139,173 @@
             height: 100%;
         }*/ } }
 
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 13 oct. 2016, 16:08:12
-    Author     : lmaradan
-*/
+.BlogLayout [itemprop='author'] {
+  display: none; }
+
+.BlogLayout main {
+  -webkit-box-flex: 3;
+  flex: 3; }
+
+.BlogLayout aside {
+  -webkit-box-flex: 1;
+  flex: 1;
+  padding: 50px 30px 95px; }
+
+.BlogLayout article {
+  background-color: initial;
+  padding: initial; }
+
+.BlogLayout .image time {
+  right: inherit;
+  left: 40px; }
+
+.BlogLayout time {
+  z-index: 1;
+  position: absolute;
+  display: inline-block;
+  background-color: #89bf8f;
+  text-align: center;
+  width: 50px;
+  color: #001a00;
+  right: 80px;
+  top: -2px;
+  font-size: 2.4rem;
+  /*filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.4))
+            drop-shadow(1px -1px 0px rgba(0, 0, 0, 0.4))
+            drop-shadow(-1px -1px 0px rgba(0, 0, 0, 0.4))
+            drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35));*/
+  -webkit-filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.65));
+  filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.65)); }
+  .BlogLayout time span {
+    display: block; }
+    .BlogLayout time span:first-child {
+      font-size: 3.2rem; }
+  .BlogLayout time:after {
+    content: "";
+    position: absolute;
+    display: block;
+    /*z-index: -1;
+            left: 0;
+            bottom: -12px;
+            width: 0;
+            height: 0;*/
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 8px solid #89bf8f; }
+
+.BlogLayout .Post {
+  background: white;
+  padding: 2rem;
+  margin: auto 3rem;
+  box-shadow: 0px 3px 15px 0px rgba(0, 26, 0, 0.15); }
+  .BlogLayout .Post h1 {
+    margin-top: 0; }
+
+.BlogLayout .PostInfo {
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  max-width: calc(100% - 100px);
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center; }
+
+.BlogLayout .Post.Card {
+  float: left;
+  z-index: 5;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  bottom: 30px;
+  left: 55%;
+  box-shadow: 0px 3px 15px 0px rgba(0, 26, 0, 0.15); }
+  .BlogLayout .Post.Card .PostInfo {
+    max-width: 100%; }
+
+.BlogLayout .AlignRight .Card {
+  float: right;
+  left: 0;
+  right: 55%; }
+
+.BlogLayout .AlignRight .cover {
+  margin-left: auto; }
+
+.BlogLayout .AlignRight .image time {
+  left: inherit;
+  right: 40px; }
+
+.BlogLayout ul.MenuList, .BlogLayout .MenuList ul {
+  list-style: none;
+  padding: 0; }
+
+.BlogLayout .MenuList a:before {
+  content: '\f105';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: 'FontAwesome'; }
+
+.BlogLayout .MenuList a {
+  display: block;
+  margin: 1rem 0;
+  padding: 0 0 0 15px;
+  position: relative;
+  margin-left: 0;
+  -webkit-transition: margin 0.2s ease-in-out;
+  transition: margin 0.2s ease-in-out; }
+
+.BlogLayout .MenuList a:hover {
+  margin-left: 10px; }
+
+.BlogLayout main .cover {
+  width: 960px;
+  height: 540px;
+  position: relative;
+  overflow: hidden; }
+  .BlogLayout main .cover img {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    right: 0;
+    bottom: -100%;
+    margin: auto;
+    width: 100%;
+    height: auto;
+    border: 1px solid white; }
+
+.BlogLayout ul.TagsCloud li {
+  height: 4rem; }
+
+@media (max-width: 1666px) {
+  .BlogLayout .Card {
+    top: 60px;
+    bottom: 0;
+    left: 35%; }
+  .BlogLayout .AlignRight .Card {
+    right: 35%; } }
+
+@media (max-width: 600px) {
+  .BlogLayout article {
+    margin-bottom: 10px; }
+  .BlogLayout .Post {
+    margin: auto 10px;
+    padding: 15px;
+    box-shadow: none;
+    border: 1px solid rgba(0, 26, 0, 0.15); }
+  .BlogLayout .SingleArticle .cover {
+    margin: auto;
+    width: 100%;
+    height: auto; }
+  .BlogLayout main article:not(.SingleArticle) .cover {
+    display: none; }
+  .BlogLayout.content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column; }
+  .BlogLayout .Card {
+    float: none !important;
+    position: initial !important; } }
+
 .palette-container {
   display: -webkit-box;
   display: flex; }
@@ -316,140 +474,6 @@ article {
   margin-bottom: 70px;
   font-family: "Cormorant Garamond", serif; }
 
-.BlogLayout main {
-  -webkit-box-flex: 3;
-  flex: 3; }
-
-.BlogLayout aside {
-  -webkit-box-flex: 1;
-  flex: 1;
-  padding: 50px 30px 95px; }
-
-.BlogLayout article {
-  background-color: initial;
-  padding: initial; }
-
-.BlogLayout .image time {
-  right: inherit;
-  left: 40px; }
-
-.BlogLayout time {
-  z-index: 1;
-  position: absolute;
-  display: inline-block;
-  background-color: #89bf8f;
-  text-align: center;
-  width: 50px;
-  color: #001a00;
-  right: 80px;
-  top: -2px;
-  font-size: 2.4rem;
-  /*filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.4))
-            drop-shadow(1px -1px 0px rgba(0, 0, 0, 0.4))
-            drop-shadow(-1px -1px 0px rgba(0, 0, 0, 0.4))
-            drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35));*/
-  -webkit-filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.65));
-  filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.65)); }
-  .BlogLayout time span {
-    display: block; }
-    .BlogLayout time span:first-child {
-      font-size: 3.2rem; }
-  .BlogLayout time:after {
-    content: "";
-    position: absolute;
-    display: block;
-    /*z-index: -1;
-            left: 0;
-            bottom: -12px;
-            width: 0;
-            height: 0;*/
-    border-left: 25px solid transparent;
-    border-right: 25px solid transparent;
-    border-top: 8px solid #89bf8f; }
-
-.BlogLayout .Post {
-  background: white;
-  padding: 2rem;
-  margin: auto 3rem;
-  box-shadow: 0px 3px 15px 0px rgba(0, 26, 0, 0.15); }
-  .BlogLayout .Post h1 {
-    margin-top: 0; }
-
-.BlogLayout .PostInfo {
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  max-width: calc(100% - 100px);
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center; }
-
-.BlogLayout .Post.Card {
-  float: left;
-  z-index: 5;
-  position: absolute;
-  top: 30px;
-  right: 0;
-  bottom: 30px;
-  left: 55%;
-  box-shadow: 0px 3px 15px 0px rgba(0, 26, 0, 0.15); }
-  .BlogLayout .Post.Card .PostInfo {
-    max-width: 100%; }
-
-.BlogLayout .AlignRight .Card {
-  float: right;
-  left: 0;
-  right: 55%; }
-
-.BlogLayout .AlignRight .cover {
-  margin-left: auto; }
-
-.BlogLayout .AlignRight .image time {
-  left: inherit;
-  right: 40px; }
-
-.BlogLayout ul.MenuList, .BlogLayout .MenuList ul {
-  list-style: none;
-  padding: 0; }
-
-.BlogLayout .MenuList a:before {
-  content: '\f105';
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-family: 'FontAwesome'; }
-
-.BlogLayout .MenuList a {
-  display: block;
-  margin: 1rem 0;
-  padding: 0 0 0 15px;
-  position: relative;
-  margin-left: 0;
-  -webkit-transition: margin 0.2s ease-in-out;
-  transition: margin 0.2s ease-in-out; }
-
-.BlogLayout .MenuList a:hover {
-  margin-left: 10px; }
-
-.BlogLayout main .cover {
-  width: 960px;
-  height: 540px;
-  position: relative;
-  overflow: hidden; }
-  .BlogLayout main .cover img {
-    position: absolute;
-    top: -100%;
-    left: 0;
-    right: 0;
-    bottom: -100%;
-    margin: auto;
-    width: 100%;
-    height: auto;
-    border: 1px solid white; }
-
-.BlogLayout ul.TagsCloud li {
-  height: 4rem; }
-
 .TagsCloud {
   display: -webkit-box;
   display: flex;
@@ -497,62 +521,6 @@ article {
 .parallax-window {
   min-height: 400px;
   background: transparent; }
-
-/*.tags,*/
-[itemprop='author'] {
-  display: none; }
-
-@media (max-width: 1666px) {
-  .BlogLayout .Card {
-    top: 60px;
-    bottom: 0;
-    left: 35%; }
-  .BlogLayout .AlignRight .Card {
-    right: 35%; } }
-
-/*@media (max-width: 1200px) {
-    
-    .SiteHeader h1 {
-        font-size: 4rem;
-    }    
-
-    .BlogLayout {
-        
-
-
-        .Card {
-            position: initial !important;
-        }
-    }
-}*/
-@media (max-width: 600px) {
-  /*.Box.Photo.Post.Long {
-        
-        &:not(.Landscape) img {
-            width: auto;
-            height: 100%;
-        }
-    }     */
-  .BlogLayout article {
-    margin-bottom: 10px; }
-  .BlogLayout .Post {
-    margin: auto 10px;
-    padding: 15px;
-    box-shadow: none;
-    border: 1px solid rgba(0, 26, 0, 0.15); }
-  .BlogLayout .SingleArticle .cover {
-    margin: auto;
-    width: 100%;
-    height: auto; }
-  .BlogLayout main article:not(.SingleArticle) .cover {
-    display: none; }
-  .BlogLayout.content {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    flex-direction: column; }
-  .BlogLayout .Card {
-    float: none !important;
-    position: initial !important; } }
 
 .feed {
   margin-left: 3px;

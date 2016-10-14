@@ -36,6 +36,10 @@ class Link extends Model
     public function getDates() {
         return ['created_at'];
     }    
+    
+    public function getRouteKey() {
+        return $this->permalink;
+    }    
 
     
 }

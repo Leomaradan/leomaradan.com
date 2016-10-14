@@ -39091,22 +39091,22 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 // <template>
-//     <div class="Box" v-bind:class="{ Tweet: isTweet, Photo: image, Long: Long, Post: isPost, Landscape: isLandscape }">
+//     <div class="Box" v-bind:class="{ Link: isLink, Photo: image, Long: Long, Post: isPost, Landscape: isLandscape }">
 //         <template v-if="isPost">
 //             <img v-if="image" v-bind:src="image" v-on:load="setLandscape">
 //             <div class="Box-Content">
 //                 <slot></slot>
-//                 <a v-if="link" href="{{link}}">{{linkLabel}}</a>
+//                 <a v-if="link" href="{{link}}" target={{linkTarget}}>{{linkLabel}}</a>
 //             </div>
 //
 //         </template>
 //         <template v-else>
-//             <template v-if="isTweet">
+//             <template v-if="isLink">
 //                 <div><slot></slot></div>
-//                 <a v-if="link" href="{{link}}">Tweet</a>
+//                 <a v-if="link" href="{{link}}" target={{linkTarget}}>{{linkLabel}}</a>
 //             </template>
 //             <template v-else>
-//                 <a v-if="link" href="{{link}}">
+//                 <a v-if="link" href="{{link}}" target={{linkTarget}}>
 //                     <slot></slot>
 //                     <img v-if="image" v-bind:src="image" v-on:load="setLandscape">
 //                     <template v-else>{{ linkLabel }}</template>
@@ -39130,8 +39130,12 @@ exports.default = {
             type: String,
             default: 'Lire la suite'
         },
+        linkTarget: {
+            type: String,
+            default: '_self'
+        },
         isPost: String,
-        isTweet: String,
+        isLink: String,
         isLandscape: {
             type: Boolean,
             default: false
@@ -39400,7 +39404,7 @@ module.exports = "\n<template v-for=\"item in items\">\n\t<h2 v-if=\"!item.subme
 /* 19 */
 /***/ function(module, exports) {
 
-module.exports = "\n<div class=\"Box\" v-bind:class=\"{ Tweet: isTweet, Photo: image, Long: Long, Post: isPost, Landscape: isLandscape }\">\n    <template v-if=\"isPost\">\n        <img v-if=\"image\" v-bind:src=\"image\" v-on:load=\"setLandscape\">\n        <div class=\"Box-Content\">\n            <slot></slot>\n            <a v-if=\"link\" href=\"{{link}}\">{{linkLabel}}</a>\n        </div>\n        \n    </template>\n    <template v-else>\n        <template v-if=\"isTweet\">\n            <div><slot></slot></div>\n            <a v-if=\"link\" href=\"{{link}}\">Tweet</a>\n        </template>\n        <template v-else>\n            <a v-if=\"link\" href=\"{{link}}\">\n                <slot></slot>\n                <img v-if=\"image\" v-bind:src=\"image\" v-on:load=\"setLandscape\">\n                <template v-else>{{ linkLabel }}</template>\n                </a>\n            <a href=\"#\" v-else><slot></slot><img v-if=\"image\" v-bind:src=\"image\" v-on:load=\"setLandscape\"></a>\n        </template>\n    </template>\n</div>\n";
+module.exports = "\n<div class=\"Box\" v-bind:class=\"{ Link: isLink, Photo: image, Long: Long, Post: isPost, Landscape: isLandscape }\">\n    <template v-if=\"isPost\">\n        <img v-if=\"image\" v-bind:src=\"image\" v-on:load=\"setLandscape\">\n        <div class=\"Box-Content\">\n            <slot></slot>\n            <a v-if=\"link\" href=\"{{link}}\" target={{linkTarget}}>{{linkLabel}}</a>\n        </div>\n        \n    </template>\n    <template v-else>\n        <template v-if=\"isLink\">\n            <div><slot></slot></div>\n            <a v-if=\"link\" href=\"{{link}}\" target={{linkTarget}}>{{linkLabel}}</a>\n        </template>\n        <template v-else>\n            <a v-if=\"link\" href=\"{{link}}\" target={{linkTarget}}>\n                <slot></slot>\n                <img v-if=\"image\" v-bind:src=\"image\" v-on:load=\"setLandscape\">\n                <template v-else>{{ linkLabel }}</template>\n                </a>\n            <a href=\"#\" v-else><slot></slot><img v-if=\"image\" v-bind:src=\"image\" v-on:load=\"setLandscape\"></a>\n        </template>\n    </template>\n</div>\n";
 
 /***/ },
 /* 20 */

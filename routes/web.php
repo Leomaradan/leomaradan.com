@@ -36,13 +36,13 @@ Route::group(['prefix' => 'blog'], function() {
     Route::get('/feed', ['uses' => 'PostController@feed', 'as' => "blog.feed"]);
     Route::get('/{slug}', ['uses' => 'PostController@show', 'as' => "blog.show"]);
 });
-/*
-  Route::resource('liens', 'LinksController', ['only' => ['index', 'create', 'store']]);
-  Route::get("liens/about", ['as' => 'link.about', 'uses' =>'LinksController@about']);
-  Route::get('r/{key}', ['as' => 'r.show', 'uses' => 'LinksController@show'])->where('key', '[A-Za-z0-9]+');
 
-  Route::controller('auth','Auth\AuthController', ['getLogout' => 'auth.logout']);
-  Route::controller('password', 'Auth\PasswordController'); */
+  Route::resource('liens', 'LinkController', ['as' => 'link', 'only' => ['index', 'create', 'store']]);
+  //Route::get("liens/about", ['as' => 'link.about', 'uses' =>'LinksController@about']);
+  Route::get('r/{permalink}', ['as' => 'link.permalink', 'uses' => 'LinkController@show'])->where('permalink', '[A-Za-z0-9]+');
+
+  //Route::controller('auth','Auth\AuthController', ['getLogout' => 'auth.logout']);
+  //Route::controller('password', 'Auth\PasswordController'); 
 Auth::routes();
 
 Route::get('/', ['as' => 'index', 'uses' => 'PageController@index']);

@@ -1,20 +1,20 @@
 <template>
-    <div class="Box" v-bind:class="{ Tweet: isTweet, Photo: image, Long: Long, Post: isPost, Landscape: isLandscape }">
+    <div class="Box" v-bind:class="{ Link: isLink, Photo: image, Long: Long, Post: isPost, Landscape: isLandscape }">
         <template v-if="isPost">
             <img v-if="image" v-bind:src="image" v-on:load="setLandscape">
             <div class="Box-Content">
                 <slot></slot>
-                <a v-if="link" href="{{link}}">{{linkLabel}}</a>
+                <a v-if="link" href="{{link}}" target={{linkTarget}}>{{linkLabel}}</a>
             </div>
             
         </template>
         <template v-else>
-            <template v-if="isTweet">
+            <template v-if="isLink">
                 <div><slot></slot></div>
-                <a v-if="link" href="{{link}}">Tweet</a>
+                <a v-if="link" href="{{link}}" target={{linkTarget}}>{{linkLabel}}</a>
             </template>
             <template v-else>
-                <a v-if="link" href="{{link}}">
+                <a v-if="link" href="{{link}}" target={{linkTarget}}>
                     <slot></slot>
                     <img v-if="image" v-bind:src="image" v-on:load="setLandscape">
                     <template v-else>{{ linkLabel }}</template>
@@ -38,8 +38,12 @@
                         type: String,
                         default: 'Lire la suite'
                     },
+                    linkTarget: {
+                        type: String,
+                        default: '_self'
+                    },
                     isPost: String,
-                    isTweet: String,
+                    isLink: String,
                     isLandscape: {
                         type: Boolean,
                         default: false
