@@ -4,13 +4,18 @@ namespace App\Models\Gallery;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Gallery extends Model {
+use App\Models\TouchableTrait;
 
-    protected $fillable = ['name', 'description', 'cover_image', 'flickr_id'];
+class Gallery extends Model {
+    
+    use TouchableTrait;    
+
+    protected $fillable = ['title', 'description', 'cover_image', 'flickr_id', 'public', 'updated_at', 'touched'];
+    
+    public $timestamps = false;
 
     public function images() {
-
-        return $this->has_many('images');
+        return $this->has_many('App\Models\Gallery\Image');
     }
 
     public function cover() {
@@ -28,5 +33,37 @@ class Gallery extends Model {
     public function scopePublished($query) {
         return $query->where('public', 1)->orderBy('updated_at');
     }    
+    
+    public function setTitleAttribute($value) {
+        if(!isset($this->attributes['title']) || $this->attributes['title'] !== $value) {
+            $this->setTouched('title');
+        }
+        
+        $this->attributes['title'] = $value;
+    }
+    
+    public function setDescriptionAttribute($value) {
+        if(!isset($this->attributes['description']) || $this->attributes['description'] !== $value) {
+            $this->setTouched('description');
+        }
+        
+        $this->attributes['description'] = $value;
+    }   
+    
+    public function setCoverImageAttribute($value) {
+        if(!isset($this->attributes['cover_image']) || $this->attributes['cover_image'] !== $value) {
+            $this->setTouched('cover_image');
+        }
+        
+        $this->attributes['cover_image'] = $value;
+    }  
+    
+    public function setPublicAttribute($value) {
+        if(!isset($this->attributes['public']) || $this->attributes['public'] !== $value) {
+            $this->setTouched('public');
+        }
+        
+        $this->attributes['public'] = $value;
+    }       
     
 }

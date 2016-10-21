@@ -4,10 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\TouchableTrait;
+
 class TwitterLink extends Model
 {
-    protected $fillable = ["created_at", "id_twitter", "text", "user_name", "user_id"];
+    
+    use TouchableTrait;
+    
+    protected $fillable = ['created_at', 'id_twitter', 'text', 'user_name', 'user_id', 'public', 'touched'];
     public $timestamps = false;
+    
+    public function setTextAttribute($value) {
+        if(!isset($this->attributes['text']) || $this->attributes['text'] !== $value) {
+            $this->setTouched('text');
+        }
+        
+        $this->attributes['text'] = $value;
+    }      
+    
+    public function setPublicAttribute($value) {
+        if(!isset($this->attributes['public']) || $this->attributes['public'] !== $value) {
+            $this->setTouched('public');
+        }
+        
+        $this->attributes['public'] = $value;
+    }     
     /*
      * 
      * 

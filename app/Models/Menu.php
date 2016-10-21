@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use \DB;
 use Route;
 
+use Illuminate\Routing\RouteCollection;
+
 class Menu extends Model {
 
     protected $fillable = ["zone", "parent", "type", "title", "link", "order"];

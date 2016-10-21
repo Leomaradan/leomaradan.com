@@ -10,10 +10,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Admin\Controller;
 
 use App\Models\Link;
-use App\Models\TwitterLink;
+
 
 use \DB;
-use Twitter;
+
 
 class AdminLinkController extends Controller
 {
@@ -111,34 +111,7 @@ user
  screen_name
  name
      */
-        $twitter = Twitter::getUserTimeline(['screen_name' => 'thujohn', 'count' => 20]);
-        
-        foreach ($twitter as $twit) {
-            if($twit->in_reply_to_status_id == null) {
-                $tweet = TwitterLink::firstOrNew(['id_twitter' => $twit->id_str]);
-                $created_at = new \DateTime($twit->created_at);
-                $tweet->created_at = $created_at->format('Y-m-d H:i:s');
-                $text = $twit->text;
-                $tweet->user_name = $twit->user->name;
-                $tweet->user_id = $twit->user->screen_name;
 
-                if(count($twit->entities->urls) > 0) {
-                    foreach ($twit->entities->urls as $url) {
-                        
-                        $text = str_ireplace($url->url, "<a href='{$url->expanded_url}'>{$url->display_url}</a>", $text);
-                        //preg_replace("/https:\/\/t.co\/DoNgT1s8Zl/i", "t", $input_lines);
-                        /*
-                         *           +"url": "https://t.co/DoNgT1s8Zl"
-          +"expanded_url": "http://leomaradan.github.io/toolbox/"
-          +"display_url": "leomaradan.github.io/toolbox/"
-                         */
-                    }
-                }
-                
-                $tweet->text = $text;
-
-                $tweet->save();
-            }
             
             /*if(isset($twit['entities']['media'])) {
                 
@@ -151,7 +124,7 @@ config
 link_id
                  */
             //}*/
-        }
+        //}
         //
         
         dd($twitter);

@@ -26,6 +26,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 
     Route::resource('links', 'AdminLinkController', ['except' => ['create','show','edit']]);
     Route::get('links/tweet', ['uses' => 'AdminLinkController@importTweet', 'as' => 'twitter.import']);
+    
+    Route::resource('rss', 'AdminRssFluxController', ['except' => ['create', 'edit']]);    
 });
 
 Route::group(['prefix' => 'blog'], function() {

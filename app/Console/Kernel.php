@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\TwitterSync::class,
+        Commands\FlickrSync::class,
+        Commands\RssSync::class,
     ];
 
     /**
@@ -24,6 +26,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command(Commands\TwitterSync::class)->everyTenMinutes();
+        $schedule->command(Commands\FlickerSync::class)->hourly();
+        $schedule->command(Commands\RssSync::class)->everyTenMinutes();
+        
         // $schedule->command('inspire')
         //          ->hourly();
     }

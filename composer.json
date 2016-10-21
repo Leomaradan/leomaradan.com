@@ -3,7 +3,7 @@
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
-    "type": "project",
+    "type": "project",   
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
@@ -12,7 +12,7 @@
         "laravelcollective/html": "dev-master",
         "thujohn/twitter": "^2.2",
         "jeroen-g/flickr": "^1.0",
-        "jenssegers/date": "^3.2"        
+        "jenssegers/date": "^3.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

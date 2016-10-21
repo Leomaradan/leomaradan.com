@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Admin\Controller;
 
 use App\Models\Gallery\Gallery;
-use App\Models\Gallery\Image;
+//use App\Models\Gallery\Image;
 use Flickr;
 
 class AdminGalleryController extends Controller
@@ -138,7 +138,7 @@ class AdminGalleryController extends Controller
         //$id = $photosets->photosets['photoset'][1]['id'];
         
   
-        $photoset = Flickr::request('flickr.photosets.getInfo', ['photoset_id' => $album, 'user_id' => '63204269@N06'])->photoset;
+       /* $photoset = Flickr::request('flickr.photosets.getInfo', ['photoset_id' => $album, 'user_id' => '63204269@N06'])->photoset;
         $photolist = Flickr::photosForSet($album, '63204269@N06', ['extras' => 'url_c', 'privacy_filter' => '1'])->photoset['photo'];
          
         $gallery = Gallery::firstOrNew(['flickr_id' => $album]);
@@ -166,12 +166,12 @@ class AdminGalleryController extends Controller
         $gallery->save();
         
         return response()->json(['id' => $album])->setCallback($request->input('callback'));
-        
+        */
         
     }
 }
 
-class FlickrGallery extends \ArrayObject { 
+/*class FlickrGallery extends \ArrayObject { 
     public function __toString()
     {
         if(isset($this->id)) {
@@ -180,4 +180,4 @@ class FlickrGallery extends \ArrayObject {
         return "";
     }
 
-}
+}*/
