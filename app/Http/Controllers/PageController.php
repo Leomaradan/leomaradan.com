@@ -101,7 +101,13 @@ class PageController extends Controller
     }
     public function pages($slug)
     {
-        $page = Page::where('slug', $slug)->firstOrFail();
+        $page = Page::where('slug', $slug)->first();
+        /*if($page == null) {
+            if(Route::has($slug)) {
+                
+            }
+        }*/
+        
         return view('frontend.pages.index', compact('page'));
     }
 }

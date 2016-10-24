@@ -13,6 +13,9 @@
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function() {
+    
+    Auth::routes();    
+    
     Route::get('/', 'Controller@index')->name('index');
     Route::resource('pages', 'AdminPageController', ['except' => ['show']]);
     Route::resource('posts', 'AdminPostController', ['except' => ['show']]);
@@ -27,7 +30,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
     Route::resource('links', 'AdminLinkController', ['except' => ['create','show','edit']]);
     Route::get('links/tweet', ['uses' => 'AdminLinkController@importTweet', 'as' => 'twitter.import']);
     
-    Route::resource('rss', 'AdminRssFluxController', ['except' => ['create', 'edit']]);    
+       
+    Route::group(['prefix' => 'rss', 'as' => 'rss.'], function() {
+        Route::resource('/', 'AdminRssFluxController', ['except' => ['show', 'create', 'edit'], 'parameters' => [
+    '' => 'id'
+]]); 
+        Route::get('read', ['uses' => 'AdminRssFluxController@show', 'as' => 'read']);
+        Route::get('read/cat/{id}', ['uses' => 'AdminRssFluxController@showCategory', 'as' => 'read.category']);
+        Route::get('read/flux/{id}', ['uses' => 'AdminRssFluxController@showFlux', 'as' => 'read.flux']);
+    });
+
 });
 
 Route::group(['prefix' => 'blog'], function() {
@@ -45,7 +57,7 @@ Route::group(['prefix' => 'blog'], function() {
 
   //Route::controller('auth','Auth\AuthController', ['getLogout' => 'auth.logout']);
   //Route::controller('password', 'Auth\PasswordController'); 
-Auth::routes();
+
 
 Route::get('/', ['as' => 'index', 'uses' => 'PageController@index']);
 Route::get('/{slug}', ['as' => 'pages', 'uses' => 'PageController@pages']);

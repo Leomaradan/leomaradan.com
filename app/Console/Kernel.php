@@ -30,6 +30,18 @@ class Kernel extends ConsoleKernel
         $schedule->command(Commands\FlickerSync::class)->hourly();
         $schedule->command(Commands\RssSync::class)->everyTenMinutes();
         
+        $schedule->call(function () {
+            
+            $threeDays = date('Y-m-d', time() - (3 * 24 * 60 * 60)).' 00:00:00'; 
+//$q->where('created_at', '>=', date('Y-m-d').' 00:00:00'));
+            
+            DB::table('users')->where([
+                ['status', '=', 'inactive'],
+                ['created_at', '<=', $threeDays],
+            ])->delete();         
+            //DB::table('recent_users')
+        })->weekly();        
+        
         // $schedule->command('inspire')
         //          ->hourly();
     }

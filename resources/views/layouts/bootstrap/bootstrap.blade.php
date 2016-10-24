@@ -27,6 +27,17 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             @yield('menu')
+            <li>
+                <a href="{{ url('/admin/logout') }}"
+                    onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+
+                <form id="logout-form" action="{{ url('/admin/logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>                
+            </li>
           </ul>
         </div>
       </div>

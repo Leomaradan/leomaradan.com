@@ -25,3 +25,38 @@
   margin: 0;
   padding: 5px 10px;
 }
+
+html, body, .container, .starter-template, .flexbox {
+    height: 100%;
+}
+
+.flexbox {
+    display: flex;
+}
+
+aside {
+    width: 200px;
+}
+
+section {
+    width: 100%;
+}
+
+aside+section {
+    width: calc(100% - 200px);
+}
+
+.scrollable {
+    overflow: auto;
+    max-height: 100%;
+}
+
+article {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .article_info {
+        font-size: 1rem;
+    }
+}

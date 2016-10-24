@@ -18,6 +18,8 @@ class CreateRssTables extends Migration
             $table->string('title');
             $table->string('url')->unique();
             $table->string('category');   
+            $table->integer('expire_days')->default(60);
+            $table->boolean('purge_unread')->default(false);
             $table->timestamp('updated_at')->nullable();
         });
         
@@ -27,10 +29,11 @@ class CreateRssTables extends Migration
             $table->foreign('flux_id')->references('id')->on('rss_flux')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->string('guid');
             $table->boolean('read')->default(false);
+            $table->boolean('favorite')->default(false);
             $table->string('title');
             $table->string('link');
             $table->timestamp('published_at');
-            $table->text('description');         
+            $table->binary('description');         
             
             $table->unique(['flux_id','guid']);
         });        

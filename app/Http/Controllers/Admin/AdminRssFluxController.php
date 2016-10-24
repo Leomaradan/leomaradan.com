@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\EditRssFluxRequest;
-
-use App\Http\Requests;
 use App\Http\Controllers\Admin\Controller;
-
+use App\Http\Requests\EditRssFluxRequest;
+use App\Models\Rss\Article;
 use App\Models\Rss\Flux;
+
+use Artisan;
 
 class AdminRssFluxController extends Controller
 {
@@ -46,20 +45,63 @@ class AdminRssFluxController extends Controller
         
         //dd($request);
         $flux = Flux::create($request->all());
+        
+        Artisan::queue('sync:rss');        
 
         return redirect(route('admin.rss.index', $flux));
     }
 
+
+    
+    private function getCategories() {
+        $fluxes = Flux::orderBy('title')->get();//all()
+        $categories = [];
+        foreach($fluxes as $flux) {
+            $cat = $flux->category;
+            if(!isset($categories[$cat])) {
+                $categories[$cat] = [];
+            }
+            
+            $categories[$cat][] = ['id' => $flux->id, 'title' => $flux->title, 'link' => route('admin.rss.read.flux',$flux)];
+        }
+        
+        return $categories;
+    }
+    
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+     */    
+    public function show()
     {
-        //
+
+        $categories = $this->getCategories();
+        $articles = Article::orderBy('published_at', 'desc')->paginate(10);
+        $highlight = null;
+        
+        return view('backend.rss.show', compact('categories','articles','highlight'));
     }
+    
+    public function showCategory($id)
+    {
+        $category_ids = Flux::where('category', Flux::where('id', $id)->firstOrFail()->category)->pluck('id');
+        $categories = $this->getCategories();
+        $articles = Article::whereIn('flux_id', $category_ids)->orderBy('published_at', 'desc')->paginate(10);
+        $highlight = route('admin.rss.read.category',$id);
+        
+        return view('backend.rss.show', compact('categories','articles','highlight'));
+    }    
+    
+    public function showFlux($id)
+    {
+        
+        $categories = $this->getCategories();
+        $articles = Article::where('flux_id', $id)->orderBy('published_at', 'desc')->paginate(10);
+        $highlight = route('admin.rss.read.flux',$id);
+        
+        return view('backend.rss.show', compact('categories','articles','highlight'));
+    }    
 
     /**
      * Show the form for editing the specified resource.

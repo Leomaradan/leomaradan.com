@@ -172,6 +172,7 @@ return [
         Thujohn\Twitter\TwitterServiceProvider::class,
         JeroenG\Flickr\FlickrServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
+        willvincent\Feeds\FeedsServiceProvider::class,
         //
 
         /*
@@ -211,6 +212,7 @@ return [
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'Feed' => Roumen\Feed\Feed::class,
+        'Feeds' => willvincent\Feeds\Facades\FeedsFacade::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Flickr' => JeroenG\Flickr\FlickrLaravelFacade::class,
         'Form' => Collective\Html\FormFacade::class,

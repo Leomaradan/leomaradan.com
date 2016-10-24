@@ -12,7 +12,8 @@
         "laravelcollective/html": "dev-master",
         "thujohn/twitter": "^2.2",
         "jeroen-g/flickr": "^1.0",
-        "jenssegers/date": "^3.2"
+        "jenssegers/date": "^3.2",
+        "willvincent/feeds": "1.1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
