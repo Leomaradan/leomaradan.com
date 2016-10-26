@@ -32,9 +32,9 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
-        \Statistic::error($e);
+        \Statistic::error($exception);
 
-        return parent::report($e);
+        return parent::report($exception);
     }
 
     /**
