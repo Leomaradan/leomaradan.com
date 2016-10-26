@@ -31,14 +31,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
     Route::get('links/tweet', ['uses' => 'AdminLinkController@importTweet', 'as' => 'twitter.import']);
     
        
-    Route::group(['prefix' => 'rss', 'as' => 'rss.'], function() {
-        Route::resource('/', 'AdminRssFluxController', ['except' => ['show', 'create', 'edit'], 'parameters' => [
+    //Route::group(['prefix' => 'rss', 'as' => 'rss.'], function() {
+        /*Route::resource('/', 'AdminRssFluxController', ['except' => ['show', 'create', 'edit'], 'parameters' => [
     '' => 'id'
-]]); 
-        Route::get('read', ['uses' => 'AdminRssFluxController@show', 'as' => 'read']);
-        Route::get('read/cat/{id}', ['uses' => 'AdminRssFluxController@showCategory', 'as' => 'read.category']);
-        Route::get('read/flux/{id}', ['uses' => 'AdminRssFluxController@showFlux', 'as' => 'read.flux']);
-    });
+]]); */
+        //Route::get('read', ['uses' => 'AdminRssFluxController@show', 'as' => 'read']);
+        //Route::get('read/cat/{id}', ['uses' => 'AdminRssFluxController@showCategory', 'as' => 'read.category']);
+        //Route::get('read/flux/{id}', ['uses' => 'AdminRssFluxController@showFlux', 'as' => 'read.flux']);
+    //});
 
 });
 

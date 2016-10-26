@@ -172,7 +172,8 @@ return [
         Thujohn\Twitter\TwitterServiceProvider::class,
         JeroenG\Flickr\FlickrServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
-        willvincent\Feeds\FeedsServiceProvider::class,
+        //willvincent\Feeds\FeedsServiceProvider::class,
+        Ads\Statistics\StatisticsServiceProvider::class,
         //
 
         /*
@@ -212,7 +213,7 @@ return [
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'Feed' => Roumen\Feed\Feed::class,
-        'Feeds' => willvincent\Feeds\Facades\FeedsFacade::class,
+        //'Feeds' => willvincent\Feeds\Facades\FeedsFacade::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Flickr' => JeroenG\Flickr\FlickrLaravelFacade::class,
         'Form' => Collective\Html\FormFacade::class,
@@ -234,6 +235,7 @@ return [
         'Route' => Illuminate\Support\Facades\Route::class,
         'Schema' => Illuminate\Support\Facades\Schema::class,
         'Session' => Illuminate\Support\Facades\Session::class,
+        'Statistic' => Ads\Statistics\Statistic::class,        
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
         'URL' => Illuminate\Support\Facades\URL::class,
