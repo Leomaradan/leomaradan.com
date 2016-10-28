@@ -41,6 +41,11 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>    
     <script src="{{ asset('js/lib/jquery.js') }}"></script>    
     <script src="{{ asset('js/lib.js') }}"></script>  
     <script src="{{ asset('js/app.js') }}"></script>

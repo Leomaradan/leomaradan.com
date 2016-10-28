@@ -15,7 +15,7 @@ class Gallery extends Model {
     public $timestamps = false;
 
     public function images() {
-        return $this->has_many('App\Models\Gallery\Image');
+        return $this->hasMany('App\Models\Gallery\Image');
     }
 
     public function cover() {
@@ -29,9 +29,13 @@ class Gallery extends Model {
     public function scopeFindByFlickrId($query, $q) {
         return $query->where('flickr_id', $q);
     }
+    
+    public function scopeFindById($query, $q) {
+        return $query->where('id', $q);
+    }    
 
     public function scopePublished($query) {
-        return $query->where('public', 1)->orderBy('updated_at');
+        return $query->where('public', 1)->orderBy('updated_at', 'desc');
     }    
     
     public function setTitleAttribute($value) {

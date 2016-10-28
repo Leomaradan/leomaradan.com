@@ -53,7 +53,11 @@
       </div>
 
     </div><!-- /.container -->
-
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
     <script src="{{ asset('js/lib/jquery.js') }}"></script>
     <script src="{{ asset('js/lib/bootstrap.js') }}"></script>
     <script src="{{ asset('js/lib.js') }}"></script>

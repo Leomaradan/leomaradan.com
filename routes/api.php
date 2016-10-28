@@ -19,3 +19,5 @@ Route::get('/user', function (Request $request) {
 
 Route::get("/admin", ['uses' =>'API\Admin\AdminController@index'])->middleware('api');
 Route::get("/admin/pages", ['uses' =>'API\Admin\AdminController@pages'])->middleware('api');
+
+Route::get("gallery/{id}", ['uses' =>'GalleryController@showAPI', 'as' => 'api.gallery.show']);

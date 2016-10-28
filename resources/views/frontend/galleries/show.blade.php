@@ -1,10 +1,10 @@
-@extends(is_null($page->layout) ? 'frontend.pages.template' : $page->layout)
+@extends('frontend.pages.dashboard')
 
 @section('main')
-    <div class="grid-sizer"></div>
-    @foreach($gallery->images() as $image)
-        <div class="grid-item">
-          <img src="{{ $image->image }}" />
-        </div>
-    @endforeach
+<article>
+    <h1>{{ $gallery->title }}</h1>
+    <p>{{ $gallery->description }}</p>
+    <a class="HighlightLink" href="{{ route('gallery.index') }}">Retour aux galleries</a>
+</article>
 @stop
+

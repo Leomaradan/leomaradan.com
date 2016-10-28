@@ -7,7 +7,7 @@
             </div>
         </section>   
         <section v-bind:class="{ Card: image && !single }" class="Post">
-                    <time v-if="date && !image && single" itemprop="dateCreated" datetime="{{ date.ISO }}" v-html="dateFormater"></time>
+                    <time v-if="date && !image || single" itemprop="dateCreated" datetime="{{ date.ISO }}" v-html="dateFormater"></time>
 
                 <h1 itemprop="name">{{ title }}</h1>
                 <div class="PostInfo">

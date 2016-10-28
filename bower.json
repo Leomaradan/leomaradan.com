@@ -9,6 +9,7 @@
     "jqueryui-timepicker-addon": "latest",
     "jquery-ui-boostrap": "latest",
     "taggingJS": "latest",
-    "masonry": "^4.1.1"
+    "masonry": "^4.1.1",
+    "imagesloaded": "^4.1.1"
   }
 }

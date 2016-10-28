@@ -74,7 +74,7 @@ class PageController extends Controller
         }              
 
         foreach($images as $image) {
-            $this->sortElem($image, 'created_at', 'image', $recent, $old);
+            $this->sortElem($image, 'created_at', 'gallery', $recent, $old);
         }     
         
         $seed = key($recent) + 10;

@@ -52,6 +52,8 @@ Route::group(['prefix' => 'blog'], function() {
 });
 
   Route::resource('liens', 'LinkController', ['as' => 'link', 'only' => ['index', 'create', 'store']]);
+  Route::get('gallery', ['uses' => 'GalleryController@index', 'as' => "gallery.index"]);
+  Route::get('gallery/{id}', ['uses' => 'GalleryController@show', 'as' => "gallery.show"]);
   //Route::get("liens/about", ['as' => 'link.about', 'uses' =>'LinksController@about']);
   Route::get('r/{permalink}', ['as' => 'link.permalink', 'uses' => 'LinkController@show'])->where('permalink', '[A-Za-z0-9]+');
 

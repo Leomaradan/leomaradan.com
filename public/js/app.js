@@ -411,7 +411,38 @@ var app = new Vue({
     data: {
         errors: [],
         successes: [],
-        posts: []
+        posts: [],
+        infiniteScrollUrl: null,
+        infiniteScrollData: [],
+        infiniteScrollInProgress: false,
+        infiniteScrollCallback: null
+    },
+    ready: function () {
+        var vm = this;
+        
+        window.addEventListener('scroll', function () {
+            if (endOfPage() && !vm.infiniteScrollInProgress && !!vm.infiniteScrollUrl) {
+                vm.infiniteScrollInProgress = true;
+              vm.$http.get(vm.infiniteScrollUrl).then(function(response) {
+                  var data = response.data;
+                  if(data.items !== undefined) {
+                      data.items.forEach(function(e) {
+                          vm.infiniteScrollData.push(e);
+                      });
+                  }
+                  if(data.nextUrl !== undefined) {
+                     vm.infiniteScrollUrl = data.nextUrl;
+                  }
+                  if(!!vm.infiniteScrollCallback) {
+                      vm.infiniteScrollCallback();
+                  }
+                
+              }, function(response) {
+                console.log(response);
+                vm.infiniteScrollInProgress=false;
+              });
+            };
+        });
     }
 });
 
@@ -428,6 +459,23 @@ var minmax = function (value, min, max) {
 // 0.5, 0, 1 => max(0, min(1, 0.5))
     return Math.max(min, Math.min(max, value));
 };
+
+var endOfPage = function () {
+    var totalHeight, currentScroll, visibleHeight;
+
+    if (document.documentElement.scrollTop)
+    {
+        currentScroll = document.documentElement.scrollTop;
+    } else
+    {
+        currentScroll = document.body.scrollTop;
+    }
+
+    totalHeight = document.body.offsetHeight;
+    visibleHeight = document.documentElement.clientHeight;
+
+    return totalHeight <= currentScroll + visibleHeight;
+}
 
 var fixedNavbar = function () {
 
