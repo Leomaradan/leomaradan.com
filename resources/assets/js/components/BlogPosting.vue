@@ -1,13 +1,13 @@
 <template>
     <article itemscope itemtype="http://schema.org/BlogPosting">
-        <section v-if="image" class="image">
+        <section v-if="image && !single" class="image">
             <time v-if="date" itemprop="dateCreated" datetime="{{ date.ISO }}" v-html="dateFormater"></time>
             <div class="cover" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
                     <img v-bind:src="image" itemprop="contentUrl" alt="{{ imageCaption }}">
             </div>
         </section>   
-        <section v-bind:class="{ Card: image }" class="Post">
-                    <time v-if="date && !image" itemprop="dateCreated" datetime="{{ date.ISO }}" v-html="dateFormater"></time>
+        <section v-bind:class="{ Card: image && !single }" class="Post">
+                    <time v-if="date && !image && single" itemprop="dateCreated" datetime="{{ date.ISO }}" v-html="dateFormater"></time>
 
                 <h1 itemprop="name">{{ title }}</h1>
                 <div class="PostInfo">
@@ -17,6 +17,9 @@
                         <a v-for="tag in tags" href="{{ tag.link }}">{{ tag.name }}</a>
                     </span>
 
+                </div>
+                <div v-if="image && single" class="image">
+                    <img v-bind:src="image" itemprop="contentUrl" alt="{{ imageCaption }}">
                 </div>
                 <div itemprop="text">
                     <slot></slot>
@@ -53,7 +56,11 @@
                         type: String,
                         default: "Lire la suite"
                     },
-                    moreHtml: String
+                    moreHtml: String,
+                    single: {
+                        type: Boolean,
+                        default: false
+                    }
 		},
 
 		data () {
@@ -66,6 +73,9 @@
                             month = dates[1],
                             year = dates[2];
                         
+                        if(month.length > 5) {
+                            month = month.substring(0,3) + '.';
+                        }
                         return '<span>'+day+'</span><span>'+month+'</span><span>'+year+'</span>';
                     }
                 }

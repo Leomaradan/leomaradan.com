@@ -13,7 +13,8 @@
         "thujohn/twitter": "^2.2",
         "jeroen-g/flickr": "^1.0",
         "jenssegers/date": "^3.2",
-        "ads/statistics": "2.1.*"
+        "ads/statistics": "2.1.*",
+        "RobBrazier/Piwik": "~2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

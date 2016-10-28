@@ -19,5 +19,5 @@ return [
 	'ACCESS_TOKEN'        => function_exists('env') ? env('TWITTER_ACCESS_TOKEN', '') : '',
 	'ACCESS_TOKEN_SECRET' => function_exists('env') ? env('TWITTER_ACCESS_TOKEN_SECRET', '') : '',
     
-        'screen_name'     => function_exists('env') ? env('TWITTER_SCREENNAME', '') : '',
+        'screen_name'         => function_exists('env') ? env('TWITTER_SCREENNAME', '') : '',
 ];

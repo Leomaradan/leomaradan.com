@@ -70,21 +70,6 @@ ul {
     }
 }
 
-.SidebarModule .thumbnail {
-
-    height: 150px;
-    
-    img {
-        shape-outside: circle();
-        float: left;
-        border-radius: 50%;
-        height: 150px;
-
-        margin-right: 2rem;
-    }
-}
-
-
 .HorizontaleMenu, .HorizontaleMenu-Background {
     width: 100%;
     position: fixed;	
@@ -97,16 +82,28 @@ ul {
     z-index: 100;	
     border-bottom: 1px solid transparentize($lightColor, .75);
     
-    .HorizontaleMenu-ResponsiveIcon {
-        
-        display: none;
-        
+    &-ResponsiveIcon, &-ResponsiveToggle {
+        top: -26px;
         position: relative;
-
-        float: left;
         height: 32px;
-        width: 32px;
-        left: 4px;
+        width: 32px;     
+        display: none;
+        @media (max-width: $small-breakpoint) {
+            display: block;
+        }        
+    }
+    
+    &-ResponsiveToggle {
+        opacity: 0;
+        left: 22px;
+    }
+    
+    &-ResponsiveIcon {
+
+        background-color: rgba(0,0,0,.2);
+
+
+        left: 26px;
         top: 9px;
 
         border-radius: 2px;
@@ -124,11 +121,11 @@ ul {
             box-shadow: 0 8px 0 1px $lightColor, 0 15px 0 1px $lightColor, 0 22px 0 1px $lightColor ;
         }        
         
-        
-        @media (max-width: $small-breakpoint) {
-            display: block;
-        }
-    }    
+    }   
+    
+     
+    
+
     
 
     a {
@@ -168,12 +165,7 @@ ul {
     ul {
         list-style: none;
         justify-content: center;
-        display: flex;
-        
-        @media (max-width: $small-breakpoint) {
-            display: none;
-        }    
-               
+        display: flex;               
     }   
     
 
@@ -186,6 +178,36 @@ ul {
     .SiteHeader h1 {
         font-size: 1.5rem;
         top: 0;
+    }
+    
+    .HorizontaleMenu {
+        ul {
+            justify-content: flex-start;
+            flex-direction: column;
+            background-color: transparentize($darkColor, .4);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 150px;
+            z-index: -1;
+            padding: 70px 20px;      
+            margin: 0;
+	    transform: translateX(-150px);
+            transition: transform 0.2s ease;   
+            
+            a {
+                display: block;		    	
+            }            
+        }
+        
+        &-ResponsiveToggle:checked+ul {
+            transform: translateX(0);
+        }        
+    }     
+    
+    .HorizontaleMenu-Background {
+        display: none;
     }
 
 }

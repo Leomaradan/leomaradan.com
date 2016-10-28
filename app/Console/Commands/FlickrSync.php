@@ -41,7 +41,7 @@ class FlickrSync extends Command
      */
     public function handle()
     {
-        $photosets = Flickr::listSets(['user_id' => '63204269@N06']);
+        $photosets = Flickr::listSets(['user_id' => config('flickr.user_id')]);
         
         foreach ($photosets->photosets['photoset'] as $photoset) {
 
@@ -55,8 +55,8 @@ class FlickrSync extends Command
         //$id = $photosets->photosets['photoset'][1]['id'];
         
   
-        $photoset = Flickr::request('flickr.photosets.getInfo', ['photoset_id' => $album, 'user_id' => '63204269@N06'])->photoset;
-        $photolist = Flickr::photosForSet($album, '63204269@N06', ['extras' => 'url_c,url_o', 'privacy_filter' => '1'])->photoset['photo'];
+        $photoset = Flickr::request('flickr.photosets.getInfo', ['photoset_id' => $album, 'user_id' => config('flickr.user_id')])->photoset;
+        $photolist = Flickr::photosForSet($album, config('flickr.user_id'), ['extras' => 'url_c,url_o', 'privacy_filter' => '1'])->photoset['photo'];
          
         $gallery = Gallery::firstOrNew(['flickr_id' => $album]);
         

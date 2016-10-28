@@ -88,12 +88,12 @@ class PageController extends Controller
         }  
         
         $recent = array_reverse($recent);
-        ksort($old_shuffle);
+        //ksort($old_shuffle);
         
-        $old = $old_shuffle;
-        unset($old_shuffle);
+        //$old = $old_shuffle;
+        //unset($old_shuffle);
         
-        $data = array_merge($recent,$old);
+        $data = array_merge($recent,$old_shuffle);
         
         return view('frontend.pages.dashboard', compact('data'));
         //dd($old);
@@ -101,7 +101,7 @@ class PageController extends Controller
     }
     public function pages($slug)
     {
-        $page = Page::where('slug', $slug)->first();
+        $page = Page::where('slug', $slug)->firstOrFail();
         /*if($page == null) {
             if(Route::has($slug)) {
                 

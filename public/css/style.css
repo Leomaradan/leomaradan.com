@@ -210,6 +210,13 @@
   -webkit-box-align: center;
   align-items: center; }
 
+.BlogLayout .PostInfo + .image img {
+  margin-top: 2rem;
+  margin-right: 2rem;
+  float: left;
+  max-height: 450px;
+  max-width: 100%; }
+
 .BlogLayout .Post.Card {
   float: left;
   z-index: 5;
@@ -276,6 +283,16 @@
 .BlogLayout ul.TagsCloud li {
   height: 4rem; }
 
+.BlogLayout .SidebarModule .thumbnail {
+  min-height: 150px; }
+  .BlogLayout .SidebarModule .thumbnail img {
+    -webkit-shape-outside: circle();
+    shape-outside: circle();
+    float: left;
+    border-radius: 50%;
+    height: 150px;
+    margin-right: 2rem; }
+
 @media (max-width: 1666px) {
   .BlogLayout .Card {
     top: 60px;
@@ -292,6 +309,14 @@
     padding: 15px;
     box-shadow: none;
     border: 1px solid rgba(0, 26, 0, 0.15); }
+  .BlogLayout .PostInfo {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: baseline;
+    -ms-grid-row-align: baseline;
+    align-items: baseline;
+    max-width: 100%; }
   .BlogLayout .SingleArticle .cover {
     margin: auto;
     width: 100%;
@@ -304,7 +329,13 @@
     flex-direction: column; }
   .BlogLayout .Card {
     float: none !important;
-    position: initial !important; } }
+    position: initial !important; }
+  .BlogLayout time {
+    display: none; }
+  .BlogLayout .TagsCloud a {
+    padding: .2rem .4rem; }
+  .BlogLayout .SidebarModule .thumbnail img {
+    float: none; } }
 
 .palette-container {
   display: -webkit-box;
@@ -359,16 +390,6 @@ ul {
     font-size: 6rem;
     color: white; }
 
-.SidebarModule .thumbnail {
-  height: 150px; }
-  .SidebarModule .thumbnail img {
-    -webkit-shape-outside: circle();
-    shape-outside: circle();
-    float: left;
-    border-radius: 50%;
-    height: 150px;
-    margin-right: 2rem; }
-
 .HorizontaleMenu, .HorizontaleMenu-Background {
   width: 100%;
   position: fixed;
@@ -377,18 +398,26 @@ ul {
 .HorizontaleMenu {
   z-index: 100;
   border-bottom: 1px solid rgba(255, 255, 255, 0.25); }
-  .HorizontaleMenu .HorizontaleMenu-ResponsiveIcon {
-    display: none;
+  .HorizontaleMenu-ResponsiveIcon, .HorizontaleMenu-ResponsiveToggle {
+    top: -26px;
     position: relative;
-    float: left;
     height: 32px;
     width: 32px;
-    left: 4px;
+    display: none; }
+    @media (max-width: 600px) {
+      .HorizontaleMenu-ResponsiveIcon, .HorizontaleMenu-ResponsiveToggle {
+        display: block; } }
+  .HorizontaleMenu-ResponsiveToggle {
+    opacity: 0;
+    left: 22px; }
+  .HorizontaleMenu-ResponsiveIcon {
+    background-color: rgba(0, 0, 0, 0.2);
+    left: 26px;
     top: 9px;
     border-radius: 2px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     cursor: pointer; }
-    .HorizontaleMenu .HorizontaleMenu-ResponsiveIcon:after {
+    .HorizontaleMenu-ResponsiveIcon:after {
       left: 5px;
       content: '';
       position: absolute;
@@ -396,9 +425,6 @@ ul {
       width: 2rem;
       height: 0;
       box-shadow: 0 8px 0 1px white, 0 15px 0 1px white, 0 22px 0 1px white; }
-    @media (max-width: 600px) {
-      .HorizontaleMenu .HorizontaleMenu-ResponsiveIcon {
-        display: block; } }
   .HorizontaleMenu a {
     text-decoration: none;
     text-transform: uppercase;
@@ -433,16 +459,41 @@ ul {
     justify-content: center;
     display: -webkit-box;
     display: flex; }
-    @media (max-width: 600px) {
-      .HorizontaleMenu ul {
-        display: none; } }
 
 @media (max-width: 600px) {
   .parallax-window, .parallax-mirror {
     min-height: 50px !important; }
   .SiteHeader h1 {
     font-size: 1.5rem;
-    top: 0; } }
+    top: 0; }
+  .HorizontaleMenu ul {
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    background-color: rgba(0, 26, 0, 0.6);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+    z-index: -1;
+    padding: 70px 20px;
+    margin: 0;
+    -webkit-transform: translateX(-150px);
+    transform: translateX(-150px);
+    -webkit-transition: -webkit-transform 0.2s ease;
+    transition: -webkit-transform 0.2s ease;
+    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, -webkit-transform 0.2s ease; }
+    .HorizontaleMenu ul a {
+      display: block; }
+  .HorizontaleMenu-ResponsiveToggle:checked + ul {
+    -webkit-transform: translateX(0);
+    transform: translateX(0); }
+  .HorizontaleMenu-Background {
+    display: none; } }
 
 .HorizontaleMenu-Background {
   background-color: rgba(0, 26, 0, 0.6);

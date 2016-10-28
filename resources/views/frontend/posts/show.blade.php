@@ -10,7 +10,8 @@
                   v-bind:date="post.date" 
                   v-bind:url="post.url" 
                   v-bind:tags="post.tags" 
-                  v-bind:category="post.category">@{{{ post.content }}}</blog-posting>
+                  v-bind:category="post.category"
+                  v-bind:single="post.single">@{{{ post.content }}}</blog-posting>
 </template>
 <script>
     var posts = [
@@ -20,12 +21,13 @@
             'image' => isset($post->image) ? asset('uploads/blog/' . $post->image) : null,
             'imageCaption' => 'Image d\'illustration de '. $post->title,
             'date' => [
-                'ISO' => $post->published_at->format('Y-m-d\TH:i:sO'),
-                'localized' => $post->published_at->format('j-F-Y')
+                'ISO' => $post->published_date->format('Y-m-d\TH:i:sO'),
+                'localized' => $post->published_date->format('j-F-Y')
             ],
             'tags' => $post->tagsJson,
             'category' => isset($post->category) ? ['name' => $post->category->name, 'link' => route('blog.category', $post->category)] : null,
             'content' => Markdown::convertToHtml($post->content),
+            'single' => true
         ]) !!},
         ];
     //var disqus = ;

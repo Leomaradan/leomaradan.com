@@ -5,8 +5,9 @@
 @endsection
 
 @section('menu')
-<div class="HorizontaleMenu-ResponsiveIcon"></div>
     <nav>
+	<div class="HorizontaleMenu-ResponsiveIcon"></div>
+	<input type="checkbox" class="HorizontaleMenu-ResponsiveToggle">	        
         <ul>
             @foreach(App\Models\Menu::getMenu('main') as $menu)
                 <li><a href="{{ $menu['href'] }}">{{ $menu['title'] }}</a></li>

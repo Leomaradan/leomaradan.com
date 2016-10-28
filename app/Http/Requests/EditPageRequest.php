@@ -38,7 +38,7 @@ class EditPageRequest extends FormRequest
             case 'POST':
             {
                 return [
-                    'title'     => 'required|min:3',
+                    'title'     => 'required|min:1',
                     'slug'      => 'required|unique:pages',
                     'content'   => 'required' 
                 ];
@@ -47,7 +47,7 @@ class EditPageRequest extends FormRequest
             case 'PATCH':
             {
                 return [
-                    'title'     => 'required|min:3',
+                    'title'     => 'required|min:1',
                     'slug'      => 'required|unique:pages,slug,' . $page->id,
                     'content'   => 'required' 
                 ];

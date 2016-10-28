@@ -174,6 +174,7 @@ return [
         Jenssegers\Date\DateServiceProvider::class,
         //willvincent\Feeds\FeedsServiceProvider::class,
         Ads\Statistics\StatisticsServiceProvider::class,
+        RobBrazier\Piwik\PiwikServiceProvider::class,
         //
 
         /*
@@ -227,6 +228,7 @@ return [
         'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Password' => Illuminate\Support\Facades\Password::class,
+        'Piwik' => RobBrazier\Piwik\Facades\Piwik::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
         'Redis' => Illuminate\Support\Facades\Redis::class,

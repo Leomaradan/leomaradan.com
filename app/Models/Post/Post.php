@@ -19,7 +19,7 @@ class Post extends SlugTemplate {
     }
 
     public function scopePublished($query) {
-        return $query->where('published_at', '<', DB::raw('NOW()'))->orderBy('published_at');
+        return $query->where('published_at', '<', DB::raw('NOW()'))->orderBy('published_at', 'desc');
     }
 
     public function scopeSearchByTitle($query, $q) {
@@ -108,7 +108,7 @@ class Post extends SlugTemplate {
         }
     }
     
-    public function getPublishedAtAttribute() {
+    public function getPublishedDateAttribute() {
         //$newDate = $this->attributes['published_at'];
         return new Date($this->attributes['published_at']);
     }

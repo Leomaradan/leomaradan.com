@@ -37,8 +37,8 @@ class EditPostRequest extends FormRequest
             case 'POST':
             {
                 return [
-                    'title'     => 'required|min:5',
-                    'content'   => 'required|min:10',
+                    'title'     => 'required|min:1',
+                    'content'   => 'required|min:5',
                     'slug'  => 'required|unique:posts'
                 ];
             }
@@ -46,8 +46,8 @@ class EditPostRequest extends FormRequest
             case 'PATCH':
             {
                 return [
-                    'title'     => 'required|min:5',
-                    'content'   => 'required|min:10',
+                    'title'     => 'required|min:1',
+                    'content'   => 'required|min:5',
                     'slug'  => 'required|unique:posts,slug,' . $post->id
                 ];
             }

@@ -86,6 +86,16 @@
         display: flex;
         align-items: center;     
     }
+    
+    .PostInfo+.image {
+        img {
+            margin-top: 2rem;
+            margin-right: 2rem;
+            float: left;
+            max-height: 450px;
+            max-width: 100%;            
+        }
+    }
 
     
     .Post.Card {
@@ -171,6 +181,20 @@
     ul.TagsCloud li {
         height: 4rem;
     }
+    
+    .SidebarModule .thumbnail {
+
+        min-height: 150px;
+
+        img {
+            shape-outside: circle();
+            float: left;
+            border-radius: 50%;
+            height: 150px;
+
+            margin-right: 2rem;
+        }
+    }    
 
     @media (max-width: 1666px) {
         
@@ -197,7 +221,20 @@
             padding: 15px;
             box-shadow: none;
             border: 1px solid transparentize($darkColor, .85);
-        }        
+        }
+
+        .PostInfo {
+            flex-direction: column;
+            align-items: baseline;  
+            max-width: 100%;
+        }
+        
+        .PostInfo+.image {
+            text-align: center;
+            img {
+                float: none;
+            }
+        }
         
         .SingleArticle .cover {
             margin: auto;
@@ -216,6 +253,20 @@
         .Card {
             float: none !important;
             position: initial !important;
+        }
+        
+        time {
+            display: none;
+        }
+        
+        .TagsCloud a {
+            padding: .2rem .4rem;
+        }
+        
+        .SidebarModule .thumbnail {
+            img { 
+                float: none;
+            }
         }
     }
 }

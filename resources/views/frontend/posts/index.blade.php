@@ -20,8 +20,8 @@
             'image' => isset($post->image) ? asset('uploads/blog/' . $post->image) : null,
             'imageCaption' => 'Image d\'illustration de '. $post->title,
             'date' => [
-                'ISO' => $post->published_at->format('Y-m-d\TH:i:sO'),
-                'localized' => $post->published_at->format('j-F-Y')
+                'ISO' => $post->published_date->format('Y-m-d\TH:i:sO'),
+                'localized' => $post->published_date->format('j-F-Y')
             ],
             'url' => route('blog.show', $post),
             'tags' => $post->tagsJson,
