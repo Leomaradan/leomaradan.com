@@ -40,7 +40,13 @@ class GalleryController extends Controller
         $result = ['items' => [], 'nextUrl' => $images['nextUrl']];
         
         foreach($images['items'] as $item) {
-            $result['items'][] = ['image' => $item['elem']->image, 'content' => '<h1>'. $item['elem']->title .'</h1>'];
+            $result['items'][] = [
+                'isFancybox' => true, 
+                'image' => $item['elem']->thumbnail, 
+                'link' => $item['elem']->image, 
+                'content' => '<h1>'. $item['elem']->title .'</h1>',
+                'title' => $item['elem']->title
+            ];
         }
 
         return response()->json($result);

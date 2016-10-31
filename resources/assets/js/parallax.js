@@ -397,7 +397,7 @@
 
   // Parallax Data-API
 
-  $(document).on('ready.px.parallax.data-api', function () {
+  $(function() {
     $('[data-parallax="scroll"]').parallax();
   });
 

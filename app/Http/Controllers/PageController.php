@@ -40,10 +40,20 @@ class PageController extends Controller
                 }
                $recent[$timestamp] = ['type' => $cat, 'elem' => $elem];
             } else {
-                $old[] = ['type' => $cat, 'elem' => $elem];
+                $old[$timestamp] = ['type' => $cat, 'elem' => $elem];
             }
     }
     
+    private function formatElem($elem,$timekey,$cat,&$data) {
+        $elemTime = date_create($elem->$timekey);
+        $timestamp = $elemTime->getTimestamp();    
+        
+        if(isset($data[$timestamp])) {
+            $timestamp++;
+        }
+        $data[$timestamp] = ['type' => $cat, 'elem' => $elem];
+    }
+       
     public function dashboard() 
     {
         /*
@@ -58,26 +68,31 @@ class PageController extends Controller
         
         $recent = [];
         $old = [];
+        $data = [];
         //dd($images);
        
         foreach($posts as $post) {
-            $this->sortElem($post, 'published_at', 'post', $recent, $old);
+            //$this->sortElem($post, 'published_at', 'post', $recent, $old);
+            $this->formatElem($post, 'published_at', 'post', $data);
         }
         
    
         foreach($tweets as $tweet) {
-            $this->sortElem($tweet, 'created_at', 'tweet', $recent, $old);
+            //$this->sortElem($tweet, 'created_at', 'tweet', $recent, $old);
+            $this->formatElem($tweet, 'created_at', 'tweet', $data);
         }        
         
         foreach($links as $link) {
-            $this->sortElem($link, 'created_at', 'link', $recent, $old);
+            //$this->sortElem($link, 'created_at', 'link', $recent, $old);
+            $this->formatElem($link, 'created_at', 'link', $data);
         }              
 
         foreach($images as $image) {
-            $this->sortElem($image, 'created_at', 'gallery', $recent, $old);
+            //$this->sortElem($image, 'updated_at', 'gallery', $recent, $old);
+            $this->formatElem($image, 'updated_at', 'gallery', $data);
         }     
         
-        $seed = key($recent) + 10;
+        /*$seed = key($recent) + 10;
         mt_srand($seed);
         
         $old_shuffle = [];
@@ -93,7 +108,12 @@ class PageController extends Controller
         //$old = $old_shuffle;
         //unset($old_shuffle);
         
-        $data = array_merge($recent,$old_shuffle);
+        $data = array_merge($recent,$old);
+        */
+        ksort($data);
+        
+        $data = array_reverse($data);
+        //dd($data);
         
         return view('frontend.pages.dashboard', compact('data'));
         //dd($old);

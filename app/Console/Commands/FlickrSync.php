@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-
 use App\Models\Gallery\Gallery;
 use App\Models\Gallery\Image;
+use DateTime;
 use Flickr;
+use Illuminate\Console\Command;
 
 class FlickrSync extends Command
 {
@@ -52,11 +52,10 @@ class FlickrSync extends Command
     
     
     private function importFlickrAlbum($album) {
-        //$id = $photosets->photosets['photoset'][1]['id'];
-        
   
         $photoset = Flickr::request('flickr.photosets.getInfo', ['photoset_id' => $album, 'user_id' => config('flickr.user_id')])->photoset;
-        $photolist = Flickr::photosForSet($album, config('flickr.user_id'), ['extras' => 'url_c,url_o', 'privacy_filter' => '1'])->photoset['photo'];
+
+        $photolist = Flickr::photosForSet($album, config('flickr.user_id'), ['extras' => 'url_c,url_o,date_taken', 'privacy_filter' => '1'])->photoset['photo'];
          
         $gallery = Gallery::firstOrNew(['flickr_id' => $album]);
         
@@ -68,15 +67,21 @@ class FlickrSync extends Command
         
         if(!$gallery->isTouched('description')) {
             $gallery->description = $photoset['description']['_content'];
-        }        
+        }   
+        
+        $gallery->updated_at = (new DateTime())->setTimestamp($photoset['date_update']);
 
         $gallery->save();
  
         $order = 1;
+
         foreach ($photolist as $photo) {
             $item = Image::firstOrNew(['flickr_id' => $photo['id']]);
             
-            $item->image = (isset($photo['url_c'])) ? $photo['url_c'] : $photo['url_o'];
+            $item->deactivateTouchWatch();
+            
+            $item->thumbnail = (isset($photo['url_c'])) ? $photo['url_c'] : null;
+            $item->image = $photo['url_o'];
 
             if(!$item->isTouched('description')) {
                 $item->description = (!preg_match("/(\.jpg$|\.png$)/i", $photo['title'])) ? $photo['title'] : '';
@@ -84,6 +89,8 @@ class FlickrSync extends Command
             if(!$item->isTouched('gallery_order')) {
                 $item->gallery_order = $order;
             }
+            
+            $item->updated_at = new DateTime($photo['datetaken']);
             
             $order++;
 

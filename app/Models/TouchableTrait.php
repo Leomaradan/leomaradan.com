@@ -12,7 +12,7 @@ trait TouchableTrait {
             return;
 
 
-        $touched = explode(',', $this->touched);
+        $touched = explode(',', trim($this->touched));
         if (!in_array($field, $touched)) {
             $touched[] = $field;
         }

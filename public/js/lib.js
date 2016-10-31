@@ -39101,9 +39101,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 // <template>
-//     <div class="Box" v-bind:class="{ Link: isLink, Photo: image, Long: Long, Post: isPost, Landscape: isLandscape }">
+//     <div class="Box" v-bind:class="{ Link: isLink, Photo: image, Long: Long, Post: isPost, Landscape: isLandscape, fancybox: isFancybox }">
 //         <template v-if="isPost">
-//             <img v-if="image" v-bind:src="image" v-on:load="setLandscape">
+//             <img v-if="image" v-bind:src="image" v-on:load="setLandscape" alt="{{imageAlt}}">
 //             <div class="Box-Content">
 //                 <slot></slot>
 //                 <a v-if="link" href="{{link}}" target={{linkTarget}}>{{linkLabel}}</a>
@@ -39118,10 +39118,10 @@ Object.defineProperty(exports, "__esModule", {
 //             <template v-else>
 //                 <a v-if="link" href="{{link}}" target={{linkTarget}}>
 //                     <slot></slot>
-//                     <img v-if="image" v-bind:src="image" v-on:load="setLandscape">
-//                     <template v-else>{{ linkLabel }}</template>
+//                     <img v-if="image" v-bind:src="image" v-on:load="setLandscape" alt="{{imageAlt}}">
+//                     <template v-else>{{linkLabel}}</template>
 //                     </a>
-//                 <a href="#" v-else><slot></slot><img v-if="image" v-bind:src="image" v-on:load="setLandscape"></a>
+//                 <a v-else title="{{imageAlt}}"><slot></slot><img v-if="image" v-bind:src="image" v-on:load="setLandscape"></a>
 //             </template>
 //         </template>
 //     </div>
@@ -39135,6 +39135,10 @@ exports.default = {
 
     props: {
         image: String,
+        imageAlt: {
+            type: String,
+            default: ''
+        },
         link: String,
         linkLabel: {
             type: String,
@@ -39147,6 +39151,10 @@ exports.default = {
         isPost: String,
         isLink: String,
         isLandscape: {
+            type: Boolean,
+            default: false
+        },
+        isFancybox: {
             type: Boolean,
             default: false
         }
@@ -39414,7 +39422,7 @@ module.exports = "\n<template v-for=\"item in items\">\n\t<h2 v-if=\"!item.subme
 /* 19 */
 /***/ function(module, exports) {
 
-module.exports = "\n<div class=\"Box\" v-bind:class=\"{ Link: isLink, Photo: image, Long: Long, Post: isPost, Landscape: isLandscape }\">\n    <template v-if=\"isPost\">\n        <img v-if=\"image\" v-bind:src=\"image\" v-on:load=\"setLandscape\">\n        <div class=\"Box-Content\">\n            <slot></slot>\n            <a v-if=\"link\" href=\"{{link}}\" target={{linkTarget}}>{{linkLabel}}</a>\n        </div>\n        \n    </template>\n    <template v-else>\n        <template v-if=\"isLink\">\n            <div><slot></slot></div>\n            <a v-if=\"link\" href=\"{{link}}\" target={{linkTarget}}>{{linkLabel}}</a>\n        </template>\n        <template v-else>\n            <a v-if=\"link\" href=\"{{link}}\" target={{linkTarget}}>\n                <slot></slot>\n                <img v-if=\"image\" v-bind:src=\"image\" v-on:load=\"setLandscape\">\n                <template v-else>{{ linkLabel }}</template>\n                </a>\n            <a href=\"#\" v-else><slot></slot><img v-if=\"image\" v-bind:src=\"image\" v-on:load=\"setLandscape\"></a>\n        </template>\n    </template>\n</div>\n";
+module.exports = "\n<div class=\"Box\" v-bind:class=\"{ Link: isLink, Photo: image, Long: Long, Post: isPost, Landscape: isLandscape, fancybox: isFancybox }\">\n    <template v-if=\"isPost\">\n        <img v-if=\"image\" v-bind:src=\"image\" v-on:load=\"setLandscape\" alt=\"{{imageAlt}}\">\n        <div class=\"Box-Content\">\n            <slot></slot>\n            <a v-if=\"link\" href=\"{{link}}\" target={{linkTarget}}>{{linkLabel}}</a>\n        </div>\n        \n    </template>\n    <template v-else>\n        <template v-if=\"isLink\">\n            <div><slot></slot></div>\n            <a v-if=\"link\" href=\"{{link}}\" target={{linkTarget}}>{{linkLabel}}</a>\n        </template>\n        <template v-else>\n            <a v-if=\"link\" href=\"{{link}}\" target={{linkTarget}}>\n                <slot></slot>\n                <img v-if=\"image\" v-bind:src=\"image\" v-on:load=\"setLandscape\" alt=\"{{imageAlt}}\">\n                <template v-else>{{linkLabel}}</template>\n                </a>\n            <a v-else title=\"{{imageAlt}}\"><slot></slot><img v-if=\"image\" v-bind:src=\"image\" v-on:load=\"setLandscape\"></a>\n        </template>\n    </template>\n</div>\n";
 
 /***/ },
 /* 20 */

@@ -25,6 +25,10 @@ class Gallery extends Model {
     public function getCoverSrcAttribute() {
         return $this->cover()->first()->image;
     }
+    
+    public function getCoverThumbnailAttribute() {
+        return $this->cover()->first()->thumbnail;
+    }    
 
     public function scopeFindByFlickrId($query, $q) {
         return $query->where('flickr_id', $q);

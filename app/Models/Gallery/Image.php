@@ -11,7 +11,7 @@ class Image extends Model
     
     use TouchableTrait;
     
-    protected $fillable = ['gallery_id','description','image','flickr_id','gallery_order','updated_at','touched'];
+    protected $fillable = ['gallery_id','description','image','thumbnail','flickr_id','gallery_order','updated_at','touched'];
    
     public $timestamps = false;
     
@@ -42,7 +42,14 @@ class Image extends Model
         }
         
         $this->attributes['gallery_order'] = $value;
-    }     
+    }   
+    
+    public function getThumbnailAttribute() {
+        if(!isset($this->attributes['thumbnail']) || $this->attributes['gallery_order'] == null) {
+            return $this->attributes['image'];
+        }
+        return $this->attributes['thumbnail'];
+    }    
     
     /*
      * gallery_id

@@ -1,7 +1,7 @@
 <template>
-    <div class="Box" v-bind:class="{ Link: isLink, Photo: image, Long: Long, Post: isPost, Landscape: isLandscape }">
+    <div class="Box" v-bind:class="{ Link: isLink, Photo: image, Long: Long, Post: isPost, Landscape: isLandscape, fancybox: isFancybox }">
         <template v-if="isPost">
-            <img v-if="image" v-bind:src="image" v-on:load="setLandscape">
+            <img v-if="image" v-bind:src="image" v-on:load="setLandscape" alt="{{imageAlt}}">
             <div class="Box-Content">
                 <slot></slot>
                 <a v-if="link" href="{{link}}" target={{linkTarget}}>{{linkLabel}}</a>
@@ -16,10 +16,10 @@
             <template v-else>
                 <a v-if="link" href="{{link}}" target={{linkTarget}}>
                     <slot></slot>
-                    <img v-if="image" v-bind:src="image" v-on:load="setLandscape">
-                    <template v-else>{{ linkLabel }}</template>
+                    <img v-if="image" v-bind:src="image" v-on:load="setLandscape" alt="{{imageAlt}}">
+                    <template v-else>{{linkLabel}}</template>
                     </a>
-                <a href="#" v-else><slot></slot><img v-if="image" v-bind:src="image" v-on:load="setLandscape"></a>
+                <a v-else><slot></slot><img v-if="image" v-bind:src="image" v-on:load="setLandscape" alt="{{imageAlt}}"></a>
             </template>
         </template>
     </div>
@@ -33,6 +33,10 @@
 
 		props: {
                     image: String,
+                    imageAlt: {
+                        type: String,
+                        default: ''
+                    },
                     link: String,
                     linkLabel: {
                         type: String,
@@ -45,6 +49,10 @@
                     isPost: String,
                     isLink: String,
                     isLandscape: {
+                        type: Boolean,
+                        default: false
+                    },
+                    isFancybox: {
                         type: Boolean,
                         default: false
                     }

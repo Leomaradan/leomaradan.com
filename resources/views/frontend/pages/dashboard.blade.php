@@ -16,15 +16,18 @@
             @elseif ($item['type'] == 'link')
             <masonry-box is-link="true" link="{{ route('link.permalink', $item['elem']) }}" link-label="permalink" link-target="_blank"><h1>{!! $item['elem']->title !!}</h1><p>{!! $item['elem']->description  !!}</p></masonry-box>
             @elseif ($item['type'] == 'gallery')
-                <masonry-box image="{{ $item['elem']->coverSrc }}" link="{{ route('gallery.show',$item['elem']) }}"><h1>{{ $item['elem']->title }}</h1></masonry-box>
+                <masonry-box image="{{ $item['elem']->coverThumbnail }}" link="{{ route('gallery.show',$item['elem']) }}"><h1>{{ $item['elem']->title }}</h1></masonry-box>
             @elseif ($item['type'] == 'image')
-                <masonry-box image="{{ $item['elem']->image }}"><h1>{{ $item['elem']->title }}</h1></masonry-box>
+                <masonry-box class="fancybox" image="{{ $item['elem']->thumbnail }}" link="{{ $item['elem']->image }}" image-alt="{{ $item['elem']->description }}"><h1>{{ $item['elem']->description }}</h1></masonry-box>
             @endif
         @endforeach
         <template v-for="box in infiniteScrollData">
-            <masonry-box class="lazy-loaded" v-bind:is-post="box.isPost" 
+            <masonry-box class="lazy-loaded"
+                          v-bind:is-fancybox="box.isFancybox"
+                          v-bind:is-post="box.isPost" 
                           v-bind:is-link="box.isLink" 
                           v-bind:image="box.image" 
+                          v-bind:image-alt="box.title"
                           v-bind:link="box.link" 
                           v-bind:link-label="box.linkLabel" 
                           v-bind:link-target="box.linkTarget">@{{{ box.content }}}</masonry-box>
@@ -41,9 +44,20 @@
     jQuery(document).ready(function ($) {    
         var $grid = $('main .BoxContainer').masonry({
             fitWidth: true,
-          itemSelector: '.Box'/*,
-          columnWidth: 400*/
+          itemSelector: '.Box',
+          columnWidth: 300
         });
+        
+        $(".fancybox a").fancybox({
+            beforeShow : function() {
+                var alt = this.element.find('img').attr('alt');
+
+                this.inner.find('img').attr('alt', alt);
+
+                this.title = alt;
+            }            
+        });
+     
         
         /*$grid.imagesLoaded().progress( function(e) {
             console.log(e);
@@ -56,11 +70,25 @@
                 app.infiniteScrollInProgress = false;
                 $grid.masonry('reloadItems');
                 $('main .BoxContainer').masonry('layout');
+                
+                $(".lazy-loaded.fancybox a").fancybox({
+                    beforeShow : function() {
+                        var alt = this.element.find('img').attr('alt');
+
+                        this.inner.find('img').attr('alt', alt);
+
+                        this.title = alt;
+                    }            
+                });                
                 //$grid.masonry( 'addItems', $('main .BoxContainer .lazy-loaded'));
-                //$('main .BoxContainer .lazy-loaded').removeClass('lazy-loaded');
+                $('main .BoxContainer .lazy-loaded').removeClass('lazy-loaded');
             });  
         };
         app.infiniteScrollUrl = {!! isset($infiniteScrollUrl) ? "'$infiniteScrollUrl'" : 'null' !!};
+        
+        if(app.infiniteScrollUrl !== null) {
+            $('main .BoxContainer').addClass('InfinitScroll');
+        }
         
     });
 </script>
